@@ -715,5 +715,14 @@ if(!tick()){ var timer=setInterval(function(){ if(tick()) clearInterval(timer); 
   window.addEventListener("resize",function(){ if(window.innerWidth>900) set(false); });
 })();
 </script>
+
+<!-- language switcher: नेपाली / English / 日本語 -->
+<style>
+.langsw{display:flex;gap:2px;margin-left:auto;flex-shrink:0}
+.langsw button{border:1px solid var(--line);background:#fff;color:var(--ink-soft);font:600 .74rem var(--body);padding:6px 8px;border-radius:7px;cursor:pointer;line-height:1}
+.langsw button[aria-current="true"]{background:var(--teej);border-color:var(--teej);color:#fff}
+@media (max-width:420px){.langsw button{padding:6px 6px;font-size:.68rem}.mark b{font-size:.9rem}}
+</style>
+<script src="i18n.js"></script>
 </body>
 </html>
