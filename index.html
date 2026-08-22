@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════════════════════════════════════════════════════════
+     स्याङ्जा समाज जापान — आधिकारिक वेबसाइट
+     SYANGJA COMMUNITY JAPAN  ·  स्थापना: १७ सेप्टेम्बर २०१२
+     ──────────────────────────────────────────────────────────────
+     ✏️  सबै नाम/मिति तलको DATA भागमा छ — HTML छुनु पर्दैन।
+     ⚠️  सार्वजनिक साइट हो। बैंक खाता, व्यक्तिगत फोन,
+         सदस्यहरूको 在留カード विवरण यहाँ नराख्नुहोस्।
+     ══════════════════════════════════════════════════════════════ -->
+
+<title>स्याङ्जा समाज जापान | Syangja Community Japan</title>
+<meta name="description" content="जापानमा रहेका स्याङ्जाबासीहरूको साझा संस्था। स्थापना २०१२। सांस्कृतिक कार्यक्रम, रक्तदान, जानकारीमूलक कार्यक्रम, राहत तथा सहयोग।">
+<meta property="og:title" content="स्याङ्जा समाज जापान">
+<meta property="og:description" content="जापानमा रहेका स्याङ्जाबासीहरूको साझा घर — स्थापना २०१२">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martel:wght@400;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#FDF8EE; --paper-2:#F5EBDA;
+  --ink:#1A1428; --ink-soft:#544A63;
+  --teej:#C4123F; --teej-dark:#9C0E32;
+  --marigold:#E9A020; --terrace:#4A6B4F;
+  --line:rgba(26,20,40,.13);
+  --shadow:0 2px 20px rgba(26,20,40,.07);
+  --display:'Martel',serif; --body:'Noto Sans Devanagari',sans-serif; --jp:'Noto Sans JP',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 22px}
+a{color:inherit}
+img{max-width:100%;display:block}
+code{font-size:.85em;background:var(--paper-2);padding:1px 6px;border-radius:5px}
+
+/* ── हेडर ─────────────────────────────────────────── */
+.top{position:sticky;top:0;z-index:80;background:rgba(253,248,238,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:14px;height:64px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.mark img,.mark svg{width:38px;height:38px;display:block;border-radius:50%}
+.mark b{font-family:var(--display);font-weight:800;font-size:1rem;line-height:1.18}
+.nav{margin-left:auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nav::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap;text-decoration:none;font-size:.85rem;font-weight:500;color:var(--ink-soft);padding:7px 10px;border-radius:7px;transition:.18s}
+.nav a:hover,.nav a:focus-visible{color:var(--teej);background:var(--paper-2)}
+
+/* ── हिरो ─────────────────────────────────────────── */
+.hero{position:relative;background:var(--ink);color:var(--paper);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 420px at 80% -12%,rgba(196,18,63,.32),transparent 62%),radial-gradient(680px 340px at 4% 110%,rgba(233,160,32,.18),transparent 66%)}
+.hero-in{position:relative;padding:66px 0 96px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.73rem;font-weight:600;letter-spacing:.15em;color:var(--marigold);margin-bottom:20px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--marigold)}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,10vw,4.4rem);line-height:1.06;letter-spacing:-.015em}
+.hero h1 span{display:block;color:var(--marigold)}
+.hero-en{margin-top:14px;font-size:.8rem;letter-spacing:.22em;color:rgba(253,248,238,.5)}
+.hero-sub{margin-top:20px;max-width:33ch;font-size:clamp(1rem,4vw,1.18rem);color:rgba(253,248,238,.82)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:30px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:40px;max-width:560px}
+.stat{background:rgba(253,248,238,.07);border:1px solid rgba(253,248,238,.14);border-radius:13px;padding:15px 16px}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:1.7rem;line-height:1;color:var(--marigold)}
+.stat span{display:block;margin-top:6px;font-size:.79rem;color:rgba(253,248,238,.68)}
+.terrace{display:block;width:100%;height:44px;margin-top:-1px}
+
+/* ── बटन ──────────────────────────────────────────── */
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.92rem;padding:12px 24px;border-radius:100px;transition:.2s;border:1.5px solid transparent;cursor:pointer;font-family:inherit}
+.btn-fill{background:var(--teej);color:#fff}
+.btn-fill:hover,.btn-fill:focus-visible{background:var(--teej-dark);transform:translateY(-2px)}
+.btn-ghost{border-color:rgba(253,248,238,.32);color:var(--paper)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--marigold);color:var(--marigold)}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-dark:hover,.btn-dark:focus-visible{background:var(--teej);transform:translateY(-2px)}
+
+/* ── तीज उल्टो गन्ती ──────────────────────────────── */
+.count-zone{margin-top:-56px;position:relative;z-index:5;padding-bottom:60px}
+.count{background:#fff;border-radius:20px;padding:28px 22px 26px;box-shadow:0 12px 44px rgba(26,20,40,.13);border:1px solid var(--line);border-top:4px solid var(--teej);text-align:center}
+.count-tag{font-size:.71rem;font-weight:700;letter-spacing:.14em;color:var(--teej)}
+.count h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,7vw,2.6rem);line-height:1.2;margin:8px 0 4px}
+.count-when{font-size:.94rem;color:var(--ink-soft)}
+.count-where{font-size:.87rem;color:var(--ink-soft);margin-top:2px}
+.count-where .jp{font-family:var(--jp)}
+.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:24px auto 20px;max-width:430px}
+.cell{background:var(--paper-2);border-radius:13px;padding:13px 4px 10px}
+.cell .num{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,7vw,2.2rem);line-height:1;font-variant-numeric:tabular-nums}
+.cell .lbl{display:block;margin-top:6px;font-size:.67rem;font-weight:600;color:var(--ink-soft)}
+.count-done{font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--terrace);margin:24px 0 20px}
+
+/* ── सेक्सन ───────────────────────────────────────── */
+.sec{padding:58px 0}
+.sec-alt{background:var(--paper-2)}
+.sec-ink{background:var(--ink);color:var(--paper)}
+.sec-head{max-width:64ch;margin-bottom:32px}
+.kicker{display:flex;align-items:center;gap:9px;font-size:.71rem;font-weight:700;letter-spacing:.14em;color:var(--terrace);margin-bottom:11px}
+.kicker::before{content:"";width:20px;height:2px;background:var(--terrace)}
+.sec-ink .kicker{color:var(--marigold)}
+.sec-ink .kicker::before{background:var(--marigold)}
+.sec h2{font-family:var(--display);font-weight:800;font-size:clamp(1.55rem,6vw,2.25rem);line-height:1.22}
+.sec-head p{margin-top:13px;color:var(--ink-soft);font-size:1rem}
+.sec-ink .sec-head p{color:rgba(253,248,238,.72)}
+.prose p{margin-bottom:15px;max-width:66ch;color:var(--ink-soft)}
+.prose p:last-child{margin-bottom:0}
+.prose strong{color:var(--ink);font-weight:600}
+
+/* ── कार्ड ────────────────────────────────────────── */
+.grid{display:grid;gap:14px;grid-template-columns:1fr}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:23px 21px;transition:.22s}
+.sec-alt .card{background:#fff}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(196,18,63,.3)}
+.card .ico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:var(--paper-2);margin-bottom:14px}
+.sec-alt .card .ico{background:var(--paper)}
+.card .ico svg{width:21px;height:21px}
+.card h3{font-family:var(--display);font-weight:700;font-size:1.12rem;margin-bottom:7px}
+.card p{font-size:.92rem;color:var(--ink-soft);line-height:1.72}
+.card p strong{color:var(--ink);font-weight:600}
+
+/* ── क्षेत्रीय समिति ──────────────────────────────── */
+.regions{display:grid;gap:12px;grid-template-columns:1fr}
+.region{background:#fff;border:1px solid var(--line);border-left:4px solid var(--terrace);border-radius:12px;padding:18px 20px}
+.region.is-hq{border-left-color:var(--teej)}
+.region h3{font-family:var(--display);font-weight:700;font-size:1.08rem}
+.region .jp{font-family:var(--jp);font-size:.78rem;color:var(--ink-soft);margin-top:1px}
+.region .lead{margin-top:9px;font-size:.9rem;color:var(--ink)}
+.region .est{display:inline-block;margin-top:8px;font-size:.73rem;font-weight:600;background:var(--paper-2);color:var(--ink-soft);padding:3px 10px;border-radius:100px}
+
+/* ── टाइमलाइन ─────────────────────────────────────── */
+.tl{position:relative;padding-left:30px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:rgba(253,248,238,.2)}
+.tl-item{position:relative;padding-bottom:26px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-26px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--marigold);border:2px solid var(--ink)}
+.tl-item.is-big::before{background:var(--teej);width:15px;height:15px;left:-28px;top:7px}
+.tl-date{font-size:.76rem;font-weight:700;letter-spacing:.04em;color:var(--marigold)}
+.tl-item h3{font-family:var(--display);font-weight:700;font-size:1.05rem;margin:3px 0 5px}
+.tl-item p{font-size:.9rem;color:rgba(253,248,238,.7);line-height:1.7;max-width:60ch}
+
+/* ── कार्यसमिति ट्याब ─────────────────────────────── */
+.tabs{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:22px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:100px;padding:9px 17px;font-family:inherit;font-size:.86rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.18s}
+.tab:hover{border-color:var(--teej)}
+.tab[aria-selected="true"]{background:var(--teej);border-color:var(--teej);color:#fff}
+.panel-head{margin-bottom:18px}
+.panel-head h3{font-family:var(--display);font-weight:800;font-size:1.28rem}
+.panel-head span{font-size:.87rem;color:var(--ink-soft)}
+.mem-group{margin-bottom:24px}
+.mem-group>h4{font-size:.73rem;font-weight:700;letter-spacing:.12em;color:var(--terrace);margin-bottom:11px}
+.mem-list{list-style:none;display:grid;gap:7px;grid-template-columns:1fr}
+.mem-list li{display:flex;gap:11px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 13px;font-size:.9rem;align-items:baseline}
+.mem-list .role{font-size:.77rem;font-weight:600;color:var(--teej);min-width:98px;flex-shrink:0}
+.mem-flat{display:flex;flex-wrap:wrap;gap:7px;list-style:none}
+.mem-flat li{background:#fff;border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-size:.87rem}
+.empty{color:var(--ink-soft);font-size:.93rem}
+
+/* ── विधान ────────────────────────────────────────── */
+.acc{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fff}
+.acc+.acc{margin-top:9px}
+.acc summary{padding:15px 19px;font-family:var(--display);font-weight:700;font-size:1rem;cursor:pointer;list-style:none;display:flex;align-items:center;gap:11px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::before{content:"+";color:var(--teej);font-size:1.25rem;font-weight:700;line-height:1;flex-shrink:0}
+.acc[open] summary::before{content:"−"}
+.acc-body{padding:0 19px 19px 44px;font-size:.92rem;color:var(--ink-soft)}
+.acc-body ul{margin:6px 0 0 18px}
+.acc-body li{margin-bottom:5px}
+.acc-body strong{color:var(--ink);font-weight:600}
+
+/* ── सूचना बक्स ───────────────────────────────────── */
+.note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--marigold);border-radius:11px;padding:15px 18px;font-size:.89rem;color:var(--ink-soft);margin-top:22px}
+.note b{color:var(--ink)}
+
+/* ── सदस्यता / सम्पर्क ───────────────────────────── */
+.split{display:grid;gap:34px;grid-template-columns:1fr}
+.steps{list-style:none;counter-reset:s;margin-top:24px}
+.steps li{counter-increment:s;position:relative;padding:0 0 19px 44px;font-size:.94rem;color:var(--ink-soft)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:29px;height:29px;border-radius:50%;background:var(--teej);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:.85rem}
+.steps li b{color:var(--ink);font-weight:600}
+.info{list-style:none;margin-top:22px}
+.info li{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--line);font-size:.94rem;align-items:flex-start}
+.info li:last-child{border-bottom:none}
+.info .k{font-weight:600;min-width:88px;flex-shrink:0}
+.info .v{color:var(--ink-soft);word-break:break-word}
+.info .v a{color:var(--teej);font-weight:500}
+
+/* ── फुटर ─────────────────────────────────────────── */
+.foot{background:var(--ink);color:rgba(253,248,238,.62);padding:42px 0 32px;font-size:.87rem}
+.foot-top{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-bottom:24px}
+.foot .mark b{color:var(--paper)}
+.social{display:flex;gap:9px;margin-left:auto}
+.social a{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;border:1px solid rgba(253,248,238,.2);color:rgba(253,248,238,.72);transition:.2s}
+.social a:hover,.social a:focus-visible{border-color:var(--marigold);color:var(--marigold)}
+.social svg{width:17px;height:17px}
+.foot-bar{border-top:1px solid rgba(253,248,238,.13);padding-top:19px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;font-size:.79rem}
+.foot-bar span:last-child{font-family:var(--jp)}
+
+/* ── पहुँच ────────────────────────────────────────── */
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--marigold);outline-offset:3px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* ── ठूलो स्क्रिन ─────────────────────────────────── */
+@media(min-width:640px){
+  .grid,.regions{grid-template-columns:1fr 1fr}
+  .mem-list{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .count{padding:36px 32px 32px}
+}
+@media(min-width:920px){
+  .sec{padding:78px 0}
+  .hero-in{padding:88px 0 112px}
+  .split{grid-template-columns:1.05fr .95fr;gap:52px}
+  .regions{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a href="#top" class="mark">
+      <!-- ✏️ आधिकारिक लोगो: यो <svg>...</svg> लाई <img src="logo.png" alt="लोगो"> ले बदल्नुहोस् -->
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="49" fill="#C4123F"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#E9A020" stroke-width="1.5"/>
+        <path d="M22 66h56M28 57h44M34 48h32M40 39h20M46 30h8" stroke="#FDF8EE" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <b>स्याङ्जा समाज<br>जापान</b>
+    </a>
+    <nav class="nav" aria-label="मुख्य मेनु">
+      <a href="#teej">तीज धमाका</a>
+      <a href="#about">परिचय</a>
+      <a href="#regions">क्षेत्र</a>
+      <a href="#work">गतिविधि</a>
+      <a href="#history">इतिहास</a>
+      <a href="#relief">सहयोग</a>
+      <a href="#committee">कार्यसमिति</a>
+      <a href="#vidhan">विधान</a>
+      <a href="#contact">सम्पर्क</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-in">
+    <span class="eyebrow">स्थापना — १७ सेप्टेम्बर २०१२</span>
+    <h1>स्याङ्जा समाज<span>जापान</span></h1>
+    <p class="hero-en">SYANGJA COMMUNITY JAPAN</p>
+    <p class="hero-sub">जापानमा रहेका स्याङ्जाबासीहरूको साझा घर — दुःखमा साथ, रमाइलोमा सँगै।</p>
+    <div class="hero-cta">
+      <a href="#join" class="btn btn-fill">सदस्य बन्नुहोस्</a>
+      <a href="#history" class="btn btn-ghost">हाम्रो यात्रा</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>१४</b><span>वर्षको यात्रा</span></div>
+      <div class="stat"><b>७</b><span>कार्यकाल</span></div>
+      <div class="stat"><b>६</b><span>क्षेत्रीय समिति</span></div>
+      <div class="stat"><b>१५</b><span>साधारण सभा</span></div>
+    </div>
+  </div>
+  <svg class="terrace" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#FDF8EE" d="M0 44h1200V24h-150V14H900v10H750V4H600v20H450V14H300v10H150V28H0z"/>
+  </svg>
+</section>
+
+<section class="count-zone" id="teej">
+  <div class="wrap">
+    <div class="count reveal">
+      <span class="count-tag">आगामी कार्यक्रम</span>
+      <h2>तीज धमाका २०२६</h2>
+      <p class="count-when">सेप्टेम्बर १३, २०२६ — आइतबार</p>
+      <p class="count-where"><span class="jp">宮地楽器ホール（みやじがっきホール）</span> · 小金井市（こがねいし）, टोकियो</p>
+      <div class="clock" id="clock">
+        <div class="cell"><span class="num" id="d">००</span><span class="lbl">दिन</span></div>
+        <div class="cell"><span class="num" id="h">००</span><span class="lbl">घण्टा</span></div>
+        <div class="cell"><span class="num" id="m">००</span><span class="lbl">मिनेट</span></div>
+        <div class="cell"><span class="num" id="s">००</span><span class="lbl">सेकेन्ड</span></div>
+      </div>
+      <p class="count-done" id="done" hidden>कार्यक्रम सम्पन्न भयो — सहभागी सबैलाई हार्दिक धन्यवाद 🙏</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+        <!-- ✏️ लिंक तयार भएपछि # लाई फाइलको नामले बदल्नुहोस् -->
+        <a href="#" class="btn btn-dark">कार्यक्रम विवरण</a>
+        <a href="#" class="btn btn-dark">प्रायोजक बन्नुहोस्</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">हाम्रो परिचय</span>
+      <h2>घरबाट टाढा, तर एक्लै होइन</h2>
+    </div>
+    <div class="prose reveal">
+      <p><strong>स्याङ्जा समाज जापान (Syangja Community Japan)</strong> जापानमा बसोबास गर्ने स्याङ्जा जिल्लाका नेपालीहरूको साझा संस्था हो। <strong>१७ सेप्टेम्बर २०१२</strong> मा संस्थापक समिति गठन भई सुरु भएको यो यात्रा आज सातौं कार्यकालसम्म आइपुगेको छ।</p>
+      <p>संस्था केन्द्रीय समिति र <strong>छ वटा क्षेत्रीय समिति</strong> मार्फत जापानभरि फैलिएको छ। हरेक दुई वर्षमा अधिवेशन गरी नयाँ कार्यसमिति चयन गरिन्छ र वर्षेनि साधारण सभा बस्छ।</p>
+      <p>संस्था <strong>कुनै राजनीतिक दल वा व्यापारिक स्वार्थसँग सम्बन्धित छैन</strong>। सबै काम सदस्यहरूको स्वयंसेवा, सहयोग र प्रायोजकहरूको साथमा चल्छ। हामी <strong>स्याङ्जा सहयोग समाज अन्तर्राष्ट्रिय समन्वय समिति (ICC)</strong> र <strong>NRNA जापान</strong> सँग समन्वय गर्दै आएका छौं।</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="regions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">क्षेत्रीय संरचना</span>
+      <h2>जापानभरि छ क्षेत्र</h2>
+      <p>केन्द्रीय समितिसँगै हरेक क्षेत्रमा आफ्नै कार्यसमिति छ, जसले त्यही क्षेत्रका सदस्यहरूको काम हेर्छ।</p>
+    </div>
+    <div class="regions" id="regionList"></div>
+  </div>
+</section>
+
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">हामी के गर्छौं</span>
+      <h2>छ क्षेत्रमा हाम्रो काम</h2>
+    </div>
+    <div class="grid">
+
+      <article class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C4123F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.7-7-10a7 7 0 0114 0c0 5.3-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg></div>
+        <h3>सांस्कृतिक कार्यक्रम</h3>
+        <p>तीज, दशैं, तिहार (देउसी–भैलो), ल्होसार र नयाँ वर्ष — नेपाली चाडपर्व जापानमै मनाउने। बालबालिकाले पनि आफ्नो संस्कृति चिन्न पाऊन् भन्ने हाम्रो चाहना।</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C4123F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.6"/></svg></div>
+        <h3>जानकारीमूलक कार्यक्रम</h3>
+        <p>保険（ほけん）, 年金（ねんきん）, 税金（ぜいきん） र कानुनी विषयमा विज्ञ वक्ता बोलाएर नेपालीमै बुझाउने कार्यक्रम। <strong>हामी भिसा नवीकरण गर्दैनौं</strong> — सही जानकारी पुर्‍याउने मात्र हाम्रो काम हो।</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C4123F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5 5 0 00-7.1 0L12 7.3l-1.7-1.7a5 5 0 10-7.1 7.1L12 21.5l8.8-8.8a5 5 0 000-7.1z"/></svg></div>
+        <h3>रक्तदान अभियान</h3>
+        <p>जापानी रेडक्रस (日本赤十字社) सँगको सहकार्यमा क्षेत्र–क्षेत्रमा रक्तदान कार्यक्रम। जापानी समाजप्रतिको हाम्रो सामाजिक उत्तरदायित्व।</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C4123F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 3 12 3-9 2 3h4"/></svg></div>
+        <h3>राहत, सहयोग र उद्धार</h3>
+        <p>दुर्घटना, गम्भीर बिरामी वा निधन जस्ता कठिन घडीमा राहत कोषबाट सहयोग। नेपालमा रहेका परिवारसम्म रकम पुर्‍याउने व्यवस्था पनि गर्छौं।</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C4123F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></div>
+        <h3>भेटघाट र बनभोज</h3>
+        <p>वार्षिक BBQ बनभोज, पिकनिक र क्षेत्रीय भेला। नयाँ आउनेहरूले पुराना साथी भेट्ने र काम–बसाइको जानकारी पाउने ठाउँ।</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C4123F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21 8 13.9 2 9.4h7.6z"/></svg></div>
+        <h3>संस्थागत समन्वय</h3>
+        <p>NRNA जापान, स्याङ्जा सहयोग समाज ICC र जापानका अन्य नेपाली संघ–संस्थासँग सहकार्य र समन्वय।</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-ink" id="history">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">हाम्रो यात्रा</span>
+      <h2>२०१२ देखि आजसम्म</h2>
+      <p>संस्थाले गरेका मुख्य कार्यक्रम र उपलब्धिहरू।</p>
+    </div>
+    <div class="tl" id="timeline"></div>
+  </div>
+</section>
+
+<section class="sec" id="relief">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">सहयोग, राहत र उद्धार</span>
+      <h2>परेको बेला काँधमा काँध</h2>
+      <p>हाम्रो राहत कोष सदस्यहरूको योगदान र कार्यक्रमहरूको बचत रकमबाट बन्छ।</p>
+    </div>
+    <div class="grid">
+      <article class="card reveal">
+        <h3>राहत कोष</h3>
+        <p>BBQ बनभोज र देउसी–भैलो जस्ता कार्यक्रमबाट जम्मा भएको बचत रकम सिधै राहत कोषमा जान्छ। कोषको परिचालन कोषाध्यक्ष र सचिवालयको निर्णयबाट हुन्छ।</p>
+      </article>
+      <article class="card reveal">
+        <h3>निधन भएमा पारिवारिक सहयोग</h3>
+        <p>सदस्य वा निजको नजिकको परिवारमा निधन भएमा संस्थाको पहलमा रकम सङ्कलन गरी नेपालसम्म पठाउने व्यवस्था मिलाइन्छ।</p>
+      </article>
+      <article class="card reveal">
+        <h3>दुर्घटना र बिरामी</h3>
+        <p>अस्पताल भर्ना, दुर्घटना वा आकस्मिक अवस्थामा आर्थिक सहयोगसँगै भाषा र कागजातको व्यावहारिक सहयोग।</p>
+      </article>
+      <article class="card reveal">
+        <h3>रक्तदान</h3>
+        <p>केन्द्र र क्षेत्रहरूमा गरी सञ्चालित रक्तदान कार्यक्रममा अहिलेसम्म लगभग <strong>१६५ जना</strong> सहभागी भइसकेका छन्।</p>
+      </article>
+    </div>
+    <p class="note reveal">⚠️ <b>सहयोग पठाउने बारे:</b> संस्थाको बैंक खाता विवरण यहाँ राखिएको छैन। सहयोग गर्न चाहनुहुन्छ भने कृपया सम्पर्क गरेर आधिकारिक जानकारी लिनुहोस् — अनलाइनमा देखिने खाता नम्बरमा सिधै रकम नपठाउनुहोला।</p>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="committee">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">पदाधिकारी</span>
+      <h2>कार्यसमिति — २०१२ देखि</h2>
+      <p>कार्यकाल छान्नुहोस्।</p>
+    </div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="कार्यकाल"></div>
+    <div id="panel" role="tabpanel"></div>
+    <p class="note">✏️ <b>नाम जाँच्नुहोस्:</b> यी नामहरू पुरानो PDF फाइलबाट निकालिएका हुन्, केही अक्षर बिग्रिएको हुनसक्छ। फाइलको तल रहेको <code>COMMITTEES</code> भागमा गएर सच्याउन सकिन्छ।</p>
+  </div>
+</section>
+
+<section class="sec" id="vidhan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">संस्थाको विधान</span>
+      <h2>हामी कसरी चल्छौं</h2>
+      <p>तल विधानका मुख्य बुँदाहरू छन्। पूरा विधान संस्थाको सचिवालयबाट पाउन सकिन्छ।</p>
+    </div>
+
+    <details class="acc reveal">
+      <summary>परिच्छेद १ — नाम, कार्यक्षेत्र र उद्देश्य</summary>
+      <div class="acc-body"><ul>
+        <li>नाम: <strong>स्याङ्जा समाज जापान (Syangja Community Japan)</strong></li>
+        <li>स्थापना: १७ सेप्टेम्बर २०१२</li>
+        <li>कार्यक्षेत्र: जापान — केन्द्रीय समिति र क्षेत्रीय समितिहरू</li>
+        <li>उद्देश्य: स्याङ्जाबासीबीच एकता, सांस्कृतिक संरक्षण, आपसी सहयोग र सामाजिक उत्तरदायित्व</li>
+        <li>संस्था गैर–राजनीतिक, गैर–नाफामूलक र गैर–साम्प्रदायिक हुनेछ</li>
+      </ul></div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>परिच्छेद २ — सदस्यता</summary>
+      <div class="acc-body"><ul>
+        <li><strong>साधारण सदस्य</strong> — वार्षिक शुल्क तिरी नवीकरण गर्नुपर्ने</li>
+        <li><strong>आजीवन सदस्य</strong> — एकपटक निर्धारित शुल्क तिरेपछि आजीवन</li>
+        <li>स्याङ्जा जिल्लामा जन्म वा नाता भएका, जापानमा बसोबास गर्ने वयस्क सबै आवेदन दिन योग्य</li>
+        <li>सदस्यता स्वीकृति कार्यसमितिको निर्णयबाट हुनेछ</li>
+      </ul></div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>परिच्छेद ३ — संगठनात्मक संरचना</summary>
+      <div class="acc-body"><ul>
+        <li><strong>अधिवेशन</strong> — सर्वोच्च अंग, हरेक दुई वर्षमा</li>
+        <li><strong>साधारण सभा</strong> — वार्षिक; प्रतिवेदन र आर्थिक विवरण पेस गरिने</li>
+        <li><strong>केन्द्रीय कार्यसमिति</strong> — अधिवेशनबाट निर्वाचित</li>
+        <li><strong>सचिवालय</strong> — अध्यक्ष, उपाध्यक्ष, महासचिव, सचिव, कोषाध्यक्ष, प्रवक्ता</li>
+        <li><strong>क्षेत्रीय समिति</strong> — केन्द्रको स्वीकृतिमा गठन हुने</li>
+        <li><strong>संरक्षक र सल्लाहकार</strong> — कार्यसमितिबाट मनोनीत</li>
+      </ul></div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>परिच्छेद ४ — कार्यकाल र निर्वाचन</summary>
+      <div class="acc-body"><ul>
+        <li>कार्यसमितिको कार्यकाल: <strong>दुई वर्ष</strong></li>
+        <li>निर्वाचन अधिवेशनमा निर्वाचन संयोजकको संयोजनमा</li>
+        <li>पद रिक्त भएमा कार्यसमितिले मनोनयन गर्न सक्ने</li>
+      </ul></div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>परिच्छेद ५ — आर्थिक व्यवस्था र राहत कोष</summary>
+      <div class="acc-body"><ul>
+        <li>आय स्रोत: सदस्यता शुल्क, स्वेच्छिक सहयोग, प्रायोजन, कार्यक्रमको बचत</li>
+        <li><strong>राहत कोष</strong> छुट्टै राखिने र आपत्कालीन सहयोगमा मात्र प्रयोग हुने</li>
+        <li>आर्थिक विवरण साधारण सभामा पेस गरिने</li>
+        <li>खाता सञ्चालन तोकिएका पदाधिकारीको संयुक्त दस्तखतबाट</li>
+      </ul></div>
+    </details>
+
+    <details class="acc reveal">
+      <summary>परिच्छेद ६ — बैठक, अनुशासन र विधान संशोधन</summary>
+      <div class="acc-body"><ul>
+        <li>कार्यसमिति बैठक नियमित रूपमा (भौतिक वा भर्चुअल)</li>
+        <li>अनुशासन उल्लङ्घन भएमा कार्यसमितिले कारबाही गर्न सक्ने</li>
+        <li>विधान संशोधन अधिवेशन वा साधारण सभाको बहुमतबाट मात्र</li>
+      </ul></div>
+    </details>
+
+    <p class="note reveal">✏️ <b>ध्यान दिनुहोस्:</b> माथिका बुँदाहरू संस्थाका प्रतिवेदन र व्यवहारमा आधारित <b>सारांश</b> हुन् — मूल विधानको हुबहु पाठ होइन। मूल विधानको फाइल पठाउनुभयो भने ठ्याक्कै त्यही राख्न सकिन्छ।</p>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="join">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="kicker">सदस्यता</span>
+      <h2>सदस्य कसरी बन्ने</h2>
+      <ol class="steps">
+        <li><b>सम्पर्क गर्नुहोस्</b> — तलको इमेल वा Facebook पेजबाट सन्देश पठाउनुहोस्।</li>
+        <li><b>फारम भर्नुहोस्</b> — नाम, ठेगाना, जापानमा बस्ने क्षेत्र र स्याङ्जाको गाउँपालिका उल्लेख गर्नुहोस्।</li>
+        <li><b>प्रकार छान्नुहोस्</b> — साधारण सदस्य (वार्षिक) वा आजीवन सदस्य। <!-- ✏️ शुल्क रकम यहाँ लेख्नुहोस् --></li>
+        <li><b>समूहमा जोडिनुहोस्</b> — आफ्नो क्षेत्रीय समितिको समूहबाट कार्यक्रमको जानकारी पाउनुहुनेछ।</li>
+      </ol>
+    </div>
+    <div class="reveal" id="contact">
+      <span class="kicker">सम्पर्क</span>
+      <h2>हामीलाई भेट्नुहोस्</h2>
+      <!-- ⚠️ संस्थाको साझा इमेल मात्र राख्नुहोस्। व्यक्तिगत मोबाइल नम्बर र बैंक खाता नराख्नुहोस्। -->
+      <ul class="info">
+        <li><span class="k">इमेल</span><span class="v"><a href="mailto:info@example.com">info@example.com</a> <!-- ✏️ --></span></li>
+        <li><span class="k">Facebook</span><span class="v"><a href="#">Syangja Samaj Japan</a> <!-- ✏️ पेजको link --></span></li>
+        <li><span class="k">अध्यक्ष</span><span class="v">वेद कार्की</span></li>
+        <li><span class="k">महासचिव</span><span class="v">सागर मणि न्यौपाने</span></li>
+        <li><span class="k">प्रवक्ता</span><span class="v">सन्तोष हमाल</span></li>
+      </ul>
+      <div style="margin-top:22px"><a href="mailto:info@example.com" class="btn btn-fill">इमेल पठाउनुहोस्</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="mark">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="49" fill="#C4123F"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#E9A020" stroke-width="1.5"/>
+          <path d="M22 66h56M28 57h44M34 48h32M40 39h20M46 30h8" stroke="#FDF8EE" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <b>स्याङ्जा समाज<br>जापान</b>
+      </div>
+      <div class="social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+        <a href="mailto:info@example.com" aria-label="इमेल"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span>© २०२६ स्याङ्जा समाज जापान · जय मातृभूमि, जय स्याङ्जा</span>
+      <span>シャンジャ・コミュニティ・ジャパン</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   ✏️  DATA — सबै नाम र मिति यहाँ छ। सच्याउनु परे यहीं गर्नुहोस्।
+   ══════════════════════════════════════════════════════════════ */
+
+var REGIONS = [
+  {name:'केन्द्रीय समिति', jp:'関東・東京', lead:'अध्यक्ष वेद कार्की', est:'२०१२', hq:true},
+  {name:'नागोया', jp:'名古屋（なごや）', lead:'अध्यक्ष मनोज ढुङ्गाना', est:''},
+  {name:'शिजुओका', jp:'静岡（しずおか）', lead:'अध्यक्ष जीवन क्षेत्री', est:''},
+  {name:'किताकान्तो', jp:'北関東（きたかんとう）', lead:'अध्यक्ष शिव अर्याल', est:''},
+  {name:'कान्साई', jp:'関西（かんさい）', lead:'अध्यक्ष सूर्य अर्याल', est:'२०२५ मा गठन'},
+  {name:'तोहोकु (सेन्दाई)', jp:'東北・仙台（せんだい）', lead:'संयोजक श्री अधिकारी', est:'२१ फेब्रुअरी २०२६'}
+];
+
+var TIMELINE = [
+  {date:'१७ सेप्टेम्बर २०१२', big:true, title:'संस्था स्थापना',
+   text:'संस्थापक समिति गठन। संस्थापक अध्यक्ष जीवन न्यौपाने सहित २४ सदस्यीय पहिलो कार्यसमिति।'},
+  {date:'२०१४–२०१६', title:'दोस्रो कार्यकाल',
+   text:'संगठन विस्तार हुँदै महासचिव, प्रवक्ता र कोष संरक्षक जस्ता पद थपिए।'},
+  {date:'२०१९–२०२१', title:'चौथो कार्यकाल',
+   text:'अध्यक्ष सागरमणि भण्डारी। महिला उपाध्यक्षको पद सहित २५ सदस्यीय कार्यसमिति।'},
+  {date:'२८ मार्च २०२१', title:'पाँचौं अधिवेशन',
+   text:'अध्यक्ष ध्रुव ज्ञवाली। क्षेत्रीय संरचना बलियो बनाउने काम अघि बढ्यो।'},
+  {date:'२०२३–२०२५', title:'छैटौं कार्यकाल',
+   text:'अध्यक्ष चित्र गुरुङको नेतृत्वमा संस्था अघि बढ्यो।'},
+  {date:'२३ मार्च २०२५', big:true, title:'सातौं अधिवेशन',
+   text:'अध्यक्ष वेद कार्की, महासचिव सागर मणि न्यौपाने। ३ संरक्षक र प्रमुख सल्लाहकार सहित २४ सदस्यीय सल्लाहकार समिति चयन।'},
+  {date:'८ जुन २०२५', title:'कोगानेइ BBQ बनभोज',
+   text:'२४३ जनाको उल्लेखनीय सहभागिता। संयोजक उपाध्यक्ष मणि भट्टराई। बचत रकम राहत कोषमा जम्मा।'},
+  {date:'२०२५', title:'कान्साई क्षेत्र विस्तार',
+   text:'क्षेत्रीय समिति कान्साईको प्रथम अधिवेशनबाट अध्यक्ष सूर्य अर्याल सहित १९ जनाको कार्यसमिति गठन।'},
+  {date:'२४ सेप्टेम्बर २०२५', title:'तीज कार्यक्रम',
+   text:'कोषाध्यक्ष सारा श्रेष्ठको संयोजनमा सम्पन्न।'},
+  {date:'२०२५ — तिहार', title:'देउसी–भैलो, शुभ दीपावली',
+   text:'टोकियो स्थित नेवा डाइनिङमा देउसी–भैलो। बचत रकम राहत कोषमा जम्मा।'},
+  {date:'२५ जनवरी २०२६', title:'होकेन・नेन्किन・कानुनी परामर्श',
+   text:'संयोजक उपाध्यक्ष मित्र सिग्देल। वक्ता: कानुन विज्ञ बलराम श्रेष्ठ र नेपाली 窓口（まどぐち） कर्मचारी।'},
+  {date:'२७ जनवरी २०२६', title:'रक्तदान — शिजुओका',
+   text:'शिजुओका क्षेत्रीय समितिको आयोजनामा रक्तदान कार्यक्रम।'},
+  {date:'२१ फेब्रुअरी २०२६', title:'तोहोकु (सेन्दाई) क्षेत्र विस्तार',
+   text:'छैटौं क्षेत्रका रूपमा तोहोकु क्षेत्रीय समिति गठन। संस्थापक अध्यक्ष जीवन न्यौपाने प्रमुख अतिथि।'},
+  {date:'२२ फेब्रुअरी २०२६', big:true, title:'रक्तदान — नागोया (रेडक्रस)',
+   text:'जापानी रेडक्रससँगको सहकार्यमा। केन्द्रीय संयोजक प्रवक्ता सन्तोष हमाल। सबै क्षेत्र मिलेर लगभग १६५ जनाको सहभागिता।'},
+  {date:'२०२६', title:'१५ औं साधारण सभा एवं क्षेत्रीय भेला — नागोया',
+   text:'सातौं कार्यकालको प्रथम वर्षको प्रतिवेदन पेस। व्यवस्थापन: क्षेत्रीय अध्यक्ष मनोज ढुङ्गाना।'},
+  {date:'मे २०२६', title:'BBQ बनभोज — इचिकावा',
+   text:'सकुरात्सुत्सुमी पार्क, इचिकावामा करिब २०० जनाको सहभागितामा वार्षिक बनभोज।'},
+  {date:'१३ सेप्टेम्बर २०२६', big:true, title:'तीज धमाका २०२६ — आगामी',
+   text:'宮地楽器ホール, कोगानेइ। सह–आयोजक: आँधीखोला तमु (गुरुङ) समाज जापान। संयोजक: सारा श्रेष्ठ।'}
+];
+
+var COMMITTEES = [
+  {
+    term:'पहिलो', years:'२०१२–२०१४', note:'संस्थापक समिति — गठन १७ सेप्टेम्बर २०१२',
+    officers:[
+      ['अध्यक्ष','जीवन न्यौपाने'],['उपाध्यक्ष','सागरमणि भण्डारी'],
+      ['सचिव','जीवन अर्याल'],['सह-सचिव','ध्रुव ज्ञवाली'],
+      ['उप-सचिव','भक्त खत्री'],['कोषाध्यक्ष','नविन थापा'],
+      ['सह-कोषाध्यक्ष','शालिकराम काफ्ले']
+    ],
+    members:['भीम थापा','गोविन्द नेपाल','रेशम भट्टराई','प्रदीप चापागाईं','सन्तोषी न्यौपाने','ध्रुव थापा','गीता न्यौपाने','नरेश बहादुर डी.सी.','रमाकान्त भण्डारी','चिरञ्जीवी तिवारी','थान बहादुर राना','भुवनेश्वर सुबेदी','घनश्याम गौडेल','शंकर अधिकारी','रमेश पाण्डे','वीरेन्द्र रायमाझी','देवीलाल भण्डारी'],
+    advisors:['वरिष्ठ सल्लाहकार: भीम न्यौपाने','भोजराज भण्डारी','कपिलदेव न्यौपाने']
+  },
+  {
+    term:'दोस्रो', years:'२०१४–२०१६', note:'',
+    officers:[
+      ['अध्यक्ष','जीवन न्यौपाने'],['उपाध्यक्ष','सागरमणि भण्डारी'],
+      ['उपाध्यक्ष','जीवन अर्याल'],['महासचिव','नरेश बहादुर डी.सी.'],
+      ['सचिव','शालिकराम काफ्ले'],['सचिव / प्रवक्ता','मणि सुबेदी'],
+      ['कोष संरक्षक','ध्रुव ज्ञवाली'],['कोषाध्यक्ष','सुरेश रेग्मी'],
+      ['सह-कोषाध्यक्ष','योगेन थापा']
+    ],
+    members:['पिताम्बर चापागाईं','प्रदीप सेन','रोशन प्रताप क्षेत्री','सन्दीप गुरुङ','टोम गुरुङ','वेद कार्की','पोशक न्यौपाने','नारायण न्यौपाने','गीता न्यौपाने','अमिता वस्नेत','सुशीला क्षेत्री','कल्पना डी.सी.'],
+    advisors:['भीम न्यौपाने','दिनेश गुरुङ','कपिलदेव न्यौपाने','देवीलाल भण्डारी','नविन थापा','आर्थिक सल्लाहकार: थान बहादुर राना','आर्थिक सल्लाहकार: तारा गौडेल']
+  },
+  {
+    term:'तेस्रो', years:'२०१६–२०१९', note:'यो कार्यकालको लिस्ट अझै थपिएको छैन',
+    officers:[], members:[], advisors:[]
+  },
+  {
+    term:'चौथो', years:'२०१९–२०२१', note:'',
+    officers:[
+      ['अध्यक्ष','सागरमणि भण्डारी'],['वरिष्ठ उपाध्यक्ष','ध्रुव ज्ञवाली'],
+      ['उपाध्यक्ष','विक्रम अर्याल'],['महिला उपाध्यक्ष','कल्पना डी.सी.'],
+      ['महासचिव','वेद कार्की'],['सचिव','चित्र गुरुङ'],
+      ['सह-सचिव','दीपक न्यौपाने'],['कोषाध्यक्ष','टोम गुरुङ'],
+      ['सह-कोषाध्यक्ष','अर्जुन हमाल']
+    ],
+    members:['अमन गुरुङ','लक्ष्मण ढकाल','प्रदीप सेन ठकुरी','दीपक कुमार न्यौपाने','गीता अर्याल','सिजना रेग्मी','गंगा शर्मा','रमेश भण्डारी','सम्झना अर्याल','हरि न्यौपाने','कृष्ण प्रसाद अधिकारी','सुरु श्रेष्ठ','विराट पौडेल','नेत्र प्रसाद काफ्ले','सुजाता कुँवर','मनोज अधिकारी'],
+    advisors:['संरक्षक: जीवन न्यौपाने','संरक्षक: पिताम्बर चापागाईं','संरक्षक: दिनेश गुरुङ','देवीलाल भण्डारी','भीम न्यौपाने','नरेश बहादुर डी.सी.','तारा प्रसाद गौडेल','भीम थापा','थान राना','जीवन गुरुङ','सूक बहादुर के.सी.','राजन पौडेल','नविन गुरुङ','खेम बी.टी.','भक्त खत्री','नविन थापा']
+  },
+  {
+    term:'पाँचौं', years:'२०२१–२०२३', note:'अधिवेशन: २८ मार्च २०२१, आइतबार',
+    officers:[
+      ['अध्यक्ष','ध्रुव ज्ञवाली'],['वरिष्ठ उपाध्यक्ष','लक्ष्मण ढकाल'],
+      ['उपाध्यक्ष','चित्र गुरुङ'],['उपाध्यक्ष','टोम गुरुङ'],
+      ['उपाध्यक्ष','दीपक न्यौपाने'],['महासचिव','वेद कार्की'],
+      ['सचिव','रमेश भण्डारी'],['कोषाध्यक्ष','मनोज अधिकारी'],
+      ['सह-कोषाध्यक्ष','हरि न्यौपाने']
+    ],
+    members:['अमन गुरुङ','नेत्र प्रसाद काफ्ले','भुवन गिरी','विनय जंग के.सी.','सुरेन्द्र राज पौडेल','श्यामलाल गहतराज','लक्ष्मण न्यौपाने','सारा श्रेष्ठ (मनोनीत)','सुजना नेपाल (मनोनीत)','कमल लम्साल (मनोनीत)'],
+    advisors:['जीवन न्यौपाने (ICC संरक्षक)','सागर मणि भण्डारी (ICC सल्लाहकार)','भीम न्यौपाने','नरेश बहादुर डी.सी. (ICC उपाध्यक्ष)','पिताम्बर चापागाईं','देवीलाल भण्डारी','सूक बहादुर के.सी. (ICC सल्लाहकार)','तारा गौडेल','थान राना','खेम बी.सी.','भक्त खत्री','कृष्ण प्रसाद अधिकारी','नविन गुरुङ','जीवन गुरुङ','राजन कुमार पौडेल','अर्जुन हमाल (ICC सदस्य)','प्रदीप सेन']
+  },
+  {
+    term:'छैटौं', years:'२०२३–२०२५', note:'पूरा लिस्ट अझै थपिएको छैन',
+    officers:[['अध्यक्ष','चित्र गुरुङ']], members:[], advisors:[]
+  },
+  {
+    term:'सातौं', years:'२०२५–२०२७', note:'वर्तमान कार्यसमिति — अधिवेशन २३ मार्च २०२५',
+    officers:[
+      ['अध्यक्ष','वेद कार्की'],['वरिष्ठ उपाध्यक्ष','दीपक न्यौपाने'],
+      ['उपाध्यक्ष','मणि भट्टराई'],['उपाध्यक्ष','मित्र सिग्देल'],
+      ['महासचिव','सागर मणि न्यौपाने'],['सचिव','जीवन अर्याल'],
+      ['कोषाध्यक्ष','सारा श्रेष्ठ'],['प्रवक्ता','सन्तोष हमाल']
+    ],
+    members:[],
+    advisors:['संस्थापक अध्यक्ष एवं संरक्षक: जीवन न्यौपाने','पूर्व अध्यक्ष एवं संरक्षक: ध्रुव ज्ञवाली','निवर्तमान अध्यक्ष: चित्र गुरुङ']
+  }
+];
+
+/* ══ तलको भाग कोड हो — बदल्नु पर्दैन ══════════════════════════ */
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+document.getElementById('regionList').innerHTML = REGIONS.map(function(r){
+  return '<article class="region reveal'+(r.hq?' is-hq':'')+'">'+
+    '<h3>'+esc(r.name)+'</h3><p class="jp">'+esc(r.jp)+'</p>'+
+    '<p class="lead">'+esc(r.lead)+'</p>'+
+    (r.est?'<span class="est">'+esc(r.est)+'</span>':'')+'</article>';
+}).join('');
+
+document.getElementById('timeline').innerHTML = TIMELINE.map(function(t){
+  return '<div class="tl-item reveal'+(t.big?' is-big':'')+'">'+
+    '<p class="tl-date">'+esc(t.date)+'</p><h3>'+esc(t.title)+'</h3>'+
+    '<p>'+esc(t.text)+'</p></div>';
+}).join('');
+
+var tabsEl = document.getElementById('tabs');
+var panelEl = document.getElementById('panel');
+
+tabsEl.innerHTML = COMMITTEES.map(function(c,i){
+  return '<button class="tab" type="button" role="tab" data-i="'+i+'" aria-selected="false">'+esc(c.term)+'</button>';
+}).join('');
+
+function group(title, html){
+  return '<div class="mem-group"><h4>'+title+'</h4>'+html+'</div>';
+}
+
+function showTerm(i){
+  var c = COMMITTEES[i];
+  var out = '<div class="panel-head"><h3>'+esc(c.term)+' कार्यकाल · '+esc(c.years)+'</h3>'+
+            (c.note?'<span>'+esc(c.note)+'</span>':'')+'</div>';
+  if(c.officers.length){
+    out += group('पदाधिकारी','<ul class="mem-list">'+c.officers.map(function(o){
+      return '<li><span class="role">'+esc(o[0])+'</span><span>'+esc(o[1])+'</span></li>';
+    }).join('')+'</ul>');
+  }
+  if(c.members.length){
+    out += group('कार्यसमिति सदस्य','<ul class="mem-flat">'+c.members.map(function(m){
+      return '<li>'+esc(m)+'</li>';
+    }).join('')+'</ul>');
+  }
+  if(c.advisors.length){
+    out += group('संरक्षक तथा सल्लाहकार','<ul class="mem-flat">'+c.advisors.map(function(a){
+      return '<li>'+esc(a)+'</li>';
+    }).join('')+'</ul>');
+  }
+  if(!c.officers.length && !c.members.length){
+    out += '<p class="empty">यो कार्यकालको विवरण अझै थपिएको छैन। लिस्ट पठाउनुभयो भने थपिनेछ।</p>';
+  }
+  panelEl.innerHTML = out;
+  Array.prototype.forEach.call(tabsEl.children, function(b,k){
+    b.setAttribute('aria-selected', k===i ? 'true' : 'false');
+  });
+  watch();
+}
+
+tabsEl.addEventListener('click', function(e){
+  var b = e.target.closest('.tab');
+  if(b) showTerm(+b.getAttribute('data-i'));
+});
+
+/* तीज उल्टो गन्ती
+   ✏️ मिति/समय बदल्न: 'YYYY-MM-DDTHH:MM:00+09:00'  (+09:00 = जापानी समय) */
+var EVENT = new Date('2026-09-13T13:00:00+09:00');
+var DEV = '०१२३४५६७८९';
+function dev(n){return String(n).padStart(2,'0').split('').map(function(c){return DEV[+c];}).join('');}
+var el={d:document.getElementById('d'),h:document.getElementById('h'),m:document.getElementById('m'),
+        s:document.getElementById('s'),clock:document.getElementById('clock'),done:document.getElementById('done')};
+function tick(){
+  var left = EVENT - new Date();
+  if(left<=0){el.clock.hidden=true;el.done.hidden=false;return true;}
+  var sec=Math.floor(left/1000);
+  el.d.textContent=dev(Math.floor(sec/86400));
+  el.h.textContent=dev(Math.floor(sec/3600)%24);
+  el.m.textContent=dev(Math.floor(sec/60)%60);
+  el.s.textContent=dev(sec%60);
+  return false;
+}
+
+/* स्क्रोल प्रभाव */
+var soft = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var io = (!soft && 'IntersectionObserver' in window)
+  ? new IntersectionObserver(function(rows){
+      rows.forEach(function(r){ if(r.isIntersecting){ r.target.classList.add('on'); io.unobserve(r.target); } });
+    },{threshold:.1, rootMargin:'0px 0px -50px 0px'})
+  : null;
+
+function watch(){
+  var items = document.querySelectorAll('.reveal:not(.on)');
+  Array.prototype.forEach.call(items, function(n){
+    if(io) io.observe(n); else n.classList.add('on');
+  });
+}
+
+showTerm(COMMITTEES.length-1);   /* सुरुमा वर्तमान कार्यकाल देखाउने */
+watch();
+if(!tick()){ var timer=setInterval(function(){ if(tick()) clearInterval(timer); },1000); }
+</script>
+</body>
+</html>
