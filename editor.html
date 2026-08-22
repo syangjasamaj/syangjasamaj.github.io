@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>वेबसाइट अपडेट गर्ने ठाउँ | स्याङ्जा समाज जापान</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martel:wght@700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FDF8EE;--paper-2:#F5EBDA;--ink:#1A1428;--ink-soft:#544A63;
+ --teej:#C4123F;--teej-dark:#9C0E32;--marigold:#E9A020;--terrace:#4A6B4F;
+ --line:rgba(26,20,40,.14);--display:'Martel',serif;--body:'Noto Sans Devanagari',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;padding-bottom:90px}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+
+.hd{background:var(--ink);color:var(--paper);padding:22px 0 20px;margin-bottom:22px}
+.hd h1{font-family:var(--display);font-weight:800;font-size:1.35rem;line-height:1.3}
+.hd p{font-size:.86rem;color:rgba(253,248,238,.7);margin-top:5px}
+
+.tabbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:14px;margin-bottom:18px}
+.tabbar::-webkit-scrollbar{display:none}
+.tb{white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:100px;
+ padding:9px 16px;font:600 .86rem var(--body);color:var(--ink-soft);cursor:pointer}
+.tb[aria-selected="true"]{background:var(--teej);border-color:var(--teej);color:#fff}
+
+.pane{display:none}
+.pane.on{display:block}
+
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;margin-bottom:12px}
+.box>h3{font-family:var(--display);font-weight:700;font-size:1rem;margin-bottom:2px}
+.box>.sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:12px}
+
+label{display:block;font-size:.79rem;font-weight:600;color:var(--terrace);margin:11px 0 4px}
+input,textarea,select{width:100%;font:inherit;font-size:.93rem;padding:10px 12px;
+ border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink)}
+textarea{min-height:76px;resize:vertical;line-height:1.6}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--marigold);outline-offset:1px;border-color:transparent}
+.hint{font-size:.76rem;color:var(--ink-soft);margin-top:4px}
+.row2{display:grid;gap:10px;grid-template-columns:1fr}
+
+.btn{font:600 .9rem var(--body);padding:11px 20px;border-radius:100px;border:1.5px solid transparent;cursor:pointer;transition:.18s}
+.btn-fill{background:var(--teej);color:#fff}
+.btn-fill:hover{background:var(--teej-dark)}
+.btn-line{background:#fff;border-color:var(--line);color:var(--ink-soft)}
+.btn-line:hover{border-color:var(--teej);color:var(--teej)}
+.btn-sm{font-size:.8rem;padding:7px 14px}
+.btn-del{background:#fff;border-color:rgba(196,18,63,.35);color:var(--teej)}
+.btn-del:hover{background:var(--teej);color:#fff}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+.item{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:9px;background:var(--paper)}
+.item-top{display:flex;align-items:flex-start;gap:10px}
+.item-top .t{flex:1;min-width:0}
+.item-top .t b{display:block;font-size:.94rem}
+.item-top .t small{display:block;font-size:.78rem;color:var(--ink-soft)}
+.mini{display:flex;gap:5px;flex-shrink:0}
+.mini button{width:31px;height:31px;border-radius:8px;border:1px solid var(--line);
+ background:#fff;color:var(--ink-soft);font-size:.95rem;cursor:pointer;line-height:1}
+.mini button:hover{border-color:var(--teej);color:var(--teej)}
+.edit{display:none;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.edit.on{display:block}
+.chk{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:.87rem}
+.chk input{width:auto}
+
+.out{width:100%;min-height:230px;font-family:ui-monospace,Menlo,Consolas,monospace;
+ font-size:.78rem;line-height:1.5;white-space:pre;overflow-x:auto}
+.steps{counter-reset:s;list-style:none;margin-top:6px}
+.steps li{counter-increment:s;position:relative;padding:0 0 11px 34px;font-size:.89rem;color:var(--ink-soft)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;
+ border-radius:50%;background:var(--teej);color:#fff;display:grid;place-items:center;
+ font:700 .75rem var(--display)}
+.steps li b{color:var(--ink)}
+.warn{background:#fff;border:1px solid var(--line);border-left:4px solid var(--marigold);
+ border-radius:10px;padding:12px 14px;font-size:.85rem;color:var(--ink-soft);margin-top:12px}
+.warn b{color:var(--ink)}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(253,248,238,.96);
+ backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:11px 16px;z-index:50}
+.bar-in{max-width:820px;margin:0 auto;display:flex;gap:9px;align-items:center}
+.bar .msg{flex:1;font-size:.8rem;color:var(--ink-soft);min-width:0}
+.ok{color:var(--terrace);font-weight:600}
+
+@media(min-width:620px){.row2{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="wrap">
+    <h1>वेबसाइट अपडेट गर्ने ठाउँ</h1>
+    <p>form भर्नुहोस् → कोड आफैं बन्छ → GitHub मा टाँस्नुहोस्</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabbar" role="tablist">
+    <button class="tb" data-p="p1" aria-selected="true">आगामी कार्यक्रम</button>
+    <button class="tb" data-p="p2" aria-selected="false">कार्यक्रम इतिहास</button>
+    <button class="tb" data-p="p3" aria-selected="false">क्षेत्रीय समिति</button>
+    <button class="tb" data-p="p4" aria-selected="false">कार्यसमिति</button>
+    <button class="tb" data-p="p5" aria-selected="false">सम्पर्क</button>
+    <button class="tb" data-p="p6" aria-selected="false">✅ कोड बनाउने</button>
+  </div>
+
+  <!-- १ · आगामी कार्यक्रम -->
+  <div class="pane on" id="p1">
+    <div class="box">
+      <h3>मुख्य पानाको उल्टो गन्ती</h3>
+      <p class="sub">पानाको माथि देखिने countdown यहीँबाट चल्छ।</p>
+      <label>कार्यक्रमको नाम</label>
+      <input id="f_title" placeholder="तीज धमाका २०२६">
+      <div class="row2">
+        <div>
+          <label>मिति</label>
+          <input id="f_date" type="date">
+        </div>
+        <div>
+          <label>सुरु हुने समय</label>
+          <input id="f_time" type="time">
+        </div>
+      </div>
+      <p class="hint">जापानी समय (JST) मा लेख्नुहोस्।</p>
+      <label>मिति देखाउने तरिका</label>
+      <input id="f_when" placeholder="सेप्टेम्बर १३, २०२६ — आइतबार">
+      <p class="hint">पानामा यही अक्षरै देखिन्छ।</p>
+      <label>हलको नाम</label>
+      <input id="f_venue" placeholder="宮地楽器ホール（みやじがっきホール）">
+      <label>ठाउँ</label>
+      <input id="f_city" placeholder="小金井市（こがねいし）, टोकियो">
+      <div class="warn">कार्यक्रम सकिएपछि यहाँ <b>अर्को कार्यक्रम</b> हाल्नुहोस्। साथै "कार्यक्रम इतिहास" मा सम्पन्न भएको कार्यक्रम थप्न नबिर्सनुहोस्।</div>
+    </div>
+  </div>
+
+  <!-- २ · टाइमलाइन -->
+  <div class="pane" id="p2">
+    <div class="box">
+      <h3>नयाँ कार्यक्रम थप्नुहोस्</h3>
+      <p class="sub">सम्पन्न भएका कार्यक्रम "हाम्रो यात्रा" भागमा देखिन्छन्।</p>
+      <label>मिति</label>
+      <input id="n_date" placeholder="१३ सेप्टेम्बर २०२६">
+      <label>शीर्षक</label>
+      <input id="n_title" placeholder="तीज धमाका २०२६ सम्पन्न">
+      <label>विवरण</label>
+      <textarea id="n_text" placeholder="कति जना सहभागी भए, संयोजक को हुनुहुन्थ्यो, कहाँ भयो..."></textarea>
+      <div class="chk"><input type="checkbox" id="n_big"><label for="n_big" style="margin:0;color:var(--ink)">ठूलो घटना (रातो बिन्दु देखाउने)</label></div>
+      <div class="acts"><button class="btn btn-fill" onclick="addTL()">＋ थप्नुहोस्</button></div>
+    </div>
+    <div class="box">
+      <h3>सूची</h3>
+      <p class="sub">पछिल्लो तल हुनुपर्छ। ↑↓ ले सार्नुहोस्।</p>
+      <div id="tlList"></div>
+    </div>
+  </div>
+
+  <!-- ३ · क्षेत्र -->
+  <div class="pane" id="p3">
+    <div class="box">
+      <h3>क्षेत्रीय समिति</h3>
+      <p class="sub">अध्यक्ष फेरिए यहाँ बदल्नुहोस्।</p>
+      <div id="rgList"></div>
+      <div class="acts"><button class="btn btn-line btn-sm" onclick="addRG()">＋ नयाँ क्षेत्र</button></div>
+    </div>
+  </div>
+
+  <!-- ४ · कार्यसमिति -->
+  <div class="pane" id="p4">
+    <div class="box">
+      <h3>कार्यकाल छान्नुहोस्</h3>
+      <select id="cmSel" onchange="loadCM()"></select>
+      <label>टिप्पणी</label>
+      <input id="c_note" placeholder="अधिवेशन: २३ मार्च २०२५">
+      <label>पदाधिकारी — हरेक लाइनमा एक जना</label>
+      <textarea id="c_off" style="min-height:150px" placeholder="अध्यक्ष | वेद कार्की&#10;महासचिव | सागर मणि न्यौपाने"></textarea>
+      <p class="hint">ढाँचा: <b>पद | नाम</b> — बीचमा सीधा डण्डी ( | ) राख्नुहोस्।</p>
+      <label>कार्यसमिति सदस्य — हरेक लाइनमा एक जना</label>
+      <textarea id="c_mem" style="min-height:130px" placeholder="अमन गुरुङ&#10;लक्ष्मण ढकाल"></textarea>
+      <label>संरक्षक तथा सल्लाहकार — हरेक लाइनमा एक जना</label>
+      <textarea id="c_adv" style="min-height:110px"></textarea>
+      <div class="acts"><button class="btn btn-fill" onclick="saveCM()">💾 यो कार्यकाल सुरक्षित</button></div>
+      <div class="warn">सुरक्षित थिचेपछि "✅ कोड बनाउने" मा जानुहोस्।</div>
+    </div>
+  </div>
+
+  <!-- ५ · सम्पर्क -->
+  <div class="pane" id="p5">
+    <div class="box">
+      <h3>सम्पर्क विवरण</h3>
+      <p class="sub">पानाको तल र फुटरमा देखिन्छ।</p>
+      <label>संस्थाको इमेल</label>
+      <input id="f_email" type="email" placeholder="info@syangjasamaj.jp">
+      <label>Facebook पेजको लिंक</label>
+      <input id="f_fb" placeholder="https://www.facebook.com/...">
+      <div class="warn">⚠️ यो सार्वजनिक पाना हो। <b>बैंक खाता नम्बर र व्यक्तिगत मोबाइल नम्बर नराख्नुहोस्।</b> संस्थाको साझा इमेल मात्र राख्नुहोस्।</div>
+    </div>
+  </div>
+
+  <!-- ६ · कोड -->
+  <div class="pane" id="p6">
+    <div class="box">
+      <h3>कोड तयार छ</h3>
+      <p class="sub">तलको सबै कोड कपी गरेर GitHub मा टाँस्नुहोस्।</p>
+      <div class="acts">
+        <button class="btn btn-fill" onclick="copyOut()">📋 कोड कपी गर्नुहोस्</button>
+        <button class="btn btn-line" onclick="dlOut()">⬇️ data.js डाउनलोड</button>
+      </div>
+      <label style="margin-top:16px">बनेको कोड</label>
+      <textarea class="out" id="out" readonly></textarea>
+    </div>
+    <div class="box">
+      <h3>GitHub मा कसरी हाल्ने</h3>
+      <ol class="steps">
+        <li>आफ्नो repository खोल्नुहोस् → <b>data.js</b> फाइलमा थिच्नुहोस्</li>
+        <li>दायाँ माथिको <b>पेन्सिल (✏️)</b> चिन्हमा थिच्नुहोस्</li>
+        <li>भित्रको सबै पुरानो कोड मेट्नुहोस् (Ctrl+A वा सबै छानेर Delete)</li>
+        <li>माथि कपी गरेको नयाँ कोड <b>टाँस्नुहोस् (Paste)</b></li>
+        <li>तल हरियो <b>Commit changes</b> थिच्नुहोस्</li>
+        <li>१ मिनेटपछि वेबसाइट refresh गर्नुहोस् — अपडेट भइसक्यो ✅</li>
+      </ol>
+      <div class="warn">कोड डाउनलोड गर्नुभयो भने: GitHub मा <b>Add file → Upload files</b> गरेर पुरानो <b>data.js</b> माथि नयाँ चढाए पनि हुन्छ।</div>
+    </div>
+  </div>
+</div>
+
+<div class="bar">
+  <div class="bar-in">
+    <span class="msg" id="msg">तयार</span>
+    <button class="btn btn-fill btn-sm" onclick="go('p6')">कोड बनाउने →</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+/* ── डेटा नभेटिए खाली सुरु ── */
+var S = (typeof SITE!=='undefined') ? JSON.parse(JSON.stringify(SITE)) :
+  {eventTitle:'',eventDate:'',eventWhen:'',eventVenue:'',eventCity:'',email:'',facebook:'#'};
+var T = (typeof TIMELINE!=='undefined') ? JSON.parse(JSON.stringify(TIMELINE)) : [];
+var R = (typeof REGIONS!=='undefined')  ? JSON.parse(JSON.stringify(REGIONS))  : [];
+var C = (typeof COMMITTEES!=='undefined')? JSON.parse(JSON.stringify(COMMITTEES)):[];
+
+var $ = function(id){return document.getElementById(id);};
+function say(t,ok){var m=$('msg');m.textContent=t;m.className='msg'+(ok?' ok':'');}
+function esc(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+
+/* ── ट्याब ── */
+function go(p){
+  document.querySelectorAll('.pane').forEach(function(n){n.classList.toggle('on',n.id===p);});
+  document.querySelectorAll('.tb').forEach(function(b){b.setAttribute('aria-selected',b.dataset.p===p);});
+  if(p==='p6') build();
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.tb').forEach(function(b){b.onclick=function(){go(b.dataset.p);};});
+
+/* ── १ · आगामी कार्यक्रम ── */
+(function(){
+  $('f_title').value=S.eventTitle; $('f_when').value=S.eventWhen;
+  $('f_venue').value=S.eventVenue; $('f_city').value=S.eventCity;
+  var m=/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/.exec(S.eventDate||'');
+  if(m){$('f_date').value=m[1];$('f_time').value=m[2];}
+  $('f_email').value=S.email; $('f_fb').value=(S.facebook==='#'?'':S.facebook);
+})();
+function readSite(){
+  S.eventTitle=$('f_title').value.trim();
+  S.eventWhen=$('f_when').value.trim();
+  S.eventVenue=$('f_venue').value.trim();
+  S.eventCity=$('f_city').value.trim();
+  var d=$('f_date').value, t=$('f_time').value||'13:00';
+  if(d) S.eventDate=d+'T'+t+':00+09:00';
+  S.email=$('f_email').value.trim()||'info@example.com';
+  S.facebook=$('f_fb').value.trim()||'#';
+}
+
+/* ── २ · टाइमलाइन ── */
+function drawTL(){
+  $('tlList').innerHTML = T.map(function(t,i){
+    return '<div class="item"><div class="item-top"><div class="t">'+
+      '<b>'+t.title+'</b><small>'+t.date+(t.big?' · ⭐':'')+'</small></div>'+
+      '<div class="mini">'+
+        '<button title="माथि" onclick="mv('+i+',-1)">↑</button>'+
+        '<button title="तल" onclick="mv('+i+',1)">↓</button>'+
+        '<button title="सच्याउने" onclick="tog('+i+')">✎</button>'+
+        '<button title="हटाउने" onclick="delTL('+i+')">✕</button>'+
+      '</div></div>'+
+      '<div class="edit" id="e'+i+'">'+
+        '<label>मिति</label><input value="'+t.date.replace(/"/g,'&quot;')+'" oninput="T['+i+'].date=this.value">'+
+        '<label>शीर्षक</label><input value="'+t.title.replace(/"/g,'&quot;')+'" oninput="T['+i+'].title=this.value">'+
+        '<label>विवरण</label><textarea oninput="T['+i+'].text=this.value">'+t.text+'</textarea>'+
+        '<div class="chk"><input type="checkbox" '+(t.big?'checked':'')+' onchange="T['+i+'].big=this.checked" id="b'+i+'">'+
+        '<label for="b'+i+'" style="margin:0;color:var(--ink)">ठूलो घटना</label></div>'+
+      '</div></div>';
+  }).join('') || '<p style="color:var(--ink-soft);font-size:.9rem">अहिले केही छैन।</p>';
+}
+function tog(i){$('e'+i).classList.toggle('on');}
+function mv(i,d){var j=i+d; if(j<0||j>=T.length)return; var x=T[i];T[i]=T[j];T[j]=x; drawTL(); say('सारियो',1);}
+function delTL(i){ if(confirm('"'+T[i].title+'" हटाउने?')){T.splice(i,1);drawTL();say('हटाइयो',1);} }
+function addTL(){
+  var d=$('n_date').value.trim(), ti=$('n_title').value.trim();
+  if(!d||!ti){alert('मिति र शीर्षक दुवै भर्नुहोस्।');return;}
+  T.push({date:d,title:ti,text:$('n_text').value.trim(),big:$('n_big').checked});
+  $('n_date').value='';$('n_title').value='';$('n_text').value='';$('n_big').checked=false;
+  drawTL(); say('कार्यक्रम थपियो ✓',1);
+}
+drawTL();
+
+/* ── ३ · क्षेत्र ── */
+function drawRG(){
+  $('rgList').innerHTML = R.map(function(r,i){
+    return '<div class="item">'+
+      '<div class="item-top"><div class="t"><b>'+r.name+'</b><small>'+r.lead+'</small></div>'+
+      '<div class="mini"><button onclick="delRG('+i+')" title="हटाउने">✕</button></div></div>'+
+      '<label>क्षेत्रको नाम</label><input value="'+r.name.replace(/"/g,'&quot;')+'" oninput="R['+i+'].name=this.value">'+
+      '<label>जापानी नाम</label><input value="'+r.jp.replace(/"/g,'&quot;')+'" oninput="R['+i+'].jp=this.value">'+
+      '<label>नेतृत्व</label><input value="'+r.lead.replace(/"/g,'&quot;')+'" oninput="R['+i+'].lead=this.value">'+
+      '<label>गठन मिति (नचाहिए खाली)</label><input value="'+(r.est||'').replace(/"/g,'&quot;')+'" oninput="R['+i+'].est=this.value">'+
+    '</div>';
+  }).join('');
+}
+function delRG(i){ if(confirm(R[i].name+' हटाउने?')){R.splice(i,1);drawRG();} }
+function addRG(){ R.push({name:'नयाँ क्षेत्र',jp:'',lead:'',est:'',hq:false}); drawRG(); }
+drawRG();
+
+/* ── ४ · कार्यसमिति ── */
+$('cmSel').innerHTML = C.map(function(c,i){
+  return '<option value="'+i+'">'+c.term+' कार्यकाल · '+c.years+'</option>';
+}).join('');
+function loadCM(){
+  var c=C[+$('cmSel').value];
+  $('c_note').value=c.note||'';
+  $('c_off').value=(c.officers||[]).map(function(o){return o[0]+' | '+o[1];}).join('\n');
+  $('c_mem').value=(c.members||[]).join('\n');
+  $('c_adv').value=(c.advisors||[]).join('\n');
+}
+function saveCM(){
+  var c=C[+$('cmSel').value];
+  c.note=$('c_note').value.trim();
+  c.officers=$('c_off').value.split('\n').map(function(l){return l.trim();}).filter(Boolean)
+    .map(function(l){var p=l.split('|');return [(p[0]||'').trim(),(p[1]||'').trim()];});
+  c.members=$('c_mem').value.split('\n').map(function(l){return l.trim();}).filter(Boolean);
+  c.advisors=$('c_adv').value.split('\n').map(function(l){return l.trim();}).filter(Boolean);
+  say(c.term+' कार्यकाल सुरक्षित भयो ✓',1);
+}
+if(C.length) loadCM();
+
+/* ── ६ · कोड बनाउने ── */
+function q(s){return "'"+esc(s)+"'";}
+function build(){
+  readSite();
+  var o = '/* ══════════════════════════════════════════════════════════════\n'+
+          '   स्याङ्जा समाज जापान — सबै जानकारी यहीँ छ\n'+
+          '   editor.html बाट बनेको · '+new Date().toLocaleDateString('ne-NP')+'\n'+
+          '   ══════════════════════════════════════════════════════════════ */\n\n';
+
+  o += 'var SITE = {\n'+
+    '  eventTitle : '+q(S.eventTitle)+',\n'+
+    '  eventDate  : '+q(S.eventDate)+',\n'+
+    '  eventWhen  : '+q(S.eventWhen)+',\n'+
+    '  eventVenue : '+q(S.eventVenue)+',\n'+
+    '  eventCity  : '+q(S.eventCity)+',\n'+
+    '  email      : '+q(S.email)+',\n'+
+    '  facebook   : '+q(S.facebook)+'\n};\n\n';
+
+  o += 'var REGIONS = [\n' + R.map(function(r){
+    return '  {name:'+q(r.name)+', jp:'+q(r.jp)+', lead:'+q(r.lead)+', est:'+q(r.est||'')+
+           (r.hq?', hq:true':'')+'}';
+  }).join(',\n') + '\n];\n\n';
+
+  o += 'var TIMELINE = [\n' + T.map(function(t){
+    return '  {date:'+q(t.date)+(t.big?', big:true':'')+', title:'+q(t.title)+',\n'+
+           '   text:'+q(t.text||'')+'}';
+  }).join(',\n') + '\n];\n\n';
+
+  o += 'var COMMITTEES = [\n' + C.map(function(c){
+    return '  {\n    term:'+q(c.term)+', years:'+q(c.years)+', note:'+q(c.note||'')+',\n'+
+      '    officers:['+(c.officers||[]).map(function(x){return '['+q(x[0])+','+q(x[1])+']';}).join(',')+'],\n'+
+      '    members:['+(c.members||[]).map(q).join(',')+'],\n'+
+      '    advisors:['+(c.advisors||[]).map(q).join(',')+']\n  }';
+  }).join(',\n') + '\n];\n';
+
+  $('out').value = o;
+  say('कोड तयार भयो — कपी गर्नुहोस्',1);
+}
+function copyOut(){
+  var t=$('out'); t.select(); t.setSelectionRange(0,999999);
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t.value).then(function(){say('कपी भयो ✓ अब GitHub मा टाँस्नुहोस्',1);},
+      function(){document.execCommand('copy');say('कपी भयो ✓',1);});
+  } else { document.execCommand('copy'); say('कपी भयो ✓',1); }
+}
+function dlOut(){
+  var b=new Blob([$('out').value],{type:'text/javascript;charset=utf-8'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(b); a.download='data.js'; a.click();
+  say('data.js डाउनलोड भयो ✓',1);
+}
+
+if(typeof SITE==='undefined'){
+  say('⚠️ data.js भेटिएन — यो फाइल data.js कै फोल्डरमा राख्नुहोस्');
+}
+</script>
+</body>
+</html>
