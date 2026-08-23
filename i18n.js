@@ -29,8 +29,12 @@ function setLang(l){ lang=l; try{localStorage.setItem('ssj_lang',l);}catch(e){} 
 function build(){
   var tp=document.querySelector('.top-in'); if(!tp) return;
   var box=document.createElement('div'); box.className='langsw';
-  var L=[['ne','ने'],['en','EN'],['ja','日本語']];
-  for(var i=0;i<L.length;i++){ var b=document.createElement('button'); b.type='button'; b.setAttribute('data-l',L[i][0]); b.textContent=L[i][1]; b.onclick=(function(c){return function(){setLang(c);};})(L[i][0]); box.appendChild(b); }
+  var tgl=document.createElement('button'); tgl.type='button'; tgl.className='lang-btn'; tgl.innerHTML='🌐 Language ▾'; box.appendChild(tgl);
+  var menu=document.createElement('div'); menu.className='lang-menu'; menu.hidden=true; box.appendChild(menu);
+  var L=[['ne','नेपाली'],['en','English'],['ja','日本語']];
+  for(var i=0;i<L.length;i++){ var b=document.createElement('button'); b.type='button'; b.setAttribute('data-l',L[i][0]); b.textContent=L[i][1]; b.onclick=(function(c){return function(){setLang(c); menu.hidden=true;};})(L[i][0]); menu.appendChild(b); }
+  tgl.onclick=function(e){ e.stopPropagation(); menu.hidden=!menu.hidden; };
+  document.addEventListener('click',function(e){ if(!box.contains(e.target)) menu.hidden=true; });
   var nb=tp.querySelector('.navbtn'); if(nb) tp.insertBefore(box,nb); else tp.appendChild(box);
   obs=new MutationObserver(function(){ clearTimeout(timer); timer=setTimeout(apply,60); });
   var saved='ne'; try{ saved=localStorage.getItem('ssj_lang')||'ne'; }catch(e){}
