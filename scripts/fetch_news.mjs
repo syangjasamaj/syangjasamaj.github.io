@@ -43,13 +43,16 @@ function pick(xml, tag) {
   return m ? decode(m[1]) : '';
 }
 
-async function fetchText(url) {
+async function fetchText(url, browserUA) {
   const ctl = new AbortController();
   const t = setTimeout(() => ctl.abort(), 20000);
+  const ua = browserUA
+    ? 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+    : 'Mozilla/5.0 (compatible; SyangjaSamajBot/1.0; +https://syangjasamaj.github.io/)';
   try {
     const res = await fetch(url, {
       signal: ctl.signal,
-      headers: { 'user-agent': 'Mozilla/5.0 (compatible; SyangjaSamajBot/1.0; +https://syangjasamaj.github.io/)' },
+      headers: { 'user-agent': ua, 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'accept-language': 'ne,en;q=0.8' },
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     return await res.text();
@@ -111,7 +114,7 @@ function parseRamropost(html, src) {
 
 async function fetchSource(src) {
   try {
-    const body = await fetchText(src.url);
+    const body = await fetchText(src.url, src.type === 'ekantipur');
     let items;
     if (src.type === 'ekantipur') items = parseEkantipur(body, src);
     else if (src.type === 'ramropost') items = parseRamropost(body, src);
