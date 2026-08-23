@@ -18,6 +18,18 @@
 <meta property="og:title" content="स्याङ्जा समाज जापान">
 <meta property="og:description" content="जापानमा रहेका स्याङ्जाबासीहरूको साझा घर — स्थापना २०१२">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://syangjasamaj.github.io/">
+<meta property="og:image" content="https://syangjasamaj.github.io/logo.png">
+<meta name="theme-color" content="#C4123F">
+<link rel="canonical" href="https://syangjasamaj.github.io/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization",
+ "name":"Syangja Samaj Japan","alternateName":"स्याङ्जा समाज जापान",
+ "url":"https://syangjasamaj.github.io/",
+ "logo":"https://syangjasamaj.github.io/logo.png",
+ "foundingDate":"2012-09-17",
+ "areaServed":"JP","nonprofitStatus":"Nonprofit"}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,6 +210,117 @@ code{font-size:.85em;background:var(--paper-2);padding:1px 6px;border-radius:5px
 .foot-bar{border-top:1px solid rgba(253,248,238,.13);padding-top:19px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;font-size:.79rem}
 .foot-bar span:last-child{font-family:var(--jp)}
 
+/* ── कार्यसमिति फोटो कार्ड ────────────────────────── */
+.oc-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr);margin-bottom:6px}
+.oc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 12px 16px;text-align:center;transition:.2s}
+.oc:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(196,18,63,.3)}
+.oc .ph{width:82px;height:82px;border-radius:50%;margin:0 auto 12px;background-color:var(--paper-2);background-size:cover;background-position:center top;background-repeat:no-repeat;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--teej);border:2px solid rgba(196,18,63,.16);box-shadow:0 2px 8px rgba(26,20,40,.08)}
+.oc .ph.has{color:transparent}
+.oc.lead .ph{width:104px;height:104px;border-color:var(--marigold)}
+.oc .role{font-size:.72rem;font-weight:700;letter-spacing:.05em;color:var(--teej);margin-bottom:3px}
+.oc .nm{font-weight:600;font-size:.95rem;line-height:1.45}
+
+/* ── सदस्यता शुल्क कार्ड ──────────────────────────── */
+.fee-grid{display:grid;gap:14px;grid-template-columns:1fr;margin-bottom:36px}
+.fee{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px 24px}
+.fee.life{border-top:4px solid var(--teej)}
+.fee.gen{border-top:4px solid var(--marigold)}
+.fee .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--teej);padding:4px 13px;border-radius:100px}
+.fee.gen .tag{background:var(--marigold)}
+.fee .amt{font-family:var(--display);font-weight:800;font-size:2.2rem;line-height:1;margin:14px 0 3px}
+.fee .amt small{font-size:.85rem;font-weight:600;color:var(--ink-soft);font-family:var(--body)}
+.fee ul{list-style:none;margin-top:13px}
+.fee li{font-size:.9rem;color:var(--ink-soft);padding:5px 0 5px 24px;position:relative}
+.fee li::before{content:"✓";position:absolute;left:0;color:var(--terrace);font-weight:700}
+
+/* ── आगामी कार्यक्रम कार्ड ────────────────────────── */
+.ev-grid{display:grid;gap:14px;grid-template-columns:1fr;margin-top:22px}
+.ev{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teej);border-radius:13px;padding:19px 20px}
+.ev h3{font-family:var(--display);font-weight:700;font-size:1.1rem}
+.ev .dt{font-size:.8rem;font-weight:700;color:var(--teej);margin-bottom:4px}
+.ev .vn{font-size:.85rem;color:var(--ink-soft);margin-top:5px}
+.ev .vn .jp{font-family:var(--jp)}
+.ev p{font-size:.88rem;color:var(--ink-soft);margin-top:8px;line-height:1.7}
+.ev-past{margin-top:26px}
+.ev-past .acc-body li{margin-bottom:9px}
+
+/* ── ग्यालरी ──────────────────────────────────────── */
+.g-grid{display:grid;gap:14px;grid-template-columns:1fr}
+.galb{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;cursor:pointer;transition:.22s;text-align:left;padding:0;font-family:inherit;width:100%;display:block}
+.galb:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(196,18,63,.3)}
+.galb .cv{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,var(--paper-2),#EBD9BE);display:grid;place-items:center;overflow:hidden}
+.galb .cv img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.galb .cv .n{position:absolute;right:10px;bottom:10px;background:rgba(26,20,40,.72);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:100px;z-index:2}
+.galb .cv .emp{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-soft);font-size:.8rem;font-weight:600}
+.galb .cv .emp::before{content:"";width:54px;height:54px;border-radius:50%;background:url("logo.png") center/contain no-repeat;opacity:.4}
+.galb .bd{padding:15px 17px 17px}
+.galb h3{font-family:var(--display);font-weight:700;font-size:1.02rem}
+.galb .dt{font-size:.76rem;font-weight:700;color:var(--teej);margin-top:2px}
+.galb p{font-size:.85rem;color:var(--ink-soft);margin-top:6px;line-height:1.6}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(26,20,40,.95);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.lb.on{display:flex}
+.lb img{max-width:94vw;max-height:74vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb .cap{color:rgba(253,248,238,.88);font-size:.9rem;margin-top:14px;text-align:center;max-width:70ch}
+.lb .cnt{color:rgba(253,248,238,.5);font-size:.78rem;margin-top:4px}
+.lb button{position:absolute;background:rgba(253,248,238,.1);border:1px solid rgba(253,248,238,.25);color:#FDF8EE;width:46px;height:46px;border-radius:50%;font-size:1.15rem;cursor:pointer;display:grid;place-items:center;font-family:inherit}
+.lb button:hover{background:rgba(196,18,63,.85)}
+.lb .x{top:16px;right:16px}
+.lb .pv{left:10px;top:50%;transform:translateY(-50%)}
+.lb .nx{right:10px;top:50%;transform:translateY(-50%)}
+
+/* ── नेपाली पात्रो ─────────────────────────────────── */
+.pt-wrap{display:grid;gap:16px;grid-template-columns:1fr}
+.pt-today{background:var(--ink);color:var(--paper);border-radius:18px;padding:30px 24px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.pt-today .lbl{font-size:.72rem;font-weight:700;letter-spacing:.16em;color:var(--marigold)}
+.pt-today .big{font-family:var(--display);font-weight:800;font-size:4.2rem;line-height:1.1;margin:8px 0 0}
+.pt-today .mon{font-family:var(--display);font-weight:700;font-size:1.35rem}
+.pt-today .sub{margin-top:10px;font-size:.9rem;color:rgba(253,248,238,.72)}
+.pt-today .fx{margin-top:15px;background:rgba(233,160,32,.14);border:1px solid rgba(233,160,32,.45);color:var(--marigold);border-radius:100px;padding:6px 15px;font-size:.83rem;font-weight:600}
+.pt-cal{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px}
+.pt-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.pt-nav b{font-family:var(--display);font-size:1.08rem;font-weight:800}
+.pt-nav small{display:block;font-family:var(--body);font-weight:500;font-size:.72rem;color:var(--ink-soft)}
+.pt-nav button{width:37px;height:37px;border-radius:10px;border:1px solid var(--line);background:var(--paper);cursor:pointer;font-size:1rem;color:var(--ink-soft);font-family:inherit}
+.pt-nav button:hover{border-color:var(--teej);color:var(--teej)}
+.pt-g{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.pt-g .wd{font-size:.67rem;font-weight:700;color:var(--ink-soft);padding:5px 0}
+.pt-g .wd:last-child{color:var(--teej)}
+.pt-d{position:relative;aspect-ratio:1;display:grid;place-items:center;border-radius:9px;font-size:.9rem;font-weight:600}
+.pt-d small{position:absolute;right:3px;bottom:2px;font-size:.54rem;color:var(--ink-soft);font-weight:500}
+.pt-d.sat{color:var(--teej)}
+.pt-d.tod{background:var(--teej);color:#fff}
+.pt-d.tod small{color:rgba(255,255,255,.78)}
+.pt-d.fest::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:3px;width:5px;height:5px;border-radius:50%;background:var(--marigold)}
+.pt-d.tod.fest::after{background:#fff}
+.pt-fest{margin-top:20px}
+.pt-fest h3{font-family:var(--display);font-weight:700;font-size:1.05rem;margin-bottom:6px}
+.pf{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.92rem;align-items:center}
+.pf:last-child{border-bottom:none}
+.pf .d{color:var(--ink-soft);font-size:.79rem;margin-top:1px}
+.pf .left{background:var(--paper-2);border-radius:100px;padding:4px 12px;font-size:.74rem;font-weight:600;color:var(--terrace);white-space:nowrap;flex-shrink:0}
+
+/* ── नेपाल समाचार ─────────────────────────────────── */
+.nw-list{display:grid;gap:11px;grid-template-columns:1fr}
+.nw{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px 17px;transition:.2s;display:block;text-decoration:none}
+.nw:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(196,18,63,.3)}
+.nw .src{display:inline-block;font-size:.67rem;font-weight:700;letter-spacing:.05em;color:var(--teej);background:rgba(196,18,63,.08);padding:3px 10px;border-radius:100px}
+.nw h3{font-size:.95rem;font-weight:600;line-height:1.6;margin-top:9px;font-family:var(--body)}
+.nw .tm{font-size:.75rem;color:var(--ink-soft);margin-top:8px}
+.state{background:#fff;border:1px dashed var(--line);border-radius:13px;padding:26px 20px;text-align:center;color:var(--ink-soft);font-size:.92rem}
+
+/* ── उपयोगी लिंक + Facebook ───────────────────────── */
+.lk-grid{display:grid;gap:12px;grid-template-columns:1fr}
+.lk{display:block;background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px;text-decoration:none;transition:.2s;position:relative}
+.lk:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(74,107,79,.55)}
+.lk h3{font-family:var(--display);font-weight:700;font-size:1.02rem;padding-right:26px}
+.lk p{font-size:.85rem;color:var(--ink-soft);margin-top:5px;line-height:1.65}
+.lk::after{content:"↗";position:absolute;right:16px;top:15px;color:var(--terrace);font-weight:700}
+.fb-band{margin-top:26px;background:#1877F2;border-radius:16px;padding:26px 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;color:#fff}
+.fb-band h3{font-family:var(--display);font-weight:800;font-size:1.2rem}
+.fb-band p{font-size:.88rem;opacity:.88;margin-top:3px}
+.fb-band .btn{background:#fff;color:#1877F2}
+.fb-band .btn:hover{transform:translateY(-2px)}
+
 /* ── पहुँच ────────────────────────────────────────── */
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--marigold);outline-offset:3px}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -210,12 +333,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   .mem-list{grid-template-columns:1fr 1fr}
   .stats{grid-template-columns:repeat(4,1fr)}
   .count{padding:36px 32px 32px}
+  .oc-grid{grid-template-columns:repeat(3,1fr)}
+  .fee-grid{grid-template-columns:1fr 1fr}
+  .ev-grid,.g-grid,.lk-grid{grid-template-columns:1fr 1fr}
+  .nw-list{grid-template-columns:1fr 1fr}
 }
 @media(min-width:920px){
   .sec{padding:78px 0}
   .hero-in{padding:88px 0 112px}
   .split{grid-template-columns:1.05fr .95fr;gap:52px}
   .regions{grid-template-columns:repeat(3,1fr)}
+  .oc-grid{grid-template-columns:repeat(4,1fr)}
+  .g-grid{grid-template-columns:repeat(3,1fr)}
+  .nw-list{grid-template-columns:repeat(3,1fr)}
+  .pt-wrap{grid-template-columns:.85fr 1.35fr}
 }
 </style>
 </head>
@@ -233,14 +364,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
       <b>स्याङ्जा समाज<br>जापान</b>
     </a>
     <nav class="nav" aria-label="मुख्य मेनु">
-      <a href="#teej">तीज धमाका</a>
+      <a href="#teej">कार्यक्रम</a>
       <a href="#about">परिचय</a>
       <a href="#regions">क्षेत्र</a>
       <a href="#work">गतिविधि</a>
       <a href="#history">इतिहास</a>
-      <a href="#relief">सहयोग</a>
       <a href="#committee">कार्यसमिति</a>
-      <a href="#vidhan">विधान</a>
+      <a href="#join">सदस्यता</a>
+      <a href="#gallery">ग्यालरी</a>
+      <a href="#patro">पात्रो</a>
+      <a href="#news">समाचार</a>
+      <a href="#links">लिंक</a>
       <a href="#contact">सम्पर्क</a>
     </nav>
   </div>
@@ -282,12 +416,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
         <div class="cell"><span class="num" id="s">००</span><span class="lbl">सेकेन्ड</span></div>
       </div>
       <p class="count-done" id="done" hidden>कार्यक्रम सम्पन्न भयो — सहभागी सबैलाई हार्दिक धन्यवाद 🙏</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center" id="evBtns">
         <!-- ✏️ लिंक तयार भएपछि # लाई फाइलको नामले बदल्नुहोस् -->
         <a href="#" class="btn btn-dark">कार्यक्रम विवरण</a>
         <a href="#" class="btn btn-dark">प्रायोजक बन्नुहोस्</a>
       </div>
     </div>
+    <div class="ev-grid" id="evMore"></div>
+    <div class="ev-past" id="evPast"></div>
   </div>
 </section>
 
@@ -491,18 +627,145 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 </section>
 
 <section class="sec sec-alt" id="join">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">सदस्यता</span>
+      <h2>सदस्य बन्नुहोस्</h2>
+      <p>स्याङ्जा जिल्लामा जन्म वा नाता भएका, जापानमा बसोबास गर्ने सबैलाई सदस्य बन्न हार्दिक स्वागत छ।</p>
+    </div>
+
+    <div class="fee-grid">
+      <div class="fee life reveal">
+        <span class="tag">आजीवन सदस्यता</span>
+        <div class="amt" id="feeLife">¥10,000</div>
+        <ul>
+          <li>एकपटक शुल्क तिरेपछि आजीवन सदस्य</li>
+          <li>हरेक वर्ष नवीकरण गर्नु नपर्ने</li>
+          <li>अधिवेशन र साधारण सभामा सहभागिता</li>
+        </ul>
+      </div>
+      <div class="fee gen reveal">
+        <span class="tag">साधारण सदस्यता</span>
+        <div class="amt" id="feeGeneral">¥5,000</div>
+        <ul>
+          <li>संस्थाका सबै कार्यक्रममा सहभागिता</li>
+          <li>राहत तथा सहयोग कोषको सुविधा</li>
+          <li>आफ्नो क्षेत्रीय समितिमा आबद्धता</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="reveal">
+        <h2 style="font-size:1.3rem">दर्ता प्रक्रिया</h2>
+        <ol class="steps">
+          <li><b>फारम भर्नुहोस्</b> — तलको बटनबाट सदस्यता फारम खोलेर नाम, ठेगाना, जापानमा बस्ने क्षेत्र र सदस्यताको प्रकार भर्नुहोस्।</li>
+          <li><b>बैंक खाता हेर्नुहोस्</b> — फारमभित्रै संस्थाको बैंक खाताको जानकारी देखिन्छ।</li>
+          <li><b>शुल्क पठाउनुहोस्</b> — बैंक transfer (振込・ふりこみ) गरेर सदस्यता शुल्क पठाउनुहोस्।</li>
+          <li><b>प्रमाण राख्नुहोस्</b> — transfer गरेको रसिद/screenshot फारममै upload गर्नुहोस्।</li>
+          <li><b>रुजु पर्खनुहोस्</b> — कोषाध्यक्षले बैंकमा रकम आएको रुजु गरेपछि मात्र सदस्यता पक्का हुन्छ र तपाईंलाई जानकारी पठाइन्छ।</li>
+        </ol>
+        <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:11px" id="joinCta"></div>
+      </div>
+      <div class="reveal">
+        <h2 style="font-size:1.3rem">जान्नुपर्ने कुरा</h2>
+        <ul class="info">
+          <li><span class="k">रुजु</span><span class="v">Screenshot पठाउँदैमा सदस्यता पक्का हुँदैन — बैंकमा रकम साँच्चै आएको समितिले रुजु गरेपछि मात्र नाम दर्ता हुन्छ।</span></li>
+          <li><span class="k">गोपनीयता</span><span class="v">तपाईंको फोन, ठेगाना र भुक्तानी विवरण सार्वजनिक गरिँदैन — अधिकार प्राप्त पदाधिकारीले मात्र हेर्छन्।</span></li>
+          <li><span class="k">सोधपुछ</span><span class="v">कुनै प्रश्न भए <a href="mailto:info@example.com">इमेल</a> वा Facebook पेजबाट सम्पर्क गर्नुहोस्।</span></li>
+        </ul>
+        <p class="note">⚠️ <b>सावधानी:</b> संस्थाको आधिकारिक फारम र यही पानामा भएको जानकारी बाहेक, अन्यत्र देखिने खाता नम्बरमा रकम नपठाउनुहोला।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">तस्बिरहरू</span>
+      <h2>ग्यालरी</h2>
+      <p>संस्थाले आयोजना गरेका कार्यक्रमहरूका सम्झनाहरू। वर्ष/कार्यकाल अनुसार छान्न सकिन्छ।</p>
+    </div>
+    <div class="tabs" id="gFil" role="tablist" aria-label="ग्यालरी फिल्टर"></div>
+    <div class="g-grid" id="gGrid"></div>
+    <div id="gEmpty" class="state" hidden>यो कार्यकालको album अझै थपिएको छैन।</div>
+  </div>
+</section>
+
+<div class="lb" id="lb" role="dialog" aria-label="फोटो हेर्ने">
+  <button class="x" type="button" aria-label="बन्द गर्नुहोस्">✕</button>
+  <button class="pv" type="button" aria-label="अघिल्लो">‹</button>
+  <img alt="" id="lbImg">
+  <p class="cap" id="lbCap"></p>
+  <p class="cnt" id="lbCnt"></p>
+  <button class="nx" type="button" aria-label="अर्को">›</button>
+</div>
+
+<section class="sec sec-alt" id="patro">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">नेपाली पात्रो</span>
+      <h2>आजको मिति र चाडपर्व</h2>
+    </div>
+    <div class="pt-wrap reveal">
+      <div class="pt-today">
+        <span class="lbl">आज</span>
+        <div class="big" id="ptDay">—</div>
+        <div class="mon" id="ptMon">—</div>
+        <p class="sub" id="ptSub">—</p>
+        <span class="fx" id="ptFx" hidden></span>
+      </div>
+      <div class="pt-cal">
+        <div class="pt-nav">
+          <button type="button" id="ptPrev" aria-label="अघिल्लो महिना">‹</button>
+          <b id="ptTitle">—<small id="ptTitleAd"></small></b>
+          <button type="button" id="ptNext" aria-label="अर्को महिना">›</button>
+        </div>
+        <div class="pt-g" id="ptGrid"></div>
+      </div>
+    </div>
+    <div class="pt-fest reveal">
+      <h3>आगामी चाडपर्वहरू</h3>
+      <div id="ptFest"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="news">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">नेपालबाट</span>
+      <h2>नेपाल समाचार</h2>
+      <p>नेपालका भरपर्दा अनलाइन स्रोतबाट पछिल्ला समाचार — शीर्षकमा थिच्दा मूल वेबसाइट खुल्छ।</p>
+    </div>
+    <div class="nw-list" id="nwList"></div>
+    <div class="state" id="nwState">समाचार खुल्दैछ…</div>
+    <p class="nw-note reveal">समाचारहरू OnlineKhabar, Setopati र Ratopati का RSS बाट स्वतः आउँछन् र दिनमा चारपटक अपडेट हुन्छन्। सबै समाचारको स्वामित्व सम्बन्धित स्रोतको हो।</p>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="links">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">उपयोगी लिंकहरू</span>
+      <h2>काम लाग्ने ठाउँहरू</h2>
+      <p>नेपाली राजदूतावास लगायत आधिकारिक वेबसाइटहरू — नयाँ ट्याबमा खुल्छन्।</p>
+    </div>
+    <div class="lk-grid" id="lkGrid"></div>
+    <div class="fb-band reveal" id="fbBand">
+      <div>
+        <h3>Facebook मा हामीलाई follow गर्नुहोस्</h3>
+        <p>कार्यक्रमका सूचना र तस्बिरहरू सबैभन्दा पहिले Facebook पेजमा आउँछन्।</p>
+      </div>
+      <a href="#" class="btn" id="fbBtn" target="_blank" rel="noopener">पेज खोल्नुहोस्</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
   <div class="wrap split">
     <div class="reveal">
-      <span class="kicker">सदस्यता</span>
-      <h2>सदस्य कसरी बन्ने</h2>
-      <ol class="steps">
-        <li><b>सम्पर्क गर्नुहोस्</b> — तलको इमेल वा Facebook पेजबाट सन्देश पठाउनुहोस्।</li>
-        <li><b>फारम भर्नुहोस्</b> — नाम, ठेगाना, जापानमा बस्ने क्षेत्र र स्याङ्जाको गाउँपालिका उल्लेख गर्नुहोस्।</li>
-        <li><b>प्रकार छान्नुहोस्</b> — साधारण सदस्य (वार्षिक) वा आजीवन सदस्य। <!-- ✏️ शुल्क रकम यहाँ लेख्नुहोस् --></li>
-        <li><b>समूहमा जोडिनुहोस्</b> — आफ्नो क्षेत्रीय समितिको समूहबाट कार्यक्रमको जानकारी पाउनुहुनेछ।</li>
-      </ol>
-    </div>
-    <div class="reveal" id="contact">
       <span class="kicker">सम्पर्क</span>
       <h2>हामीलाई भेट्नुहोस्</h2>
       <!-- ⚠️ संस्थाको साझा इमेल मात्र राख्नुहोस्। व्यक्तिगत मोबाइल नम्बर र बैंक खाता नराख्नुहोस्। -->
@@ -514,6 +777,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
         <li><span class="k">प्रवक्ता</span><span class="v">सन्तोष हमाल</span></li>
       </ul>
       <div style="margin-top:22px"><a href="mailto:info@example.com" class="btn btn-fill">इमेल पठाउनुहोस्</a></div>
+    </div>
+    <div class="reveal">
+      <span class="kicker">सुझाव</span>
+      <h2>तपाईंको कुरा सुन्न चाहन्छौं</h2>
+      <div class="prose">
+        <p>कार्यक्रमको सुझाव, वेबसाइटमा थप्नुपर्ने कुरा, वा कुनै सहयोग चाहिएमा — इमेल वा Facebook बाट निर्धक्क सम्पर्क गर्नुहोस्।</p>
+        <p>तपाईंका पुराना कार्यक्रमका तस्बिर वा दस्ताबेज छन् भने पठाइदिनुहोस्, हामी ग्यालरी र इतिहासमा थप्नेछौं।</p>
+      </div>
     </div>
   </div>
 </section>
@@ -552,7 +823,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   if(p){ var jp=p.querySelector('.jp'); if(jp&&SITE.eventVenue) jp.textContent=SITE.eventVenue;
    var nd=p.childNodes; for(var i=0;i<nd.length;i++){ if(nd[i].nodeType===3){ nd[i].textContent=(SITE.eventCity?' \u00b7 '+SITE.eventCity:''); break; } } } }
  if(SITE.email){ var ms=document.querySelectorAll('a[href^="mailto:"]'); for(var k=0;k<ms.length;k++){ var a=ms[k]; a.setAttribute('href','mailto:'+SITE.email); if(a.textContent.indexOf('@')>-1) a.textContent=SITE.email; } }
- if(SITE.facebook && SITE.facebook!=='#'){ var as=document.getElementsByTagName('a'); for(var j=0;j<as.length;j++){ var b=as[j]; var hh=b.getAttribute('href')||''; if(hh.indexOf('facebook.com')>-1 || (hh==='#' && b.textContent.indexOf('Syangja Samaj Japan')>-1)) b.setAttribute('href',SITE.facebook); } }
+ if(SITE.facebook && SITE.facebook!=='#'){ var as=document.getElementsByTagName('a'); for(var j=0;j<as.length;j++){ var b=as[j]; var hh=b.getAttribute('href')||''; if(hh.indexOf('facebook.com')>-1 || (hh==='#' && (b.textContent.indexOf('Syangja Samaj Japan')>-1 || b.getAttribute('aria-label')==='Facebook'))) b.setAttribute('href',SITE.facebook); } }
 })();
 
 
@@ -584,19 +855,32 @@ function group(title, html){
   return '<div class="mem-group"><h4>'+title+'</h4>'+html+'</div>';
 }
 
+function ocard(role,name,photo,lead){
+  var ini = (name||'?').trim().charAt(0);
+  var st = photo ? ' style="background-image:url(\''+esc(photo)+'\')"' : '';
+  return '<div class="oc'+(lead?' lead':'')+'"><div class="ph'+(photo?' has':'')+'"'+st+'>'+esc(ini)+'</div>'+
+    (role?'<div class="role">'+esc(role)+'</div>':'')+'<div class="nm">'+esc(name)+'</div></div>';
+}
 function showTerm(i){
   var c = COMMITTEES[i];
   var out = '<div class="panel-head"><h3>'+esc(c.term)+' कार्यकाल · '+esc(c.years)+'</h3>'+
             (c.note?'<span>'+esc(c.note)+'</span>':'')+'</div>';
   if(c.officers.length){
-    out += group('पदाधिकारी','<ul class="mem-list">'+c.officers.map(function(o){
-      return '<li><span class="role">'+esc(o[0])+'</span><span>'+esc(o[1])+'</span></li>';
-    }).join('')+'</ul>');
+    out += group('पदाधिकारी','<div class="oc-grid">'+c.officers.map(function(o,k){
+      return ocard(o[0],o[1],o[2]||'',k===0);
+    }).join('')+'</div>');
   }
   if(c.members.length){
-    out += group('कार्यसमिति सदस्य','<ul class="mem-flat">'+c.members.map(function(m){
-      return '<li>'+esc(m)+'</li>';
-    }).join('')+'</ul>');
+    var withPh = c.members.some(function(m){return m && typeof m!=='string' && m[1];});
+    if(withPh){
+      out += group('कार्यसमिति सदस्य','<div class="oc-grid">'+c.members.map(function(m){
+        return (typeof m==='string') ? ocard('',m,'',false) : ocard('',m[0],m[1]||'',false);
+      }).join('')+'</div>');
+    } else {
+      out += group('कार्यसमिति सदस्य','<ul class="mem-flat">'+c.members.map(function(m){
+        return '<li>'+esc(typeof m==='string'?m:m[0])+'</li>';
+      }).join('')+'</ul>');
+    }
   }
   if(c.advisors.length){
     out += group('संरक्षक तथा सल्लाहकार','<ul class="mem-flat">'+c.advisors.map(function(a){
@@ -618,14 +902,67 @@ tabsEl.addEventListener('click', function(e){
   if(b) showTerm(+b.getAttribute('data-i'));
 });
 
-/* तीज उल्टो गन्ती
-   ✏️ मिति/समय बदल्न: 'YYYY-MM-DDTHH:MM:00+09:00'  (+09:00 = जापानी समय) */
-var EVENT = new Date((typeof SITE!=='undefined' && SITE.eventDate) ? SITE.eventDate : '2026-09-13T13:00:00+09:00');
+/* ══ कार्यक्रम प्रणाली ══
+   सबै कार्यक्रम data.js को EVENTS मा छन्। मिति नाघेपछि आफैं "सम्पन्न" मा सर्छ। */
+var _EVS = (typeof EVENTS!=='undefined' && EVENTS.length) ? EVENTS.slice()
+  : (typeof SITE!=='undefined' && SITE.eventDate
+     ? [{title:SITE.eventTitle,date:SITE.eventDate,when:SITE.eventWhen,venue:SITE.eventVenue,city:SITE.eventCity,desc:'',link:'',poster:''}] : []);
+function evEnd(e){ return new Date(new Date(e.date).getTime() + 6*3600*1000); }
+var _nowE = new Date();
+var _up   = _EVS.filter(function(e){return evEnd(e) >  _nowE;}).sort(function(a,b){return new Date(a.date)-new Date(b.date);});
+var _past = _EVS.filter(function(e){return evEnd(e) <= _nowE;}).sort(function(a,b){return new Date(b.date)-new Date(a.date);});
+var _main = _up.length ? _up[0] : null;
+
+(function(){
+  var z=document.getElementById('teej'); if(!z) return;
+  var h=z.querySelector('h2'), w=z.querySelector('.count-when'), p=z.querySelector('.count-where');
+  if(_main){
+    if(h) h.textContent=_main.title;
+    if(w) w.textContent=_main.when||'';
+    if(p){ var jp=p.querySelector('.jp'); if(jp) jp.textContent=_main.venue||'';
+      var nd=p.childNodes; for(var i=0;i<nd.length;i++){ if(nd[i].nodeType===3){ nd[i].textContent=(_main.city?' · '+_main.city:''); break; } } }
+    var bt=document.getElementById('evBtns');
+    if(bt){ var bh='';
+      if(_main.link)   bh+='<a href="'+esc(_main.link)+'" class="btn btn-dark">कार्यक्रम विवरण</a>';
+      if(_main.poster) bh+='<a href="'+esc(_main.poster)+'" target="_blank" rel="noopener" class="btn btn-dark">पोस्टर हेर्नुहोस्</a>';
+      bh+='<a href="mailto:'+esc((typeof SITE!=='undefined'&&SITE.email)||'')+'" class="btn btn-dark">सम्पर्क / प्रायोजक</a>';
+      bt.innerHTML=bh; }
+    var dsc=_main.desc?'<p style="margin-top:14px;font-size:.9rem;color:var(--ink-soft)">'+esc(_main.desc)+'</p>':'';
+    if(dsc){ var cd=z.querySelector('.count'); if(cd) cd.insertAdjacentHTML('beforeend',dsc); }
+  } else {
+    var cd2=z.querySelector('.count');
+    if(cd2) cd2.innerHTML='<span class="count-tag">आगामी कार्यक्रम</span>'+
+      '<h2>नयाँ कार्यक्रम चाँडै घोषणा हुनेछ</h2>'+
+      '<p class="count-when">सूचना Facebook पेज र यही पानामा आउनेछ।</p>';
+  }
+  var more=document.getElementById('evMore');
+  if(more){
+    more.innerHTML=_up.slice(1).map(function(e){
+      return '<article class="ev reveal"><p class="dt">'+esc(e.when||'')+'</p><h3>'+esc(e.title)+'</h3>'+
+        '<p class="vn"><span class="jp">'+esc(e.venue||'')+'</span>'+(e.city?' · '+esc(e.city):'')+'</p>'+
+        (e.desc?'<p>'+esc(e.desc)+'</p>':'')+
+        (e.link?'<p style="margin-top:10px"><a href="'+esc(e.link)+'" style="color:var(--teej);font-weight:600">विवरण →</a></p>':'')+
+        '</article>';
+    }).join('');
+  }
+  var pastEl=document.getElementById('evPast');
+  if(pastEl && _past.length){
+    pastEl.innerHTML='<details class="acc reveal"><summary>सम्पन्न भइसकेका कार्यक्रमहरू ('+_past.length+')</summary>'+
+      '<div class="acc-body"><ul>'+_past.map(function(e){
+        return '<li><strong>'+esc(e.title)+'</strong> — '+esc(e.when||'')+(e.venue?' · '+esc(e.venue):'')+
+          (e.desc?'<br>'+esc(e.desc):'')+'</li>';
+      }).join('')+'</ul></div></details>';
+  }
+})();
+
+/* उल्टो गन्ती */
+var EVENT = _main ? new Date(_main.date) : null;
 var DEV = '०१२३४५६७८९';
 function dev(n){return String(n).padStart(2,'0').split('').map(function(c){return DEV[+c];}).join('');}
 var el={d:document.getElementById('d'),h:document.getElementById('h'),m:document.getElementById('m'),
         s:document.getElementById('s'),clock:document.getElementById('clock'),done:document.getElementById('done')};
 function tick(){
+  if(!EVENT){ if(el.clock) el.clock.hidden=true; return true; }
   var left = EVENT - new Date();
   if(left<=0){el.clock.hidden=true;el.done.hidden=false;return true;}
   var sec=Math.floor(left/1000);
@@ -654,6 +991,221 @@ function watch(){
 showTerm(COMMITTEES.length-1);   /* सुरुमा वर्तमान कार्यकाल देखाउने */
 watch();
 if(!tick()){ var timer=setInterval(function(){ if(tick()) clearInterval(timer); },1000); }
+
+/* ══ सदस्यता ══ */
+(function(){
+  if(typeof SITE==='undefined') return;
+  if(SITE.feeLife){ var a=document.getElementById('feeLife'); if(a) a.textContent=SITE.feeLife; }
+  if(SITE.feeGeneral){ var b=document.getElementById('feeGeneral'); if(b) b.textContent=SITE.feeGeneral; }
+  var cta=document.getElementById('joinCta');
+  if(cta){
+    if(SITE.membershipForm){
+      cta.innerHTML='<a href="'+esc(SITE.membershipForm)+'" target="_blank" rel="noopener" class="btn btn-fill">📝 सदस्यता फारम भर्नुहोस्</a>';
+    } else {
+      cta.innerHTML='<a href="mailto:'+esc(SITE.email||'')+'?subject='+encodeURIComponent('सदस्यता आवेदन — स्याङ्जा समाज जापान')+'" class="btn btn-fill">इमेलबाट आवेदन दिनुहोस्</a>'+
+        '<span style="font-size:.82rem;color:var(--ink-soft);align-self:center">अनलाइन फारम चाँडै खुल्दैछ</span>';
+    }
+  }
+})();
+
+/* ══ ग्यालरी ══ */
+(function(){
+  var G=(typeof GALLERY!=='undefined')?GALLERY:[];
+  var fil=document.getElementById('gFil'), grid=document.getElementById('gGrid'), emp=document.getElementById('gEmpty');
+  if(!grid) return;
+  var years=[]; G.forEach(function(a){ if(a.years && years.indexOf(a.years)<0) years.push(a.years); });
+  var cur='*';
+  function chips(){
+    fil.innerHTML='<button class="tab" type="button" data-y="*" aria-selected="'+(cur==='*')+'">सबै</button>'+
+      years.map(function(y){return '<button class="tab" type="button" data-y="'+esc(y)+'" aria-selected="'+(cur===y)+'">'+esc(y)+'</button>';}).join('');
+  }
+  function draw(){
+    var list=G.filter(function(a){return cur==='*'||a.years===cur;});
+    grid.innerHTML=list.map(function(a,i){
+      var gi=G.indexOf(a);
+      var cover=a.cover||((a.photos&&a.photos.length)?a.photos[0]:'');
+      var cv=cover?'<img src="'+esc(cover)+'" alt="'+esc(a.title)+'" loading="lazy" decoding="async">':'<span class="emp">फोटो थपिँदैछ</span>';
+      var n=(a.photos&&a.photos.length)?'<span class="n">📷 '+a.photos.length+'</span>':(a.fb?'<span class="n">Facebook मा हेर्नुहोस्</span>':'');
+      return '<button class="galb reveal" type="button" data-g="'+gi+'"><span class="cv">'+cv+n+'</span>'+
+        '<span class="bd"><span class="dt">'+esc(a.date||'')+(a.years?' · '+esc(a.years):'')+'</span><h3>'+esc(a.title)+'</h3>'+
+        (a.desc?'<p>'+esc(a.desc)+'</p>':'')+'</span></button>';
+    }).join('');
+    emp.hidden=!!list.length;
+    watch();
+  }
+  chips(); draw();
+  fil.addEventListener('click',function(e){
+    var b=e.target.closest('.tab'); if(!b) return;
+    cur=b.getAttribute('data-y'); chips(); draw();
+  });
+  /* लाइटबक्स */
+  var lb=document.getElementById('lb'), img=document.getElementById('lbImg'),
+      cap=document.getElementById('lbCap'), cnt=document.getElementById('lbCnt');
+  var al=null, ix=0;
+  function show(){
+    img.src=al.photos[ix]; cap.textContent=al.title+(al.date?' · '+al.date:'');
+    cnt.textContent=(ix+1)+' / '+al.photos.length;
+  }
+  function open(a){ al=a; ix=0; show(); lb.classList.add('on'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('on'); img.src=''; document.body.style.overflow=''; }
+  grid.addEventListener('click',function(e){
+    var b=e.target.closest('.galb'); if(!b) return;
+    var a=G[+b.getAttribute('data-g')]; if(!a) return;
+    if(a.photos&&a.photos.length) open(a);
+    else if(a.fb) window.open(a.fb,'_blank','noopener');
+  });
+  lb.querySelector('.x').onclick=close;
+  lb.querySelector('.pv').onclick=function(){ ix=(ix-1+al.photos.length)%al.photos.length; show(); };
+  lb.querySelector('.nx').onclick=function(){ ix=(ix+1)%al.photos.length; show(); };
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('on')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') lb.querySelector('.pv').onclick();
+    if(e.key==='ArrowRight') lb.querySelector('.nx').onclick();
+  });
+  var tx=null;
+  lb.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',function(e){
+    if(tx===null) return; var dx=e.changedTouches[0].clientX-tx; tx=null;
+    if(dx>45) lb.querySelector('.pv').onclick(); else if(dx<-45) lb.querySelector('.nx').onclick();
+  },{passive:true});
+})();
+
+/* ══ नेपाली पात्रो (विक्रम सम्वत्) ══
+   स्रोत तालिका: आधिकारिक पात्रोका महिना–दिन (२०७५–२१००) */
+(function(){
+  var BSM=[[31,31,32,31,31,31,30,29,30,29,30,30],[31,32,31,32,31,30,30,30,29,29,30,30],[31,32,31,32,31,30,30,30,29,30,29,31],[31,31,31,32,31,31,30,29,30,29,30,30],[31,31,32,31,31,31,30,29,30,29,30,30],[31,32,31,32,31,30,30,30,29,29,30,30],[31,32,31,32,31,30,30,30,29,30,29,31],[31,31,32,31,31,31,30,29,30,29,30,30],[31,31,32,31,31,31,30,29,30,29,30,30],[31,31,32,31,31,30,30,30,29,30,30,30],[31,32,31,32,30,31,30,30,29,30,30,30],[30,32,31,32,31,30,30,30,29,30,30,30],[31,31,32,31,31,31,30,29,30,30,30,30],[30,31,32,32,30,31,30,30,29,30,30,30],[30,32,31,32,31,30,30,30,29,30,30,30],[30,32,31,32,31,30,30,30,29,30,30,30],[31,31,32,31,31,31,30,30,29,30,30,30],[30,31,32,32,31,30,30,30,29,30,30,30],[30,32,31,32,31,30,30,30,29,30,30,30],[31,31,32,31,31,30,30,30,29,30,30,30],[31,31,32,31,31,31,30,29,30,30,30,30],[30,31,32,32,31,30,30,29,30,29,30,30],[31,32,31,32,31,30,30,30,29,30,30,30],[31,31,32,31,31,31,29,30,29,30,29,31],[31,31,32,31,31,31,30,29,29,30,30,30],[31,32,31,32,30,31,30,29,30,29,30,30]];
+  var BS0=2075, ANCHOR=Date.UTC(2018,3,14); /* २०७५ वैशाख १ = 2018-04-14 */
+  var MN=['वैशाख','जेठ','असार','साउन','भदौ','असोज','कात्तिक','मंसिर','पुस','माघ','फागुन','चैत'];
+  var WD=['आइतबार','सोमबार','मंगलबार','बुधबार','बिहीबार','शुक्रबार','शनिबार'];
+  var WDS=['आइत','सोम','मंगल','बुध','बिही','शुक्र','शनि'];
+  var ADM=['जनवरी','फेब्रुअरी','मार्च','अप्रिल','मे','जुन','जुलाई','अगस्ट','सेप्टेम्बर','अक्टोबर','नोभेम्बर','डिसेम्बर'];
+  function devN(n){ return String(n).split('').map(function(c){return /\d/.test(c)?DEV[+c]:c;}).join(''); }
+  function bs2days(y,m,d){ /* २०७५/१/१ देखि कति दिन */
+    var t=0,i,yy;
+    for(yy=BS0; yy<y; yy++){ var r=BSM[yy-BS0]; if(!r) return null; for(i=0;i<12;i++) t+=r[i]; }
+    var row=BSM[y-BS0]; if(!row) return null;
+    for(i=0;i<m-1;i++) t+=row[i];
+    return t+d-1;
+  }
+  function bs2ad(y,m,d){ var n=bs2days(y,m,d); if(n===null) return null;
+    return new Date(ANCHOR + n*86400000); }
+  function ad2bs(dt){ /* स्थानीय (जापान) मिति */
+    var u=Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate());
+    var n=Math.round((u-ANCHOR)/86400000); if(n<0) return null;
+    var y=BS0,m=0;
+    for(;;){ var row=BSM[y-BS0]; if(!row) return null;
+      var yd=row.reduce(function(a,b){return a+b;},0);
+      if(n>=yd){ n-=yd; y++; } else break; }
+    var row2=BSM[y-BS0];
+    while(n>=row2[m]){ n-=row2[m]; m++; }
+    return {y:y,m:m+1,d:n+1};
+  }
+  var F=(typeof FESTIVALS!=='undefined')?FESTIVALS:[];
+  function festOf(y,m,d){
+    for(var i=0;i<F.length;i++){ var b=F[i].bs; if(b[0]===y&&b[1]===m&&b[2]===d) return F[i].name; }
+    return null;
+  }
+  var today=new Date(), tb=ad2bs(today);
+  if(!tb) return;
+  /* आजको कार्ड */
+  var e1=document.getElementById('ptDay'), e2=document.getElementById('ptMon'), e3=document.getElementById('ptSub'), e4=document.getElementById('ptFx');
+  e1.textContent=devN(tb.d);
+  e2.textContent=MN[tb.m-1]+' '+devN(tb.y);
+  e3.textContent=WD[today.getDay()]+' · '+devN(today.getDate())+' '+ADM[today.getMonth()]+' '+devN(today.getFullYear());
+  var tf=festOf(tb.y,tb.m,tb.d);
+  if(tf){ e4.textContent='🎉 आज: '+tf; e4.hidden=false; }
+  /* महिना पात्रो */
+  var vy=tb.y, vm=tb.m;
+  var grid=document.getElementById('ptGrid'), title=document.getElementById('ptTitle'), tAd=document.getElementById('ptTitleAd');
+  function drawCal(){
+    var row=BSM[vy-BS0]; if(!row) return;
+    var days=row[vm-1];
+    var first=bs2ad(vy,vm,1), wd=first.getUTCDay();
+    var lastAd=bs2ad(vy,vm,days);
+    title.firstChild.textContent=MN[vm-1]+' '+devN(vy)+' ';
+    tAd.textContent=ADM[first.getUTCMonth()]+(first.getUTCMonth()!==lastAd.getUTCMonth()?'–'+ADM[lastAd.getUTCMonth()]:'')+' '+devN(lastAd.getUTCFullYear());
+    var h=WDS.map(function(w){return '<span class="wd">'+w+'</span>';}).join('');
+    for(var b=0;b<wd;b++) h+='<span></span>';
+    for(var d=1;d<=days;d++){
+      var w2=(wd+d-1)%7;
+      var ad=new Date(bs2ad(vy,vm,d));
+      var cls='pt-d'+(w2===6?' sat':'')+((vy===tb.y&&vm===tb.m&&d===tb.d)?' tod':'')+(festOf(vy,vm,d)?' fest':'');
+      var f2=festOf(vy,vm,d);
+      h+='<span class="'+cls+'"'+(f2?' title="'+esc(f2)+'"':'')+'>'+devN(d)+'<small>'+ad.getUTCDate()+'</small></span>';
+    }
+    grid.innerHTML=h;
+  }
+  document.getElementById('ptPrev').onclick=function(){ if(vm===1){ if(BSM[vy-1-BS0]){vy--;vm=12;} } else vm--; drawCal(); };
+  document.getElementById('ptNext').onclick=function(){ if(vm===12){ if(BSM[vy+1-BS0]){vy++;vm=1;} } else vm++; drawCal(); };
+  drawCal();
+  /* आगामी चाडपर्व */
+  var fl=document.getElementById('ptFest');
+  var t0=Date.UTC(today.getFullYear(),today.getMonth(),today.getDate());
+  var ups=F.map(function(f){ var ad=bs2ad(f.bs[0],f.bs[1],f.bs[2]); return ad?{f:f,ad:ad}:null; })
+    .filter(Boolean).filter(function(x){ return x.ad.getTime()>=t0; })
+    .sort(function(a,b){return a.ad-b.ad;}).slice(0,8);
+  fl.innerHTML=ups.map(function(x){
+    var left=Math.round((x.ad.getTime()-t0)/86400000);
+    var lt = left===0?'आज 🎉':(left===1?'भोलि':devN(left)+' दिन बाँकी');
+    return '<div class="pf"><div><b>'+esc(x.f.name)+'</b>'+
+      '<p class="d">'+MN[x.f.bs[1]-1]+' '+devN(x.f.bs[2])+', '+devN(x.f.bs[0])+' · '+
+      devN(x.ad.getUTCDate())+' '+ADM[x.ad.getUTCMonth()]+' '+devN(x.ad.getUTCFullYear())+'</p></div>'+
+      '<span class="left">'+lt+'</span></div>';
+  }).join('') || '<p class="empty">चाडपर्वको सूची चाँडै थपिनेछ।</p>';
+})();
+
+/* ══ नेपाल समाचार ══ */
+(function(){
+  var list=document.getElementById('nwList'), st=document.getElementById('nwState');
+  if(!list) return;
+  function nd2(n){ return String(n).split('').map(function(c){return '०१२३४५६७८९'[+c];}).join(''); }
+  function ago(iso){
+    var t=new Date(iso);
+    if(isNaN(t)) return '';
+    var df=(Date.now()-t.getTime())/60000;
+    if(df<0) df=0;
+    if(df<60) return nd2(Math.max(1,Math.floor(df)))+' मिनेट अघि';
+    if(df<1440) return nd2(Math.floor(df/60))+' घण्टा अघि';
+    return nd2(Math.floor(df/1440))+' दिन अघि';
+  }
+  function fallback(){
+    st.innerHTML='समाचार लोड हुन सकेन। सिधै हेर्नुहोस्: '+
+      '<a href="https://www.onlinekhabar.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">OnlineKhabar</a> · '+
+      '<a href="https://www.setopati.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Setopati</a> · '+
+      '<a href="https://www.ratopati.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Ratopati</a>';
+  }
+  fetch('news.json',{cache:'no-store'}).then(function(r){
+    if(!r.ok) throw 0; return r.json();
+  }).then(function(j){
+    var items=(j&&j.items)||[];
+    if(!items.length){ fallback(); return; }
+    st.hidden=true;
+    list.innerHTML=items.slice(0,9).map(function(n){
+      return '<a class="nw reveal" href="'+esc(n.u)+'" target="_blank" rel="noopener nofollow">'+
+        '<span class="src">'+esc(n.s)+'</span><h3>'+esc(n.t)+'</h3>'+
+        '<p class="tm">'+ago(n.d)+'</p></a>';
+    }).join('');
+    watch();
+  }).catch(fallback);
+})();
+
+/* ══ उपयोगी लिंक + Facebook ══ */
+(function(){
+  var g=document.getElementById('lkGrid');
+  if(g && typeof LINKS!=='undefined'){
+    g.innerHTML=LINKS.map(function(l){
+      return '<a class="lk reveal" href="'+esc(l.url)+'" target="_blank" rel="noopener">'+
+        '<h3>'+esc(l.name)+'</h3>'+(l.desc?'<p>'+esc(l.desc)+'</p>':'')+'</a>';
+    }).join('');
+  }
+  var fb=(typeof SITE!=='undefined'&&SITE.facebook&&SITE.facebook!=='#')?SITE.facebook:'';
+  var band=document.getElementById('fbBand'), btn=document.getElementById('fbBtn');
+  if(fb){ if(btn) btn.href=fb; }
+  else if(band){ band.style.display='none'; }
+  watch();
+})();
 </script>
      <link rel="icon" type="image/png" href="logo.png">
 <style>
@@ -724,5 +1276,38 @@ if(!tick()){ var timer=setInterval(function(){ if(tick()) clearInterval(timer); 
 @media (max-width:420px){.langsw button{padding:6px 6px;font-size:.68rem}.mark b{font-size:.9rem}}
 </style>
 <script src="i18n.js"></script>
+<script>
+/* नयाँ भागहरूको अनुवाद (EN / 日本語) */
+(function(){ if(typeof I18N==='undefined') return; var X={
+"कार्यक्रम":["Events","イベント"],
+"सदस्यता":["Membership","会員"],
+"ग्यालरी":["Gallery","ギャラリー"],
+"पात्रो":["Calendar","カレンダー"],
+"समाचार":["News","ニュース"],
+"लिंक":["Links","リンク"],
+"सदस्य बन्नुहोस्":["Become a member","会員になる"],
+"आजीवन सदस्यता":["Life Membership","終身会員"],
+"साधारण सदस्यता":["General Membership","一般会員"],
+"दर्ता प्रक्रिया":["How to register","登録の流れ"],
+"जान्नुपर्ने कुरा":["Good to know","知っておくこと"],
+"तस्बिरहरू":["Photos","写真"],
+"सबै":["All","すべて"],
+"फोटो थपिँदैछ":["Photos coming soon","写真は準備中"],
+"नेपाली पात्रो":["Nepali Calendar","ネパール暦"],
+"आजको मिति र चाडपर्व":["Today's date & festivals","今日の日付と祝祭"],
+"आज":["Today","今日"],
+"आगामी चाडपर्वहरू":["Upcoming festivals","今後の祝祭"],
+"नेपालबाट":["From Nepal","ネパールから"],
+"नेपाल समाचार":["Nepal News","ネパールニュース"],
+"समाचार खुल्दैछ…":["Loading news…","ニュースを読み込み中…"],
+"उपयोगी लिंकहरू":["Useful links","便利なリンク"],
+"काम लाग्ने ठाउँहरू":["Helpful places","役立つサイト"],
+"पेज खोल्नुहोस्":["Open page","ページを開く"],
+"सम्पन्न भइसकेका कार्यक्रमहरू":["Past events","終了したイベント"],
+"सुझाव":["Feedback","ご意見"],
+"तपाईंको कुरा सुन्न चाहन्छौं":["We'd love to hear from you","皆さまの声をお聞かせください"],
+"Facebook मा हामीलाई follow गर्नुहोस्":["Follow us on Facebook","Facebookでフォローしてください"]
+}; for(var k in X) if(!I18N[k]) I18N[k]=X[k]; })();
+</script>
 </body>
 </html>
