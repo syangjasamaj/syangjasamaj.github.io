@@ -6,11 +6,11 @@ var SITE = {
   "eventWhen": "सेप्टेम्बर १३, २०२६ — आइतबार",
   "eventVenue": "宮地楽器ホール（みやじがっきホール）",
   "eventCity": "小金井市（こがねいし）, टोकियो",
-  "email": "info@example.com",
+  "email": "syangjasjapan2012@gmail.com",
   "facebook": "https://www.facebook.com/profile.php?id=100067447808165",
   "membershipForm": "",
-  "feeLife": "¥10,000",
-  "feeGeneral": "¥5,000"
+  "feeLife": "¥5,000",
+  "feeGeneral": "¥3,000"
 };
 
 var REGIONS = [
@@ -64,6 +64,11 @@ var TIMELINE = [
   "date": "२०१४–२०१६",
   "title": "दोस्रो कार्यकाल",
   "text": "संगठन विस्तार हुँदै महासचिव, प्रवक्ता र कोष संरक्षक जस्ता पद थपिए।"
+ },
+ {
+  "date": "२०१६–२०१९",
+  "title": "तेस्रो कार्यकाल",
+  "text": "संस्थाका गतिविधि निरन्तर अघि बढे। यस कार्यकालको विस्तृत विवरण संकलन हुँदैछ।"
  },
  {
   "date": "२०१९–२०२१",
