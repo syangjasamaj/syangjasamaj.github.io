@@ -101,12 +101,21 @@ function parseRamropost(html, src) {
   const seen = new Set();
   const re = /<a[^>]+href="(https?:\/\/ramropost\.com\/news-story\/(\d+)[^"]*)"[^>]*>([\s\S]*?)<\/a>/g;
   let m;
+  const AGO = { minute: 60e3, hour: 36e5, day: 864e5, week: 6048e5, month: 26298e5, year: 315576e5 };
   while ((m = re.exec(html))) {
     const u = m[1];
-    const t2 = decode(m[3]);
+    let t2 = decode(m[3]);
+    // शीर्षकको पछाडि टाँसिएको "11 hours ago" जस्तो समय हटाउने — तर मितिका लागि प्रयोग गर्ने
+    let d = OLD_DATES[u] || '';
+    const ago = t2.match(/(\d+)\s+(minute|hour|day|week|month|year)s?\s+ago\s*$/i);
+    if (ago) {
+      t2 = t2.slice(0, ago.index).trim();
+      if (!d) d = new Date(Date.now() - (+ago[1]) * AGO[ago[2].toLowerCase()]).toISOString();
+    }
+    if (!d) d = new Date().toISOString();
     if (!t2 || t2.length < 12 || seen.has(u)) continue;
     seen.add(u);
-    items.push({ t: t2, u, s: src.name, d: OLD_DATES[u] || new Date().toISOString(), _id: +m[2] });
+    items.push({ t: t2, u, s: src.name, d, _id: +m[2] });
   }
   items.sort((a, b) => b._id - a._id);
   return items.slice(0, PER_SOURCE).map(({ _id, ...rest }) => rest);
