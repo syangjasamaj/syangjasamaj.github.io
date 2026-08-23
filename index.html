@@ -1381,5 +1381,94 @@ html{scroll-behavior:smooth}
 .hero-in{animation:ssjRise .9s ease both}
 @keyframes ssjRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 </style>
+
+<!-- 🎨 रङ्गीन बक्सहरू -->
+<style>
+:root{--acA:#C4123F;--acB:#1F6FB2;--acC:#0E7C86;--acD:#E9A020;--acE:#5B2A86}
+section[id]{scroll-margin-top:78px}
+/* section को नामपट्टी — रङ्गीन ribbon */
+.sec-head .kicker,.kicker{background:linear-gradient(90deg,var(--acA),var(--acD));-webkit-text-fill-color:#fff;color:#fff;display:inline-block;padding:5px 14px;border-radius:100px;letter-spacing:.12em;position:relative;overflow:hidden}
+.kicker::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);animation:ssjSheen 4s ease-in-out infinite}
+@keyframes ssjSheen{0%{left:-70%}55%{left:120%}100%{left:120%}}
+/* सामान्य कार्डहरू — माथि रङ्गीन धर्का (रङ पालैपालो) */
+.card{border-top:4px solid var(--acA)}
+.grid .card:nth-child(5n+2){border-top-color:var(--acB)}
+.grid .card:nth-child(5n+3){border-top-color:var(--acC)}
+.grid .card:nth-child(5n+4){border-top-color:var(--acD)}
+.grid .card:nth-child(5n+5){border-top-color:var(--acE)}
+.card h3{color:var(--acA)}
+.grid .card:nth-child(5n+2) h3{color:var(--acB)}
+.grid .card:nth-child(5n+3) h3{color:var(--acC)}
+.grid .card:nth-child(5n+4) h3{color:#B37414}
+.grid .card:nth-child(5n+5) h3{color:var(--acE)}
+.card:hover{background:linear-gradient(180deg,#fff 60%,#FDF4E6)}
+/* क्षेत्र / स्याङ्जा कार्ड — बायाँ रङ्गीन धर्का */
+.region{border-left:5px solid var(--acB)}
+.regions .region:nth-child(5n+2){border-left-color:var(--acA)}
+.regions .region:nth-child(5n+3){border-left-color:var(--acC)}
+.regions .region:nth-child(5n+4){border-left-color:var(--acD)}
+.regions .region:nth-child(5n+5){border-left-color:var(--acE)}
+.region .jp{display:inline-block;background:rgba(31,111,178,.1);color:var(--acB);padding:2px 11px;border-radius:100px;font-size:.72rem;font-weight:600}
+/* विधान — रङ्गीन पट्टीहरू (चम्किने प्रभाव सहित) */
+.acc{border:0;box-shadow:0 3px 12px rgba(26,20,40,.08)}
+.acc summary{background:linear-gradient(90deg,var(--acB),#3A8FD0);color:#fff;position:relative;overflow:hidden}
+.acc summary::before{color:#fff}
+.acc:nth-of-type(2) summary{background:linear-gradient(90deg,var(--acC),#16A3B2)}
+.acc:nth-of-type(3) summary{background:linear-gradient(90deg,var(--acA),#E04368)}
+.acc:nth-of-type(4) summary{background:linear-gradient(90deg,var(--acE),#7C4DAF)}
+.acc:nth-of-type(5) summary{background:linear-gradient(90deg,#B37414,var(--acD))}
+.acc:nth-of-type(6) summary{background:linear-gradient(90deg,#31435C,#4E6C8F)}
+.acc summary::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.28),transparent);animation:ssjSheen 4.5s ease-in-out infinite}
+.acc summary:hover{filter:brightness(1.07)}
+/* उपयोगी लिंक कार्ड */
+.lk{border-left:5px solid var(--acB)}
+.lk-grid .lk:nth-child(4n+2){border-left-color:var(--acC)}
+.lk-grid .lk:nth-child(4n+3){border-left-color:var(--acA)}
+.lk-grid .lk:nth-child(4n+4){border-left-color:var(--acE)}
+.lk:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(26,20,40,.12)}
+.lk h3{color:var(--acB)}
+.lk-grid .lk:nth-child(4n+2) h3{color:var(--acC)}
+.lk-grid .lk:nth-child(4n+3) h3{color:var(--acA)}
+.lk-grid .lk:nth-child(4n+4) h3{color:var(--acE)}
+/* सम्पर्क / जिल्ला info सूची */
+.info .k{color:var(--acB);font-weight:700}
+/* पदाधिकारी कार्ड */
+.oc .role{background:rgba(196,18,63,.08);display:inline-block;padding:2px 10px;border-radius:100px}
+</style>
+
+<!-- 📑 मेनुअनुसार एउटा मात्र भाग देखिने -->
+<style>
+.nav a[aria-current="true"]{color:var(--teej)}
+.nav a[aria-current="true"]::after{width:100%}
+</style>
+<script>
+(function(){
+  var GROUPS={teej:['teej'],about:['about','vidhan'],regions:['regions'],work:['work','relief'],history:['history'],committee:['committee'],join:['join'],gallery:['gallery'],patro:['patro'],news:['news'],links:['links'],syangja:['syangja'],contact:['contact']};
+  var OWNER={}; for(var g in GROUPS){ for(var i=0;i<GROUPS[g].length;i++) OWNER[GROUPS[g][i]]=g; }
+  var ALL=[]; for(var g2 in GROUPS) ALL=ALL.concat(GROUPS[g2]);
+  function show(gr){
+    if(!GROUPS[gr]) gr='teej';
+    for(var i=0;i<ALL.length;i++){ var el=document.getElementById(ALL[i]); if(el) el.style.display = GROUPS[gr].indexOf(ALL[i])>-1 ? '' : 'none'; }
+    var links=document.querySelectorAll('.nav a[href^="#"]');
+    for(var k=0;k<links.length;k++){ var id=links[k].getAttribute('href').slice(1); links[k].setAttribute('aria-current', OWNER[id]===gr ? 'true':'false'); }
+    for(var j=0;j<GROUPS[gr].length;j++){ var sec=document.getElementById(GROUPS[gr][j]); if(sec){ var rs=sec.querySelectorAll('.reveal'); for(var r=0;r<rs.length;r++) rs[r].classList.add('on'); } }
+    if(typeof watch==='function'){ try{watch();}catch(e){} }
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest ? e.target.closest('a[href^="#"]') : null; if(!a) return;
+    var id=(a.getAttribute('href')||'').slice(1); if(!id) return;
+    if(id==='top'){ show('teej'); return; }
+    var gr=OWNER[id]; if(!gr) return;
+    e.preventDefault();
+    show(gr);
+    try{history.replaceState(null,'','#'+id);}catch(err){}
+    var t=document.getElementById(id);
+    if(t) setTimeout(function(){ t.scrollIntoView({behavior:'smooth'}); },40);
+  });
+  var h=(location.hash||'').slice(1);
+  show(OWNER[h]||'teej');
+  if(h&&OWNER[h]){ var t0=document.getElementById(h); if(t0) setTimeout(function(){t0.scrollIntoView();},80); }
+})();
+</script>
 </body>
 </html>
