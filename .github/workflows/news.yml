@@ -1,0 +1,36 @@
+# नेपाल समाचार आफैं अपडेट गर्ने — हरेक ६ घण्टामा चल्छ
+name: nepal-news
+on:
+  schedule:
+    - cron: '15 */6 * * *'   # UTC समय — दिनको ४ पटक
+  workflow_dispatch: {}       # Actions ट्याबबाट हातैले पनि चलाउन मिल्छ
+  push:
+    paths:
+      - 'scripts/fetch_news.mjs'
+      - '.github/workflows/news.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nepal-news
+  cancel-in-progress: true
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: समाचार तान्ने
+        run: node scripts/fetch_news.mjs
+      - name: news.json commit गर्ने
+        run: |
+          git config user.name "news-bot"
+          git config user.email "actions@github.com"
+          git add news.json
+          if git diff --cached --quiet; then
+            echo "नयाँ समाचार छैन"
+          else
+            git commit -m "समाचार अपडेट ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            git push
+          fi
