@@ -97,40 +97,51 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--marigold);outlin
 
 <div class="wrap">
   <div class="tabbar" role="tablist">
-    <button class="tb" data-p="p1" aria-selected="true">आगामी कार्यक्रम</button>
-    <button class="tb" data-p="p2" aria-selected="false">कार्यक्रम इतिहास</button>
+    <button class="tb" data-p="p1" aria-selected="true">कार्यक्रम</button>
+    <button class="tb" data-p="p2" aria-selected="false">इतिहास</button>
     <button class="tb" data-p="p3" aria-selected="false">क्षेत्रीय समिति</button>
     <button class="tb" data-p="p4" aria-selected="false">कार्यसमिति</button>
-    <button class="tb" data-p="p5" aria-selected="false">सम्पर्क</button>
+    <button class="tb" data-p="p7" aria-selected="false">ग्यालरी</button>
+    <button class="tb" data-p="p8" aria-selected="false">लिंक</button>
+    <button class="tb" data-p="p9" aria-selected="false">चाडपर्व</button>
+    <button class="tb" data-p="p5" aria-selected="false">सम्पर्क・सदस्यता</button>
     <button class="tb" data-p="p6" aria-selected="false">✅ कोड बनाउने</button>
   </div>
 
-  <!-- १ · आगामी कार्यक्रम -->
+  <!-- १ · कार्यक्रमहरू -->
   <div class="pane on" id="p1">
     <div class="box">
-      <h3>मुख्य पानाको उल्टो गन्ती</h3>
-      <p class="sub">पानाको माथि देखिने countdown यहीँबाट चल्छ।</p>
+      <h3>नयाँ कार्यक्रम थप्नुहोस्</h3>
+      <p class="sub">मिति नआएसम्म "आगामी" मा देखिन्छ, मिति नाघेपछि आफैं "सम्पन्न" मा सर्छ। सबैभन्दा नजिकको कार्यक्रमको countdown मुख्य पानामा देखिन्छ।</p>
       <label>कार्यक्रमको नाम</label>
-      <input id="f_title" placeholder="तीज धमाका २०२६">
+      <input id="e_title" placeholder="तीज धमाका २०२७">
       <div class="row2">
         <div>
           <label>मिति</label>
-          <input id="f_date" type="date">
+          <input id="e_date" type="date">
         </div>
         <div>
-          <label>सुरु हुने समय</label>
-          <input id="f_time" type="time">
+          <label>सुरु हुने समय (JST)</label>
+          <input id="e_time" type="time">
         </div>
       </div>
-      <p class="hint">जापानी समय (JST) मा लेख्नुहोस्।</p>
-      <label>मिति देखाउने तरिका</label>
-      <input id="f_when" placeholder="सेप्टेम्बर १३, २०२६ — आइतबार">
-      <p class="hint">पानामा यही अक्षरै देखिन्छ।</p>
+      <label>मिति देखाउने तरिका (अक्षरमा)</label>
+      <input id="e_when" placeholder="सेप्टेम्बर १३, २०२६ — आइतबार, दिउँसो १ बजेदेखि">
       <label>हलको नाम</label>
-      <input id="f_venue" placeholder="宮地楽器ホール（みやじがっきホール）">
+      <input id="e_venue" placeholder="宮地楽器ホール（みやじがっきホール）">
       <label>ठाउँ</label>
-      <input id="f_city" placeholder="小金井市（こがねいし）, टोकियो">
-      <div class="warn">कार्यक्रम सकिएपछि यहाँ <b>अर्को कार्यक्रम</b> हाल्नुहोस्। साथै "कार्यक्रम इतिहास" मा सम्पन्न भएको कार्यक्रम थप्न नबिर्सनुहोस्।</div>
+      <input id="e_city" placeholder="小金井市（こがねいし）, टोकियो">
+      <label>छोटो विवरण (नचाहिए खाली)</label>
+      <textarea id="e_desc"></textarea>
+      <label>विवरण/टिकटको लिंक (नचाहिए खाली)</label>
+      <input id="e_link" placeholder="https://...">
+      <label>पोस्टर फाइल (नचाहिए खाली)</label>
+      <input id="e_poster" placeholder="photos/poster-teej-2027.jpg">
+      <div class="acts"><button class="btn btn-fill" onclick="addEV()">＋ थप्नुहोस्</button></div>
+    </div>
+    <div class="box">
+      <h3>सबै कार्यक्रम</h3>
+      <div id="evList"></div>
     </div>
   </div>
 
@@ -173,8 +184,8 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--marigold);outlin
       <label>टिप्पणी</label>
       <input id="c_note" placeholder="अधिवेशन: २३ मार्च २०२५">
       <label>पदाधिकारी — हरेक लाइनमा एक जना</label>
-      <textarea id="c_off" style="min-height:150px" placeholder="अध्यक्ष | वेद कार्की&#10;महासचिव | सागर मणि न्यौपाने"></textarea>
-      <p class="hint">ढाँचा: <b>पद | नाम</b> — बीचमा सीधा डण्डी ( | ) राख्नुहोस्।</p>
+      <textarea id="c_off" style="min-height:150px" placeholder="अध्यक्ष | वेद कार्की | photos/committee/bed-karki.jpg&#10;महासचिव | सागर मणि न्यौपाने"></textarea>
+      <p class="hint">ढाँचा: <b>पद | नाम | फोटो</b> — फोटो नभए <b>पद | नाम</b> मात्र लेखे पुग्छ। फोटो पहिले GitHub को <b>photos/committee/</b> फोल्डरमा upload गर्नुहोस्।</p>
       <label>कार्यसमिति सदस्य — हरेक लाइनमा एक जना</label>
       <textarea id="c_mem" style="min-height:130px" placeholder="अमन गुरुङ&#10;लक्ष्मण ढकाल"></textarea>
       <label>संरक्षक तथा सल्लाहकार — हरेक लाइनमा एक जना</label>
@@ -184,7 +195,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--marigold);outlin
     </div>
   </div>
 
-  <!-- ५ · सम्पर्क -->
+  <!-- ५ · सम्पर्क + सदस्यता -->
   <div class="pane" id="p5">
     <div class="box">
       <h3>सम्पर्क विवरण</h3>
@@ -194,6 +205,75 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--marigold);outlin
       <label>Facebook पेजको लिंक</label>
       <input id="f_fb" placeholder="https://www.facebook.com/...">
       <div class="warn">⚠️ यो सार्वजनिक पाना हो। <b>बैंक खाता नम्बर र व्यक्तिगत मोबाइल नम्बर नराख्नुहोस्।</b> संस्थाको साझा इमेल मात्र राख्नुहोस्।</div>
+    </div>
+    <div class="box">
+      <h3>सदस्यता</h3>
+      <p class="sub">"सदस्य बन्नुहोस्" भागमा देखिन्छ।</p>
+      <label>सदस्यता फारमको लिंक (Google Form)</label>
+      <input id="f_mform" placeholder="https://forms.gle/...">
+      <p class="hint">खाली राखे "फारम चाँडै खुल्दैछ" भनेर इमेलको बटन देखिन्छ।</p>
+      <div class="row2">
+        <div>
+          <label>आजीवन सदस्यता शुल्क</label>
+          <input id="f_feeL" placeholder="¥10,000">
+        </div>
+        <div>
+          <label>साधारण सदस्यता शुल्क</label>
+          <input id="f_feeG" placeholder="¥5,000">
+        </div>
+      </div>
+      <div class="warn">💡 बैंक खाताको विवरण वेबसाइटमा होइन, <b>Google Form भित्र</b> राख्नुहोस् — फारम भर्नेले मात्र देख्छन्।</div>
+    </div>
+  </div>
+
+  <!-- ७ · ग्यालरी -->
+  <div class="pane" id="p7">
+    <div class="box">
+      <h3>नयाँ album थप्नुहोस्</h3>
+      <p class="sub">फोटोहरू पहिले GitHub को <b>photos/gallery/</b> फोल्डरमा upload गर्नुहोस्, अनि यहाँ नाम लेख्नुहोस्।</p>
+      <label>Album को नाम</label>
+      <input id="g_title" placeholder="तीज धमाका २०२६">
+      <div class="row2">
+        <div>
+          <label>मिति (अक्षरमा)</label>
+          <input id="g_date" placeholder="१३ सेप्टेम्बर २०२६">
+        </div>
+        <div>
+          <label>कार्यकाल</label>
+          <input id="g_years" placeholder="२०२५–२०२७">
+        </div>
+      </div>
+      <label>छोटो विवरण</label>
+      <textarea id="g_desc"></textarea>
+      <label>फोटोहरू — हरेक लाइनमा एउटा फाइल</label>
+      <textarea id="g_photos" style="min-height:110px" placeholder="photos/gallery/teej2026/1.jpg&#10;photos/gallery/teej2026/2.jpg"></textarea>
+      <label>Facebook album को लिंक (फोटो नभए यो मात्र पनि हुन्छ)</label>
+      <input id="g_fb" placeholder="https://www.facebook.com/media/set/...">
+      <div class="acts"><button class="btn btn-fill" onclick="addGA()">＋ थप्नुहोस्</button></div>
+    </div>
+    <div class="box">
+      <h3>सबै album</h3>
+      <div id="gaList"></div>
+    </div>
+  </div>
+
+  <!-- ८ · लिंक -->
+  <div class="pane" id="p8">
+    <div class="box">
+      <h3>उपयोगी लिंकहरू</h3>
+      <p class="sub">राजदूतावास लगायत "उपयोगी लिंकहरू" भागमा देखिन्छन्।</p>
+      <div id="lkList"></div>
+      <div class="acts"><button class="btn btn-line btn-sm" onclick="addLK()">＋ नयाँ लिंक</button></div>
+    </div>
+  </div>
+
+  <!-- ९ · चाडपर्व -->
+  <div class="pane" id="p9">
+    <div class="box">
+      <h3>चाडपर्वहरू (नेपाली पात्रोमा देखिने)</h3>
+      <p class="sub">हरेक लाइनमा एउटा चाडपर्व। ढाँचा: <b>वर्ष-महिना-गते | नाम</b> (महिना: १ = वैशाख)</p>
+      <textarea id="fvBox" style="min-height:260px" placeholder="2083-5-29 | हरितालिका तीज&#10;2083-7-4 | विजया दशमी"></textarea>
+      <div class="warn">हरेक नयाँ वर्षको सुरुमा (चैत/वैशाखतिर) आउने वर्षका चाडपर्वका मिति यहाँ थप्नुहोस्।</div>
     </div>
   </div>
 
@@ -235,10 +315,14 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--marigold);outlin
 <script>
 /* ── डेटा नभेटिए खाली सुरु ── */
 var S = (typeof SITE!=='undefined') ? JSON.parse(JSON.stringify(SITE)) :
-  {eventTitle:'',eventDate:'',eventWhen:'',eventVenue:'',eventCity:'',email:'',facebook:'#'};
+  {eventTitle:'',eventDate:'',eventWhen:'',eventVenue:'',eventCity:'',email:'',facebook:'#',membershipForm:'',feeLife:'¥10,000',feeGeneral:'¥5,000'};
 var T = (typeof TIMELINE!=='undefined') ? JSON.parse(JSON.stringify(TIMELINE)) : [];
 var R = (typeof REGIONS!=='undefined')  ? JSON.parse(JSON.stringify(REGIONS))  : [];
 var C = (typeof COMMITTEES!=='undefined')? JSON.parse(JSON.stringify(COMMITTEES)):[];
+var E = (typeof EVENTS!=='undefined')   ? JSON.parse(JSON.stringify(EVENTS))   : [];
+var G = (typeof GALLERY!=='undefined')  ? JSON.parse(JSON.stringify(GALLERY))  : [];
+var L = (typeof LINKS!=='undefined')    ? JSON.parse(JSON.stringify(LINKS))    : [];
+var FV= (typeof FESTIVALS!=='undefined')? JSON.parse(JSON.stringify(FESTIVALS)): [];
 
 var $ = function(id){return document.getElementById(id);};
 function say(t,ok){var m=$('msg');m.textContent=t;m.className='msg'+(ok?' ok':'');}
@@ -253,24 +337,119 @@ function go(p){
 }
 document.querySelectorAll('.tb').forEach(function(b){b.onclick=function(){go(b.dataset.p);};});
 
-/* ── १ · आगामी कार्यक्रम ── */
+/* ── १ · कार्यक्रमहरू ── */
+function drawEV(){
+  var now=new Date();
+  $('evList').innerHTML = E.map(function(e,i){
+    var past = (new Date(e.date).getTime()+6*3600*1000) <= now.getTime();
+    return '<div class="item"><div class="item-top"><div class="t">'+
+      '<b>'+e.title+'</b><small>'+(e.when||e.date)+(past?' · ✅ सम्पन्न':' · 🔜 आगामी')+'</small></div>'+
+      '<div class="mini">'+
+        '<button title="सच्याउने" onclick="togEV('+i+')">✎</button>'+
+        '<button title="हटाउने" onclick="delEV('+i+')">✕</button>'+
+      '</div></div>'+
+      '<div class="edit" id="ev'+i+'">'+
+        '<label>नाम</label><input value="'+(e.title||'').replace(/"/g,'&quot;')+'" oninput="E['+i+'].title=this.value">'+
+        '<label>मिति र समय (2026-09-13T13:00:00+09:00 ढाँचा)</label><input value="'+(e.date||'').replace(/"/g,'&quot;')+'" oninput="E['+i+'].date=this.value">'+
+        '<label>मिति अक्षरमा</label><input value="'+(e.when||'').replace(/"/g,'&quot;')+'" oninput="E['+i+'].when=this.value">'+
+        '<label>हल</label><input value="'+(e.venue||'').replace(/"/g,'&quot;')+'" oninput="E['+i+'].venue=this.value">'+
+        '<label>ठाउँ</label><input value="'+(e.city||'').replace(/"/g,'&quot;')+'" oninput="E['+i+'].city=this.value">'+
+        '<label>विवरण</label><textarea oninput="E['+i+'].desc=this.value">'+(e.desc||'')+'</textarea>'+
+        '<label>लिंक</label><input value="'+(e.link||'').replace(/"/g,'&quot;')+'" oninput="E['+i+'].link=this.value">'+
+        '<label>पोस्टर</label><input value="'+(e.poster||'').replace(/"/g,'&quot;')+'" oninput="E['+i+'].poster=this.value">'+
+      '</div></div>';
+  }).join('') || '<p style="color:var(--ink-soft);font-size:.9rem">अहिले केही छैन।</p>';
+}
+function togEV(i){$('ev'+i).classList.toggle('on');}
+function delEV(i){ if(confirm('"'+E[i].title+'" हटाउने?')){E.splice(i,1);drawEV();say('हटाइयो',1);} }
+function addEV(){
+  var ti=$('e_title').value.trim(), d=$('e_date').value;
+  if(!ti||!d){alert('नाम र मिति दुवै भर्नुहोस्।');return;}
+  var t=$('e_time').value||'13:00';
+  E.push({title:ti,date:d+'T'+t+':00+09:00',when:$('e_when').value.trim(),
+    venue:$('e_venue').value.trim(),city:$('e_city').value.trim(),
+    desc:$('e_desc').value.trim(),link:$('e_link').value.trim(),poster:$('e_poster').value.trim()});
+  ['e_title','e_when','e_venue','e_city','e_desc','e_link','e_poster'].forEach(function(x){$(x).value='';});
+  $('e_date').value='';$('e_time').value='';
+  drawEV(); say('कार्यक्रम थपियो ✓',1);
+}
+drawEV();
+
 (function(){
-  $('f_title').value=S.eventTitle; $('f_when').value=S.eventWhen;
-  $('f_venue').value=S.eventVenue; $('f_city').value=S.eventCity;
-  var m=/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/.exec(S.eventDate||'');
-  if(m){$('f_date').value=m[1];$('f_time').value=m[2];}
   $('f_email').value=S.email; $('f_fb').value=(S.facebook==='#'?'':S.facebook);
+  $('f_mform').value=S.membershipForm||'';
+  $('f_feeL').value=S.feeLife||'¥10,000';
+  $('f_feeG').value=S.feeGeneral||'¥5,000';
+  $('fvBox').value=FV.map(function(f){return f.bs[0]+'-'+f.bs[1]+'-'+f.bs[2]+' | '+f.name;}).join('\n');
 })();
 function readSite(){
-  S.eventTitle=$('f_title').value.trim();
-  S.eventWhen=$('f_when').value.trim();
-  S.eventVenue=$('f_venue').value.trim();
-  S.eventCity=$('f_city').value.trim();
-  var d=$('f_date').value, t=$('f_time').value||'13:00';
-  if(d) S.eventDate=d+'T'+t+':00+09:00';
   S.email=$('f_email').value.trim()||'info@example.com';
   S.facebook=$('f_fb').value.trim()||'#';
+  S.membershipForm=$('f_mform').value.trim();
+  S.feeLife=$('f_feeL').value.trim()||'¥10,000';
+  S.feeGeneral=$('f_feeG').value.trim()||'¥5,000';
+  /* मुख्य पानाको पुरानो ढाँचासँग मिलाउने: पहिलो आगामी कार्यक्रम */
+  var now=new Date(), up=E.filter(function(e){return (new Date(e.date).getTime()+6*3600*1000)>now.getTime();})
+    .sort(function(a,b){return new Date(a.date)-new Date(b.date);});
+  var m=up[0]||E[E.length-1];
+  if(m){ S.eventTitle=m.title; S.eventDate=m.date; S.eventWhen=m.when||''; S.eventVenue=m.venue||''; S.eventCity=m.city||''; }
+  /* चाडपर्व पढ्ने */
+  FV=$('fvBox').value.split('\n').map(function(l){return l.trim();}).filter(Boolean).map(function(l){
+    var p=l.split('|'); var d=(p[0]||'').trim().split('-');
+    if(d.length<3||!(p[1]||'').trim()) return null;
+    return {bs:[+d[0],+d[1],+d[2]],name:p[1].trim()};
+  }).filter(Boolean);
 }
+
+/* ── ७ · ग्यालरी ── */
+function drawGA(){
+  $('gaList').innerHTML = G.map(function(g,i){
+    return '<div class="item"><div class="item-top"><div class="t">'+
+      '<b>'+g.title+'</b><small>'+(g.date||'')+' · '+(g.photos&&g.photos.length?g.photos.length+' फोटो':(g.fb?'Facebook लिंक':'फोटो छैन'))+'</small></div>'+
+      '<div class="mini">'+
+        '<button title="सच्याउने" onclick="togGA('+i+')">✎</button>'+
+        '<button title="हटाउने" onclick="delGA('+i+')">✕</button>'+
+      '</div></div>'+
+      '<div class="edit" id="ga'+i+'">'+
+        '<label>नाम</label><input value="'+(g.title||'').replace(/"/g,'&quot;')+'" oninput="G['+i+'].title=this.value">'+
+        '<label>मिति</label><input value="'+(g.date||'').replace(/"/g,'&quot;')+'" oninput="G['+i+'].date=this.value">'+
+        '<label>कार्यकाल</label><input value="'+(g.years||'').replace(/"/g,'&quot;')+'" oninput="G['+i+'].years=this.value">'+
+        '<label>विवरण</label><textarea oninput="G['+i+'].desc=this.value">'+(g.desc||'')+'</textarea>'+
+        '<label>फोटोहरू (हरेक लाइनमा एउटा)</label><textarea style="min-height:90px" oninput="G['+i+'].photos=this.value.split(String.fromCharCode(10)).map(function(x){return x.trim();}).filter(Boolean)">'+(g.photos||[]).join('\n')+'</textarea>'+
+        '<label>मुख्य फोटो (cover — खाली भए पहिलो फोटो)</label><input value="'+(g.cover||'').replace(/"/g,'&quot;')+'" oninput="G['+i+'].cover=this.value">'+
+        '<label>Facebook album</label><input value="'+(g.fb||'').replace(/"/g,'&quot;')+'" oninput="G['+i+'].fb=this.value">'+
+      '</div></div>';
+  }).join('') || '<p style="color:var(--ink-soft);font-size:.9rem">अहिले केही छैन।</p>';
+}
+function togGA(i){$('ga'+i).classList.toggle('on');}
+function delGA(i){ if(confirm('"'+G[i].title+'" हटाउने?')){G.splice(i,1);drawGA();say('हटाइयो',1);} }
+function addGA(){
+  var ti=$('g_title').value.trim();
+  if(!ti){alert('Album को नाम भर्नुहोस्।');return;}
+  G.unshift({title:ti,date:$('g_date').value.trim(),years:$('g_years').value.trim(),
+    desc:$('g_desc').value.trim(),cover:'',
+    photos:$('g_photos').value.split('\n').map(function(x){return x.trim();}).filter(Boolean),
+    fb:$('g_fb').value.trim()});
+  ['g_title','g_date','g_years','g_desc','g_photos','g_fb'].forEach(function(x){$(x).value='';});
+  drawGA(); say('Album थपियो ✓',1);
+}
+drawGA();
+
+/* ── ८ · लिंक ── */
+function drawLK(){
+  $('lkList').innerHTML = L.map(function(l,i){
+    return '<div class="item">'+
+      '<div class="item-top"><div class="t"><b>'+l.name+'</b></div>'+
+      '<div class="mini"><button onclick="delLK('+i+')" title="हटाउने">✕</button></div></div>'+
+      '<label>नाम</label><input value="'+(l.name||'').replace(/"/g,'&quot;')+'" oninput="L['+i+'].name=this.value">'+
+      '<label>लिंक (URL)</label><input value="'+(l.url||'').replace(/"/g,'&quot;')+'" oninput="L['+i+'].url=this.value">'+
+      '<label>विवरण</label><input value="'+(l.desc||'').replace(/"/g,'&quot;')+'" oninput="L['+i+'].desc=this.value">'+
+    '</div>';
+  }).join('');
+}
+function delLK(i){ if(confirm(L[i].name+' हटाउने?')){L.splice(i,1);drawLK();} }
+function addLK(){ L.push({name:'नयाँ लिंक',url:'https://',desc:''}); drawLK(); }
+drawLK();
 
 /* ── २ · टाइमलाइन ── */
 function drawTL(){
@@ -328,7 +507,7 @@ $('cmSel').innerHTML = C.map(function(c,i){
 function loadCM(){
   var c=C[+$('cmSel').value];
   $('c_note').value=c.note||'';
-  $('c_off').value=(c.officers||[]).map(function(o){return o[0]+' | '+o[1];}).join('\n');
+  $('c_off').value=(c.officers||[]).map(function(o){return o[0]+' | '+o[1]+(o[2]?' | '+o[2]:'');}).join('\n');
   $('c_mem').value=(c.members||[]).join('\n');
   $('c_adv').value=(c.advisors||[]).join('\n');
 }
@@ -336,7 +515,8 @@ function saveCM(){
   var c=C[+$('cmSel').value];
   c.note=$('c_note').value.trim();
   c.officers=$('c_off').value.split('\n').map(function(l){return l.trim();}).filter(Boolean)
-    .map(function(l){var p=l.split('|');return [(p[0]||'').trim(),(p[1]||'').trim()];});
+    .map(function(l){var p=l.split('|');var a=[(p[0]||'').trim(),(p[1]||'').trim()];
+      if((p[2]||'').trim()) a.push(p[2].trim()); return a;});
   c.members=$('c_mem').value.split('\n').map(function(l){return l.trim();}).filter(Boolean);
   c.advisors=$('c_adv').value.split('\n').map(function(l){return l.trim();}).filter(Boolean);
   say(c.term+' कार्यकाल सुरक्षित भयो ✓',1);
@@ -359,7 +539,10 @@ function build(){
     '  eventVenue : '+q(S.eventVenue)+',\n'+
     '  eventCity  : '+q(S.eventCity)+',\n'+
     '  email      : '+q(S.email)+',\n'+
-    '  facebook   : '+q(S.facebook)+'\n};\n\n';
+    '  facebook   : '+q(S.facebook)+',\n'+
+    '  membershipForm : '+q(S.membershipForm||'')+',\n'+
+    '  feeLife    : '+q(S.feeLife||'¥10,000')+',\n'+
+    '  feeGeneral : '+q(S.feeGeneral||'¥5,000')+'\n};\n\n';
 
   o += 'var REGIONS = [\n' + R.map(function(r){
     return '  {name:'+q(r.name)+', jp:'+q(r.jp)+', lead:'+q(r.lead)+', est:'+q(r.est||'')+
@@ -373,9 +556,30 @@ function build(){
 
   o += 'var COMMITTEES = [\n' + C.map(function(c){
     return '  {\n    term:'+q(c.term)+', years:'+q(c.years)+', note:'+q(c.note||'')+',\n'+
-      '    officers:['+(c.officers||[]).map(function(x){return '['+q(x[0])+','+q(x[1])+']';}).join(',')+'],\n'+
-      '    members:['+(c.members||[]).map(q).join(',')+'],\n'+
+      '    officers:['+(c.officers||[]).map(function(x){return '['+x.map(q).join(',')+']';}).join(',')+'],\n'+
+      '    members:['+(c.members||[]).map(function(m){return (typeof m==='string')?q(m):'['+m.map(q).join(',')+']';}).join(',')+'],\n'+
       '    advisors:['+(c.advisors||[]).map(q).join(',')+']\n  }';
+  }).join(',\n') + '\n];\n\n';
+
+  o += 'var EVENTS = [\n' + E.map(function(e){
+    return '  {title:'+q(e.title)+', date:'+q(e.date)+',\n'+
+      '   when:'+q(e.when||'')+', venue:'+q(e.venue||'')+', city:'+q(e.city||'')+',\n'+
+      '   desc:'+q(e.desc||'')+', link:'+q(e.link||'')+', poster:'+q(e.poster||'')+'}';
+  }).join(',\n') + '\n];\n\n';
+
+  o += 'var GALLERY = [\n' + G.map(function(g){
+    return '  {title:'+q(g.title)+', date:'+q(g.date||'')+', years:'+q(g.years||'')+',\n'+
+      '   desc:'+q(g.desc||'')+', cover:'+q(g.cover||'')+',\n'+
+      '   photos:['+(g.photos||[]).map(q).join(',')+'],\n'+
+      '   fb:'+q(g.fb||'')+'}';
+  }).join(',\n') + '\n];\n\n';
+
+  o += 'var LINKS = [\n' + L.map(function(l){
+    return '  {name:'+q(l.name)+', url:'+q(l.url)+', desc:'+q(l.desc||'')+'}';
+  }).join(',\n') + '\n];\n\n';
+
+  o += 'var FESTIVALS = [\n' + FV.map(function(f){
+    return '  {bs:['+f.bs[0]+','+f.bs[1]+','+f.bs[2]+'], name:'+q(f.name)+'}';
   }).join(',\n') + '\n];\n';
 
   $('out').value = o;
