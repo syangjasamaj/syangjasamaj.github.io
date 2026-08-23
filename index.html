@@ -741,7 +741,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
     </div>
     <div class="nw-list" id="nwList"></div>
     <div class="state" id="nwState">समाचार खुल्दैछ…</div>
-    <p class="nw-note reveal">समाचारहरू OnlineKhabar, Setopati र Ratopati का RSS बाट स्वतः आउँछन् र दिनमा चारपटक अपडेट हुन्छन्। सबै समाचारको स्वामित्व सम्बन्धित स्रोतको हो।</p>
+    <p class="nw-note reveal">समाचारहरू नेपालका राष्ट्रिय मिडिया (अनलाइनखबर, सेतोपाटी, रातोपाटी, अन्नपूर्ण पोस्ट, कान्तिपुर) र जापानका नेपाली मिडिया (जापान समाचार, नेपाल जापान, रमरोपोस्ट) बाट स्वतः आउँछन् र दिनमा चारपटक अपडेट हुन्छन्। सबै समाचारको स्वामित्व सम्बन्धित स्रोतको हो।</p>
   </div>
 </section>
 
@@ -1174,7 +1174,12 @@ if(!tick()){ var timer=setInterval(function(){ if(tick()) clearInterval(timer); 
     st.innerHTML='समाचार लोड हुन सकेन। सिधै हेर्नुहोस्: '+
       '<a href="https://www.onlinekhabar.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">OnlineKhabar</a> · '+
       '<a href="https://www.setopati.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Setopati</a> · '+
-      '<a href="https://www.ratopati.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Ratopati</a>';
+      '<a href="https://www.ratopati.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Ratopati</a> · '+
+      '<a href="https://annapurnapost.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Annapurna Post</a> · '+
+      '<a href="https://ekantipur.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Kantipur</a> · '+
+      '<a href="https://japansamachar.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Japan Samachar</a> · '+
+      '<a href="https://www.nepaljapan.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Nepal Japan</a> · '+
+      '<a href="https://ramropost.com/" target="_blank" rel="noopener" style="color:var(--teej);font-weight:600">Ramropost</a>';
   }
   fetch('news.json',{cache:'no-store'}).then(function(r){
     if(!r.ok) throw 0; return r.json();
@@ -1182,7 +1187,7 @@ if(!tick()){ var timer=setInterval(function(){ if(tick()) clearInterval(timer); 
     var items=(j&&j.items)||[];
     if(!items.length){ fallback(); return; }
     st.hidden=true;
-    list.innerHTML=items.slice(0,9).map(function(n){
+    list.innerHTML=items.slice(0,12).map(function(n){
       return '<a class="nw reveal" href="'+esc(n.u)+'" target="_blank" rel="noopener nofollow">'+
         '<span class="src">'+esc(n.s)+'</span><h3>'+esc(n.t)+'</h3>'+
         '<p class="tm">'+ago(n.d)+'</p></a>';
