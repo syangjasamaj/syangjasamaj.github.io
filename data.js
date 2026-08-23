@@ -7,7 +7,7 @@ var SITE = {
   "eventVenue": "宮地楽器ホール（みやじがっきホール）",
   "eventCity": "小金井市（こがねいし）, टोकियो",
   "email": "info@example.com",
-  "facebook": "#",
+  "facebook": "https://www.facebook.com/profile.php?id=100067447808165",
   "membershipForm": "",
   "feeLife": "¥10,000",
   "feeGeneral": "¥5,000"
