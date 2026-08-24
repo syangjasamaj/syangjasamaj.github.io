@@ -776,7 +776,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
     </figure>
     <div class="split">
       <div class="reveal">
-        <img class="syj-banner" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Village_of_syangja.jpg/960px-Village_of_syangja.jpg" alt="स्याङ्जाको दृश्य" loading="lazy">
+                <img class="syj-banner" src="IMG_0375.jpeg" alt="स्याङ्जाको दृश्य" loading="lazy">
         <ul class="info">
           <li><span class="k">प्रदेश</span><span class="v">गण्डकी प्रदेश, नेपाल</span></li>
           <li><span class="k">सदरमुकाम</span><span class="v">पुतलीबजार</span></li>
@@ -797,16 +797,48 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
     <div class="sec-head reveal" style="margin-top:34px">
       <h2 style="font-size:1.35rem">पर्यटकीय तथा धार्मिक स्थलहरू</h2>
     </div>
-    <div class="regions">
-      <article class="region reveal"><img class="pl-img" src="https://upload.wikimedia.org/wikipedia/commons/3/34/Panchase_Lake.jpg" alt="पञ्चासे ताल" loading="lazy"><h3>पञ्चासे</h3><p class="jp">पर्यटकीय · ३,५२० मि.</p><p class="lead">हिमशृंखलाको मनोरम दृश्य, पञ्चासे ताल, ट्रेकिङ मार्ग र जैविक विविधताले भरिपूर्ण डाँडा।</p></article>
-      <article class="region reveal"><img class="pl-img" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Aalamdevi1.jpg" alt="आलमदेवी मन्दिर" loading="lazy"><h3>आलमदेवी मन्दिर</h3><p class="jp">धार्मिक स्थल</p><p class="lead">प्रसिद्ध शक्तिपीठ — कालिका माताप्रतिको गहिरो आस्थाको केन्द्र।</p></article>
-      <article class="region reveal"><img class="pl-img" src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Chandikalika_Temple_01.jpg" alt="चण्डी कालिका मन्दिर" loading="lazy"><h3>चण्डी कालिका मन्दिर</h3><p class="jp">धार्मिक स्थल · पुतलीबजार</p><p class="lead">पुतलीबजारमा अवस्थित प्रसिद्ध मन्दिर — स्थानीय आस्था र मेलापर्वको केन्द्र।</p></article>
-      <article class="region reveal"><img class="pl-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Kaligandaki_Hydro.jpg/960px-Kaligandaki_Hydro.jpg" alt="कालीगण्डकी ए जलविद्युत" loading="lazy"><h3>कालीगण्डकी ‘ए’ — मिर्मी</h3><p class="jp">दर्शनीय आयोजना</p><p class="lead">१४४ मेगावाटको जलविद्युत आयोजना — देशकै महत्वपूर्ण ऊर्जा केन्द्र।</p></article>
-      <article class="region reveal"><img class="pl-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Waling_Mun_2020.jpg/960px-Waling_Mun_2020.jpg" alt="वालिङ बजार" loading="lazy"><h3>वालिङ बजार</h3><p class="jp">ऐतिहासिक नगर</p><p class="lead">जिल्लाको प्रमुख व्यापारिक केन्द्र र जीवन्त बजार।</p></article>
-      <article class="region reveal"><img class="pl-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Putalibazar_View_from_Hunikot.jpg/960px-Putalibazar_View_from_Hunikot.jpg" alt="पुतलीबजार" loading="lazy"><h3>पुतलीबजार</h3><p class="jp">सदरमुकाम</p><p class="lead">जिल्लाको सदरमुकाम — हुनिकोटबाट देखिने मनोरम दृश्य।</p></article>
-      <article class="region reveal"><h3>सिरुबारी</h3><p class="jp">पर्यटकीय गाउँ</p><p class="lead">नेपालकै पहिलो होमस्टे गाउँ — गुरुङ संस्कृति र आतिथ्यका लागि विश्वभर परिचित।</p></article>
-      <article class="region reveal"><h3>छाङछाङ्दी</h3><p class="jp">धार्मिक · प्राकृतिक</p><p class="lead">पवित्र स्थल र सुन्दर झरनाका लागि परिचित रमणीय ठाउँ।</p></article>
+        <style>
+    .pl-card{cursor:pointer}
+    .pl-card .pl-img{transition:.2s}
+    .pl-card:hover .pl-img{transform:scale(1.02)}
+    .pl-strip{display:flex;gap:6px;margin:-6px 0 12px}
+    .pl-strip img{width:calc((100% - 12px)/3);aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid var(--line);cursor:pointer;transition:.2s}
+    .pl-strip img:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,20,40,.18)}
+    .pl-card .pl-n{display:inline-block;font-size:.7rem;font-weight:700;color:var(--teej);background:rgba(196,18,63,.08);padding:2px 10px;border-radius:100px;margin-top:8px}
+    </style>
+    <div class="regions" id="plGrid">
+      <article class="region reveal pl-card" data-title="पञ्चासे" data-photos="IMG_0373.jpeg,IMG_0374.jpeg,IMG_0375.jpeg"><img class="pl-img" src="IMG_0373.jpeg" alt="पञ्चासे" loading="lazy"><div class="pl-strip"><img src="IMG_0374.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0375.jpeg" alt="" loading="lazy" data-i="2"></div><h3>पञ्चासे</h3><p class="jp">पर्यटकीय · २,५१७ मि.</p><p class="lead">हिमशृंखलाको मनोरम दृश्य, पञ्चासे ताल, ट्रेकिङ मार्ग र जैविक विविधताले भरिपूर्ण डाँडा।</p><span class="pl-n">३ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="आलमदेवी मन्दिर" data-photos="IMG_0376.jpeg,IMG_0378.jpeg,IMG_0379.jpeg"><img class="pl-img" src="IMG_0376.jpeg" alt="आलमदेवी मन्दिर" loading="lazy"><div class="pl-strip"><img src="IMG_0378.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0379.jpeg" alt="" loading="lazy" data-i="2"></div><h3>आलमदेवी मन्दिर</h3><p class="jp">धार्मिक स्थल</p><p class="lead">प्रसिद्ध शक्तिपीठ — कालिका माताप्रतिको गहिरो आस्थाको केन्द्र।</p><span class="pl-n">३ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="चण्डी कालिका मन्दिर" data-photos="IMG_0389.jpeg"><img class="pl-img" src="IMG_0389.jpeg" alt="चण्डी कालिका मन्दिर" loading="lazy"><h3>चण्डी कालिका मन्दिर</h3><p class="jp">धार्मिक स्थल · पुतलीबजार</p><p class="lead">पुतलीबजारमा अवस्थित प्रसिद्ध मन्दिर — स्थानीय आस्था र मेलापर्वको केन्द्र।</p><span class="pl-n">१ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="कालीगण्डकी ‘ए’ — मिर्मी" data-photos="IMG_0388.jpeg,IMG_0386.jpeg,IMG_0387.jpeg"><img class="pl-img" src="IMG_0388.jpeg" alt="कालीगण्डकी ए जलविद्युत" loading="lazy"><div class="pl-strip"><img src="IMG_0386.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0387.jpeg" alt="" loading="lazy" data-i="2"></div><h3>कालीगण्डकी ‘ए’ — मिर्मी</h3><p class="jp">दर्शनीय आयोजना</p><p class="lead">१४४ मेगावाटको जलविद्युत आयोजना — देशकै महत्वपूर्ण ऊर्जा केन्द्र।</p><span class="pl-n">३ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="वालिङ बजार" data-photos="IMG_0385.jpeg,IMG_0383.jpeg,IMG_0384.jpeg"><img class="pl-img" src="IMG_0385.jpeg" alt="वालिङ बजार" loading="lazy"><div class="pl-strip"><img src="IMG_0383.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0384.jpeg" alt="" loading="lazy" data-i="2"></div><h3>वालिङ बजार</h3><p class="jp">ऐतिहासिक नगर</p><p class="lead">जिल्लाको प्रमुख व्यापारिक केन्द्र र जीवन्त बजार।</p><span class="pl-n">३ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="पुतलीबजार" data-photos="IMG_0380.jpeg,IMG_0381.jpeg,IMG_0382.jpeg"><img class="pl-img" src="IMG_0380.jpeg" alt="पुतलीबजार" loading="lazy"><div class="pl-strip"><img src="IMG_0381.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0382.jpeg" alt="" loading="lazy" data-i="2"></div><h3>पुतलीबजार</h3><p class="jp">सदरमुकाम</p><p class="lead">जिल्लाको सदरमुकाम — हुनिकोटबाट देखिने मनोरम दृश्य।</p><span class="pl-n">३ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="सिरुबारी" data-photos="IMG_0370.jpeg,IMG_0371.jpeg,IMG_0372.jpeg"><img class="pl-img" src="IMG_0370.jpeg" alt="सिरुबारी" loading="lazy"><div class="pl-strip"><img src="IMG_0371.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0372.jpeg" alt="" loading="lazy" data-i="2"></div><h3>सिरुबारी</h3><p class="jp">पर्यटकीय गाउँ</p><p class="lead">नेपालकै पहिलो होमस्टे गाउँ — गुरुङ संस्कृति र आतिथ्यका लागि विश्वभर परिचित।</p><span class="pl-n">३ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="छाङछाङ्दी — छायाँक्षेत्र" data-photos="IMG_0367.jpeg,IMG_0368.jpeg,IMG_0369.jpeg"><img class="pl-img" src="IMG_0367.jpeg" alt="छाङछाङ्दी" loading="lazy"><div class="pl-strip"><img src="IMG_0368.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0369.jpeg" alt="" loading="lazy" data-i="2"></div><h3>छाङछाङ्दी</h3><p class="jp">धार्मिक · प्राकृतिक</p><p class="lead">पवित्र छायाँक्षेत्र र सुन्दर झरनाका लागि परिचित रमणीय ठाउँ।</p><span class="pl-n">३ फोटो</span></article>
+      <article class="region reveal pl-card" data-title="स्याङ्जाका डाँडाहरू" data-photos="IMG_0390.jpeg,IMG_0391.jpeg,IMG_0392.jpeg"><img class="pl-img" src="IMG_0390.jpeg" alt="स्याङ्जाका डाँडाहरू" loading="lazy"><div class="pl-strip"><img src="IMG_0391.jpeg" alt="" loading="lazy" data-i="1"><img src="IMG_0392.jpeg" alt="" loading="lazy" data-i="2"></div><h3>स्याङ्जाका डाँडाहरू</h3><p class="jp">प्राकृतिक दृश्य</p><p class="lead">डाँडाबाट देखिने खोला, फाँट र गाउँबस्तीका दृश्यहरू।</p><span class="pl-n">३ फोटो</span></article>
     </div>
+    <script>
+    (function(){
+      var g=document.getElementById('plGrid'), lb=document.getElementById('lb');
+      if(!g||!lb) return;
+      var img=document.getElementById('lbImg'), cap=document.getElementById('lbCap'), cnt=document.getElementById('lbCnt');
+      var pv=lb.querySelector('.pv'), nx=lb.querySelector('.nx');
+      var ph=[], ti='', ix=0, oldPv=null, oldNx=null, mine=false;
+      function show(){ img.src=ph[ix]; cap.textContent=ti; cnt.textContent=(ix+1)+' / '+ph.length; }
+      function restore(){ if(!mine) return; mine=false; pv.onclick=oldPv; nx.onclick=oldNx; }
+      new MutationObserver(function(){ if(!lb.classList.contains('on')) restore(); }).observe(lb,{attributes:true,attributeFilter:['class']});
+      g.addEventListener('click',function(e){
+        var card=e.target.closest('.pl-card'); if(!card) return;
+        ph=(card.getAttribute('data-photos')||'').split(',').filter(Boolean); if(!ph.length) return;
+        ti=card.getAttribute('data-title')||'';
+        var t=e.target.closest('img'); ix=(t&&t.getAttribute('data-i'))?+t.getAttribute('data-i'):0;
+        if(!mine){ oldPv=pv.onclick; oldNx=nx.onclick; mine=true; }
+        pv.onclick=function(){ ix=(ix-1+ph.length)%ph.length; show(); };
+        nx.onclick=function(){ ix=(ix+1)%ph.length; show(); };
+        show(); lb.classList.add('on'); document.body.style.overflow='hidden';
+      });
+    })();
+    </script>
   </div>
 </section>
 
