@@ -1,0 +1,31 @@
+# फोटो साना बनाउने (वेबसाइट छिटो खुलोस्) — Actions ट्याबबाट "Run workflow" थिच्दा चल्छ
+name: optimize-images
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pillow install
+        run: pip install pillow
+      - name: फोटो optimize गर्ने
+        run: python scripts/optimize_images.py
+      - name: commit गर्ने
+        run: |
+          git config user.name "image-bot"
+          git config user.email "actions@github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "बदल्नु पर्ने फोटो छैन"
+          else
+            git commit -m "फोटो optimize (साइज घटाइयो)"
+            git push
+          fi
