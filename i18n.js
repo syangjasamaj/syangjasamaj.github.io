@@ -58,6 +58,28 @@ function setLang(l){ lang=l; try{window.SSJ_LANG=l;}catch(e){}
   try{ if(typeof window.SSJ_LANG_LABEL==='function') window.SSJ_LANG_LABEL(l); }catch(e){} try{localStorage.setItem('ssj_lang',l);}catch(e){} var bs=document.querySelectorAll('.langsw button'); for(var i=0;i<bs.length;i++){ bs[i].setAttribute('aria-current', bs[i].getAttribute('data-l')===l?'true':'false'); } apply(); try{ if(typeof window.SSJ_ON_LANG==='function') window.SSJ_ON_LANG(l); }catch(e){} }
 function build(){
   var tp=document.querySelector('.top-in'); if(!tp) return;
+  /* साइटमा आफ्नै भाषा-बटन (.langsw) छ भने दोस्रो नबनाउने — त्यसैलाई चलाउने */
+  var ex=document.getElementById('langsw');
+  if(ex){
+    var FL={ne:['\uD83C\uDDF3\uD83C\uDDF5','\u0928\u0947\u092A\u093E\u0932\u0940'],en:['\uD83C\uDDEC\uD83C\uDDE7','English'],ja:['\uD83C\uDDEF\uD83C\uDDF5','\u65E5\u672C\u8A9E']};
+    window.SSJ_LANG_LABEL=function(l){
+      var f=document.getElementById('langFlag'), n=document.getElementById('langName');
+      if(f&&FL[l]) f.textContent=FL[l][0];
+      if(n&&FL[l]) n.textContent=FL[l][1];
+      setTimeout(function(){
+        var bs=document.querySelectorAll('[data-setlang]');
+        for(var i=0;i<bs.length;i++) bs[i].setAttribute('aria-current', bs[i].getAttribute('data-setlang')===l?'true':'false');
+      },0);
+    };
+    document.addEventListener('click',function(e){
+      var b=e.target&&e.target.closest?e.target.closest('[data-setlang]'):null;
+      if(b) setLang(b.getAttribute('data-setlang'));
+    });
+    obs=new MutationObserver(function(){ clearTimeout(timer); timer=setTimeout(apply,60); });
+    var sv0='ne'; try{ sv0=localStorage.getItem('ssj_lang')||'ne'; }catch(e){}
+    setLang(sv0);
+    return;
+  }
   var box=document.createElement('div'); box.className='langsw';
   var tgl=document.createElement('button'); tgl.type='button'; tgl.className='lang-btn';
   tgl.setAttribute('aria-haspopup','listbox'); tgl.setAttribute('aria-expanded','false');
