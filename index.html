@@ -256,18 +256,24 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.25;letter-s
 .ev-past{margin-top:26px}
 
 /* ── छिटो पहुँच (गृहपृष्ठ) ────────────────────────── */
-.quick-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-.quick{display:flex;flex-direction:column;gap:10px;text-decoration:none;background:var(--white);border:1px solid var(--line);border-radius:var(--r-m);padding:20px 18px;box-shadow:var(--sh-1);transition:transform .25s var(--ease),box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
-.quick::after{content:"→";position:absolute;right:16px;top:14px;color:var(--gold);font-weight:800;opacity:0;transform:translateX(-6px);transition:.25s}
-.quick:hover,.quick:focus-visible{transform:translateY(-4px);box-shadow:var(--sh-3);border-color:rgba(196,18,63,.25)}
-.quick:hover::after{opacity:1;transform:none}
-.quick .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--red-tint);color:var(--red)}
-.quick .ico svg{width:21px;height:21px}
-.quick b{font-family:var(--display);font-weight:800;font-size:1.02rem;line-height:1.3}
-.quick span{font-size:.84rem;color:var(--ink-soft);line-height:1.6}
-.quick:nth-child(4n+2) .ico{background:var(--gold-tint);color:var(--gold-dark)}
-.quick:nth-child(4n+3) .ico{background:var(--green-tint);color:var(--green)}
-.quick:nth-child(4n+4) .ico{background:var(--navy-tint);color:var(--navy)}
+.quick-grid{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
+.quick{display:flex;flex-direction:column;gap:12px;text-decoration:none;background:linear-gradient(135deg,var(--white) 0%,var(--cream) 100%);border:1px solid rgba(26,20,40,.12);border-radius:var(--r-m);padding:22px 20px;box-shadow:0 1px 0 rgba(26,20,40,.04),0 4px 12px rgba(26,20,40,.06),0 12px 24px rgba(26,20,40,.08);transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease),background .28s var(--ease);position:relative;overflow:hidden;background-image:linear-gradient(135deg,var(--white) 0%,var(--cream) 100%),radial-gradient(600px 600px at 120% -20%,rgba(233,160,32,.06),transparent 80%)}
+.quick::before{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.quick:hover::before{transform:scaleX(1)}
+.quick::after{content:"→";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--gold);font-weight:800;font-size:1.3rem;opacity:0;transition:opacity .28s var(--ease),transform .28s var(--ease)}
+.quick:hover::after{opacity:1;transform:translateY(-50%) translateX(2px)}
+.quick:hover,.quick:focus-visible{transform:translateY(-8px);box-shadow:0 2px 0 rgba(26,20,40,.05),0 8px 20px rgba(26,20,40,.12),0 20px 40px rgba(26,20,40,.14);border-color:rgba(233,160,32,.35);background:linear-gradient(135deg,#FFFDF8 0%,#FBF6EC 100%)}
+.quick .ico{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(196,18,63,.14),rgba(196,18,63,.06));color:var(--red);flex-shrink:0;transition:transform .28s var(--ease),background .28s var(--ease),box-shadow .28s var(--ease);box-shadow:0 2px 8px rgba(196,18,63,.12)}
+.quick:hover .ico{transform:scale(1.08) rotate(4deg);background:linear-gradient(135deg,rgba(196,18,63,.22),rgba(196,18,63,.12));box-shadow:0 6px 16px rgba(196,18,63,.18)}
+.quick .ico svg{width:24px;height:24px}
+.quick b{font-family:var(--display);font-weight:800;font-size:1.08rem;line-height:1.3;color:var(--ink);margin-top:4px}
+.quick span{font-size:.87rem;color:var(--ink-soft);line-height:1.65;flex-grow:1}
+.quick:nth-child(4n+2) .ico{background:linear-gradient(135deg,rgba(233,160,32,.14),rgba(233,160,32,.06));color:var(--gold-dark);box-shadow:0 2px 8px rgba(233,160,32,.12)}
+.quick:nth-child(4n+2):hover .ico{background:linear-gradient(135deg,rgba(233,160,32,.22),rgba(233,160,32,.12));box-shadow:0 6px 16px rgba(233,160,32,.18)}
+.quick:nth-child(4n+3) .ico{background:linear-gradient(135deg,rgba(47,107,79,.14),rgba(47,107,79,.06));color:var(--green);box-shadow:0 2px 8px rgba(47,107,79,.12)}
+.quick:nth-child(4n+3):hover .ico{background:linear-gradient(135deg,rgba(47,107,79,.22),rgba(47,107,79,.12));box-shadow:0 6px 16px rgba(47,107,79,.18)}
+.quick:nth-child(4n+4) .ico{background:linear-gradient(135deg,rgba(36,64,122,.14),rgba(36,64,122,.06));color:var(--navy);box-shadow:0 2px 8px rgba(36,64,122,.12)}
+.quick:nth-child(4n+4):hover .ico{background:linear-gradient(135deg,rgba(36,64,122,.22),rgba(36,64,122,.12));box-shadow:0 6px 16px rgba(36,64,122,.18)}
 
 /* ── सामान्य कार्ड ────────────────────────────────── */
 .grid{display:grid;gap:16px;grid-template-columns:1fr}
