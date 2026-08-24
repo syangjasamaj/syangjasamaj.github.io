@@ -18,7 +18,7 @@ var I18N_TOK = {"बैशाख": ["Baisakh","バイサク"],"जेठ": ["Jes
 ;(function(){
 var IDX={en:0,ja:1};
 var M={'०':'0','१':'1','२':'2','३':'3','४':'4','५':'5','६':'6','७':'7','८':'8','९':'9'};
-var TITLES={ne:'स्याङ्जा समाज जापान | Syangja Community Japan',en:'Syangja Community Japan',ja:'シャンジャ・コミュニティ・ジャパン | Syangja Community Japan'};
+var TITLES={ne:'स्याङ्जा समाज जापान | Syangja Samaj Japan (Syangja Community Japan)',en:'Syangja Samaj Japan — Syangja Community Japan',ja:'シャンジャ・コミュニティ・ジャパン | Syangja Samaj Japan'};
 function ar(s){return s.replace(/[०-९]/g,function(c){return M[c];});}
 /* टुक्रा-टुक्रा अनुवाद: शब्दकोशमा पूरा वाक्य नभेटिए, चिनिएका शब्दहरू फेर्ने */
 var DEVA=/[\u0900-\u097F]/;
