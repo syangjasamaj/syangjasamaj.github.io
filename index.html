@@ -1534,9 +1534,7 @@ var S=(typeof SITE!=='undefined')?SITE:{};
         if(exo.length) out+=group('is-exof','पदेन सदस्यहरू','<ul class="mem-flat">'+exo.map(chip).join('')+'</ul>');
       }
     }
-    if(c.advisors.length){
-      out+=group('is-adv','संरक्षक तथा सल्लाहकार','<ul class="mem-flat">'+c.advisors.map(chip).join('')+'</ul>');
-    }
+    if(c.advisors.length){var advWithPh=c.advisors.some(function(a){return a&&typeof a!=='string'&&a[2];});if(advWithPh){out+=group('is-adv','संरक्षक तथा सल्लाहकार','<div class="oc-grid">'+c.advisors.map(function(a){if(typeof a==='string'){var rr=ROLE_RE.exec(a.trim());return ocard(rr?rr[1].trim():'',rr?rr[2].trim():a.trim(),'',false);}return ocard(a[0]||'',a[1]||'',a[2]||'',false);}).join('')+'</div>');}else{out+=group('is-adv','संरक्षक तथा सल्लाहकार','<ul class="mem-flat">'+c.advisors.map(chip).join('')+'</ul>');}}
     if(!c.officers.length && !c.members.length){
       out+='<p class="empty">यो कार्यकालको विवरण अझै थपिएको छैन। लिस्ट पठाउनुभयो भने थपिनेछ।</p>';
     }
