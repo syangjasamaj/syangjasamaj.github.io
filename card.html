@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>मेरो सदस्यता कार्ड | Syangja Samaj Japan</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{--red:#C8102E;--blue:#003893;--ink:#1a1a1a;--muted:#666;--line:#e4e4e7;--bg:#f5f5f7;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Hiragino Sans","Noto Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:420px;margin:0 auto;padding:24px 16px 60px;}
+
+  #login{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;margin-top:40px;}
+  #login h1{font-size:19px;margin:0 0 4px;}
+  #login p{color:var(--muted);font-size:14px;margin:0 0 20px;}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 5px;color:var(--muted);}
+  input{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;font-family:inherit;}
+  button{width:100%;padding:14px;border:0;border-radius:10px;background:var(--red);color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:18px;font-family:inherit;}
+  button:disabled{background:#bbb;}
+  .err{color:var(--red);font-size:14px;margin-top:10px;display:none;}
+
+  /* Card */
+  #cardBox{display:none;}
+  .card{
+    background:linear-gradient(135deg,var(--blue) 0%,#001d4d 100%);
+    color:#fff;border-radius:18px;padding:24px;margin-top:20px;
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
+  }
+  .card .org{font-size:12px;letter-spacing:1px;opacity:.85;}
+  .card .title{font-size:18px;font-weight:800;margin:2px 0 18px;}
+  .card .nm{font-size:21px;font-weight:800;}
+  .card .no{font-family:monospace;font-size:14px;opacity:.9;margin-top:2px;}
+  .card .row{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;}
+  .card .row div span{display:block;opacity:.75;font-size:11px;margin-bottom:2px;}
+  .status{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:20px;font-size:12px;margin-top:14px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;}
+
+  .qrWrap{background:#fff;border-radius:14px;padding:20px;margin-top:16px;text-align:center;}
+  .qrWrap p{color:var(--muted);font-size:13px;margin:10px 0 0;}
+  #qr{display:inline-block;}
+
+  .hint{font-size:13px;color:var(--muted);text-align:center;margin-top:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="login">
+    <h1>मेरो सदस्यता कार्ड</h1>
+    <p>स्याङ्जा समाज जापान</p>
+
+    <label>सदस्यता नम्बर <span style="font-weight:400;">Membership Number</span></label>
+    <input id="no" placeholder="SSJ-GM-2026-00001">
+
+    <label>जन्ममिति <span style="font-weight:400;">生年月日</span></label>
+    <input id="dob" type="date">
+
+    <button id="goBtn">कार्ड हेर्नुहोस्</button>
+    <div class="err" id="err">नम्बर वा जन्ममिति मिलेन। फेरि जाँच्नुहोस्।</div>
+  </div>
+
+  <div id="cardBox">
+    <div class="card">
+      <div class="org">SYANGJA SAMAJ JAPAN</div>
+      <div class="title">सदस्यता कार्ड</div>
+      <div class="nm" id="cName"></div>
+      <div class="no" id="cNo"></div>
+      <div class="row">
+        <div><span>प्रकार</span><b id="cType"></b></div>
+        <div><span>स्वीकृत मिति</span><b id="cDate"></b></div>
+      </div>
+      <div class="status"><span class="dot"></span> सक्रिय सदस्य / ACTIVE</div>
+    </div>
+
+    <div class="qrWrap">
+      <div id="qr"></div>
+      <p>कार्यक्रममा यो QR देखाउनुहोस् — verify गर्न प्रयोग हुन्छ</p>
+    </div>
+
+    <p class="hint">यो पेज आफ्नो फोनमा Bookmark गर्नुहोस्।</p>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getFirestore, doc, getDoc }
+  from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDIQPuWukxLIP7BSNkLR23irLKC7MJIO4k",
+  authDomain: "syangja-samaj-japan.firebaseapp.com",
+  projectId: "syangja-samaj-japan",
+  storageBucket: "syangja-samaj-japan.firebasestorage.app",
+  messagingSenderId: "194201708498",
+  appId: "1:194201708498:web:3fa639a4065c99bd13ca0b"
+};
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+const labels = { LM: "आजीवन सदस्य", GM: "साधारण सदस्य" };
+
+document.getElementById("goBtn").addEventListener("click", async () => {
+  const no  = document.getElementById("no").value.trim().toUpperCase();
+  const dob = document.getElementById("dob").value;
+  const err = document.getElementById("err");
+  const btn = document.getElementById("goBtn");
+  err.style.display = "none";
+
+  if (!no || !dob) return;
+  btn.disabled = true; btn.textContent = "खोज्दै…";
+
+  try {
+    const snap = await getDoc(doc(db, "card_lookup", no + "_" + dob));
+    if (!snap.exists()) {
+      err.style.display = "block";
+      btn.disabled = false; btn.textContent = "कार्ड हेर्नुहोस्";
+      return;
+    }
+    const d = snap.data();
+
+    document.getElementById("cName").textContent = d.name;
+    document.getElementById("cNo").textContent   = d.memberNo;
+    document.getElementById("cType").textContent = labels[d.type] || d.type;
+    document.getElementById("cDate").textContent = d.approvedDate;
+
+    document.getElementById("login").style.display   = "none";
+    document.getElementById("cardBox").style.display = "block";
+
+    const verifyUrl = location.origin + "/verify.html?t=" + d.qrToken;
+    new QRCode(document.getElementById("qr"), {
+      text: verifyUrl, width: 160, height: 160
+    });
+
+  } catch (e) {
+    console.error(e);
+    err.textContent = "समस्या आयो। फेरि प्रयास गर्नुहोस्।";
+    err.style.display = "block";
+    btn.disabled = false; btn.textContent = "कार्ड हेर्नुहोस्";
+  }
+});
+</script>
+</body>
+</html>

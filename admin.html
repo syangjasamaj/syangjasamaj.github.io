@@ -104,7 +104,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import { getFirestore, collection, onSnapshot, doc, updateDoc, runTransaction, serverTimestamp }
+import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc, runTransaction, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -253,13 +253,35 @@ async function approve(id, btn){
   btn.disabled = true; btn.textContent = "गर्दै…";
   try {
     const no = await nextMemberNo(a.membershipType);
+    const approvedDate = new Date().toISOString().slice(0,10);
+
+    // गोप्य token — QR verify page यसैबाट खुल्छ, कसैले अनुमान गर्न सक्दैन
+    const qrToken = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+      .map(b => b.toString(16).padStart(2,"0")).join("");
+
     await updateDoc(doc(db, "applications", id), {
       status: "approved",
       membershipNumber: no,
+      qrToken: qrToken,
       paymentStatus: "verified",
       approvedAt: serverTimestamp(),
       approvedBy: auth.currentUser.email
     });
+
+    // Card login (नम्बर + जन्ममिति) — doc ID मै जन्ममिति जोडिएकाले, दुवै ठीक भए मात्र भेटिन्छ
+    if (a.dob) {
+      await setDoc(doc(db, "card_lookup", no + "_" + a.dob), {
+        name: a.name, memberNo: no, type: a.membershipType,
+        status: "active", approvedDate, qrToken
+      });
+    }
+
+    // QR verify page — token बाट मात्र खुल्ने, जन्ममिति यहाँ छैन
+    await setDoc(doc(db, "public_members", qrToken), {
+      name: a.name, memberNo: no, type: a.membershipType,
+      status: "active", approvedDate
+    });
+
     alert("✅ स्वीकृत भयो!\n\nसदस्यता नम्बर: " + no);
   } catch (e) {
     console.error(e);

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सदस्यता प्रमाणीकरण | Syangja Samaj Japan</title>
+<style>
+  :root{--red:#C8102E;--blue:#003893;--ink:#1a1a1a;--muted:#666;--bg:#f5f5f7;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Hiragino Sans","Noto Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink);
+       display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+  .box{background:#fff;border-radius:18px;padding:30px;max-width:360px;width:100%;text-align:center;
+       box-shadow:0 8px 24px rgba(0,0,0,.12);}
+  .org{font-size:13px;color:var(--muted);letter-spacing:1px;}
+  .title{font-size:17px;font-weight:700;margin:4px 0 20px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:24px;font-weight:700;font-size:15px;margin-bottom:20px;}
+  .active{background:#e6f6ea;color:#1a7f37;}
+  .inactive{background:#fdecec;color:var(--red);}
+  .notfound{background:#f2f2f4;color:var(--muted);}
+  .dot{width:9px;height:9px;border-radius:50%;}
+  .active .dot{background:#1a7f37;}
+  .inactive .dot{background:var(--red);}
+  .grid{text-align:left;font-size:14px;border-top:1px solid #eee;padding-top:16px;}
+  .grid div{display:flex;justify-content:space-between;padding:6px 0;}
+  .grid span:first-child{color:var(--muted);}
+  .grid span:last-child{font-weight:600;}
+  .loading{color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="org">SYANGJA SAMAJ JAPAN</div>
+  <div class="title">सदस्यता प्रमाणीकरण</div>
+  <div id="result" class="loading">जाँच गर्दै…</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getFirestore, doc, getDoc }
+  from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDIQPuWukxLIP7BSNkLR23irLKC7MJIO4k",
+  authDomain: "syangja-samaj-japan.firebaseapp.com",
+  projectId: "syangja-samaj-japan",
+  storageBucket: "syangja-samaj-japan.firebasestorage.app",
+  messagingSenderId: "194201708498",
+  appId: "1:194201708498:web:3fa639a4065c99bd13ca0b"
+};
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+const labels = { LM: "आजीवन सदस्य", GM: "साधारण सदस्य" };
+const el = document.getElementById("result");
+
+const token = new URLSearchParams(location.search).get("t");
+
+if (!token) {
+  el.innerHTML = '<div class="badge notfound">❔ कुनै token भेटिएन</div>';
+} else {
+  try {
+    const snap = await getDoc(doc(db, "public_members", token));
+    if (!snap.exists()) {
+      el.innerHTML = '<div class="badge notfound">❔ यो कार्ड भेटिएन</div>';
+    } else {
+      const d = snap.data();
+      const active = d.status === "active";
+      el.innerHTML = `
+        <div class="badge ${active ? "active" : "inactive"}">
+          <span class="dot"></span> ${active ? "सक्रिय सदस्य / ACTIVE" : "निष्क्रिय / INACTIVE"}
+        </div>
+        <div class="grid">
+          <div><span>नाम</span><span>${d.name}</span></div>
+          <div><span>सदस्यता नम्बर</span><span>${d.memberNo}</span></div>
+          <div><span>प्रकार</span><span>${labels[d.type] || d.type}</span></div>
+          <div><span>स्वीकृत मिति</span><span>${d.approvedDate}</span></div>
+        </div>`;
+    }
+  } catch (e) {
+    console.error(e);
+    el.innerHTML = '<div class="badge notfound">⚠️ समस्या आयो</div>';
+  }
+}
+</script>
+</body>
+</html>
