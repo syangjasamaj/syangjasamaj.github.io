@@ -8,7 +8,7 @@ var SITE = {
   "eventCity": "小金井市（こがねいし）, टोकियो",
   "email": "syangjasjapan2012@gmail.com",
   "facebook": "https://www.facebook.com/profile.php?id=100067447808165",
-  "membershipForm": "",
+  "membershipForm": "membership.html",
   "feeLife": "¥5,000",
   "feeGeneral": "¥3,000"
 };
