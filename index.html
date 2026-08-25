@@ -277,20 +277,17 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.25;letter-s
 
 /* ── सामान्य कार्ड ────────────────────────────────── */
 .grid{display:grid;gap:16px;grid-template-columns:1fr}
-.card{position:relative;background:linear-gradient(180deg,var(--white) 0%,#FDFAF4 100%);border:1px solid var(--line);border-radius:var(--r-m);padding:26px 24px;box-shadow:var(--sh-1);transition:transform .25s var(--ease),box-shadow .25s,border-color .25s;overflow:hidden}
-.card::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--accent,var(--red))}
-.card:hover{transform:translateY(-4px);box-shadow:var(--sh-3);border-color:rgba(26,20,40,.16)}
-.card .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--cream-2);background:color-mix(in srgb,var(--accent,var(--red)) 10%,white);color:var(--accent,var(--red));margin-bottom:16px}
+.card{position:relative;overflow:hidden;border-radius:var(--r-m);padding:26px 24px;color:#fff;background:linear-gradient(135deg,var(--ac1,var(--red)) 0%,var(--ac2,var(--red-dark)) 100%);box-shadow:var(--sh-2);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.card::before{content:"";position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.14);pointer-events:none}
+.card:hover{transform:translateY(-6px);box-shadow:var(--sh-3)}
+.card .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(255,255,255,.2);color:#fff;margin-bottom:16px}
 .card .ico svg{width:22px;height:22px}
-.card h3{font-size:1.14rem;margin-bottom:8px;color:var(--accent-text,var(--ink))}
-.card p{font-size:.93rem;color:var(--ink-soft);line-height:1.75}
-.card p strong{color:var(--ink);font-weight:600}
-.grid .card:nth-child(6n+1){--accent:var(--red)}
-.grid .card:nth-child(6n+2){--accent:var(--gold-dark)}
-.grid .card:nth-child(6n+3){--accent:var(--green)}
-.grid .card:nth-child(6n+4){--accent:var(--navy)}
-.grid .card:nth-child(6n+5){--accent:var(--plum)}
-.grid .card:nth-child(6n+6){--accent:var(--red-dark)}
+.card h3{font-size:1.14rem;margin-bottom:8px;color:#fff}
+.card p{font-size:.93rem;color:rgba(255,255,255,.9);line-height:1.75}
+.card p strong{color:#fff;font-weight:700}
+.grid .card:nth-child(3n+1){--ac1:#24407A;--ac2:#3B5FA6}
+.grid .card:nth-child(3n+2){--ac1:#2F6B4F;--ac2:#3F8A66}
+.grid .card:nth-child(3n+3){--ac1:#C4123F;--ac2:#DF3A63}
 
 /* ── क्षेत्रीय समिति ──────────────────────────────── */
 .regions{display:grid;gap:14px;grid-template-columns:1fr}
