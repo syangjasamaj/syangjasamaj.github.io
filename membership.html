@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सदस्यता | Syangja Samaj Japan</title>
+<style>
+  :root{
+    --red:#C8102E;
+    --blue:#003893;
+    --ink:#1a1a1a;
+    --muted:#666;
+    --line:#e2e2e2;
+    --bg:#f7f7f9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Hiragino Sans","Noto Sans","Yu Gothic",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:24px 16px 64px;}
+  h1{font-size:26px;margin:0 0 6px;}
+  .sub{color:var(--muted);margin:0 0 28px;font-size:15px;}
+
+  /* सदस्यता प्रकार कार्ड */
+  .plans{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-bottom:32px;}
+  @media(max-width:520px){.plans{grid-template-columns:1fr;}}
+  .plan{
+    background:#fff;border:2px solid var(--line);border-radius:12px;
+    padding:18px;cursor:pointer;text-align:center;transition:.15s;
+  }
+  .plan:hover{border-color:#bbb;}
+  .plan.on{border-color:var(--red);background:#fff5f6;}
+  .plan .jp{font-size:13px;color:var(--muted);}
+  .plan .np{font-size:17px;font-weight:700;margin:4px 0;}
+  .plan .yen{font-size:24px;font-weight:800;color:var(--red);}
+
+  /* फारम */
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px;}
+  .card h2{font-size:17px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--red);display:inline-block;}
+  label{display:block;font-size:14px;font-weight:600;margin:14px 0 5px;}
+  label .jp{font-weight:400;color:var(--muted);font-size:12px;}
+  .req{color:var(--red);}
+  input,select,textarea{
+    width:100%;padding:11px 12px;border:1px solid #ccc;border-radius:8px;
+    font-size:16px;font-family:inherit;background:#fff;
+  }
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--blue);border-color:var(--blue);}
+  .row{display:grid;gap:12px;grid-template-columns:1fr 1fr;}
+  @media(max-width:520px){.row{grid-template-columns:1fr;}}
+
+  .bank{background:#fffbe6;border:1px solid #f0d98a;border-radius:10px;padding:14px;font-size:14px;margin-bottom:14px;}
+  .bank b{color:var(--ink);}
+
+  .consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:14px;}
+  .consent input{width:auto;margin-top:4px;flex-shrink:0;}
+
+  button{
+    width:100%;padding:15px;border:0;border-radius:10px;background:var(--red);color:#fff;
+    font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;
+  }
+  button:disabled{background:#bbb;cursor:not-allowed;}
+
+  #msg{margin-top:16px;padding:14px;border-radius:10px;display:none;font-size:15px;}
+  #msg.ok{display:block;background:#e6f6ea;border:1px solid #9ad3ab;}
+  #msg.err{display:block;background:#fdecec;border:1px solid #e8a3a3;}
+  #appid{font-size:22px;font-weight:800;color:var(--red);letter-spacing:1px;}
+  .note{font-size:13px;color:var(--muted);margin-top:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>सदस्यता लिनुहोस्</h1>
+  <p class="sub">स्याङ्जा समाज जापानको सदस्य बन्नुहोस् — 会員登録（かいいんとうろく）</p>
+
+  <!-- सदस्यता प्रकार -->
+  <div class="plans">
+    <div class="plan" data-type="LM" data-fee="5000">
+      <div class="jp">終身会員（しゅうしんかいいん）</div>
+      <div class="np">आजीवन सदस्य</div>
+      <div class="yen">¥5,000</div>
+    </div>
+    <div class="plan" data-type="GM" data-fee="3000">
+      <div class="jp">一般会員（いっぱんかいいん）</div>
+      <div class="np">साधारण सदस्य</div>
+      <div class="yen">¥3,000</div>
+    </div>
+  </div>
+
+  <!-- व्यक्तिगत जानकारी -->
+  <div class="card">
+    <h2>१. व्यक्तिगत जानकारी</h2>
+
+    <label>पूरा नाम <span class="req">*</span> <span class="jp">氏名（しめい）</span></label>
+    <input id="name" placeholder="HAMAL SANTOSH">
+
+    <label>नाम (नेपालीमा) <span class="jp">ネパール語の名前</span></label>
+    <input id="nameNp" placeholder="हमाल सन्तोष">
+
+    <div class="row">
+      <div>
+        <label>जन्ममिति <span class="req">*</span> <span class="jp">生年月日（せいねんがっぴ）</span></label>
+        <input id="dob" type="date">
+      </div>
+      <div>
+        <label>लिङ्ग <span class="jp">性別（せいべつ）</span></label>
+        <select id="gender">
+          <option value="">छान्नुहोस्</option>
+          <option value="male">पुरुष / 男性</option>
+          <option value="female">महिला / 女性</option>
+          <option value="other">अन्य / その他</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>फोन नम्बर <span class="req">*</span> <span class="jp">電話番号（でんわばんごう）</span></label>
+        <input id="phone" type="tel" placeholder="090-1234-5678">
+      </div>
+      <div>
+        <label>इमेल <span class="req">*</span> <span class="jp">メールアドレス</span></label>
+        <input id="email" type="email" placeholder="example@gmail.com">
+      </div>
+    </div>
+  </div>
+
+  <!-- नेपालको ठेगाना -->
+  <div class="card">
+    <h2>२. नेपालको ठेगाना</h2>
+    <div class="row">
+      <div>
+        <label>जिल्ला <span class="jp">郡</span></label>
+        <input id="npDistrict" placeholder="Syangja">
+      </div>
+      <div>
+        <label>नगरपालिका / गाउँपालिका</label>
+        <input id="npMuni" placeholder="Putalibazar">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>वडा नं.</label>
+        <input id="npWard" placeholder="5">
+      </div>
+      <div>
+        <label>टोल / गाउँ</label>
+        <input id="npTole">
+      </div>
+    </div>
+  </div>
+
+  <!-- जापानको ठेगाना -->
+  <div class="card">
+    <h2>३. जापानको ठेगाना</h2>
+    <div class="row">
+      <div>
+        <label>郵便番号（ゆうびんばんごう）<span class="jp">डाक नम्बर</span></label>
+        <input id="jpZip" placeholder="211-0012">
+      </div>
+      <div>
+        <label>都道府県（とどうふけん）<span class="jp">प्रान्त</span></label>
+        <input id="jpPref" placeholder="神奈川県">
+      </div>
+    </div>
+    <label>住所（じゅうしょ）<span class="req">*</span> <span class="jp">पूरा ठेगाना</span></label>
+    <input id="jpAddr" placeholder="川崎市中原区…">
+  </div>
+
+  <!-- भुक्तानी -->
+  <div class="card">
+    <h2>४. भुक्तानी जानकारी</h2>
+
+    <div class="bank">
+      <b>振込（ふりこみ）— बैंक ट्रान्सफर</b><br>
+      कृपया तलको खातामा सदस्यता शुल्क पठाउनुहोस्, अनि तलको विवरण भर्नुहोस्।<br><br>
+      <b>बैंक:</b> （कार्यसमितिले भर्ने）<br>
+      <b>支店（してん）:</b> —<br>
+      <b>口座番号（こうざばんごう）:</b> —<br>
+      <b>名義（めいぎ）:</b> —
+    </div>
+
+    <div class="row">
+      <div>
+        <label>पठाएको मिति <span class="jp">振込日（ふりこみび）</span></label>
+        <input id="payDate" type="date">
+      </div>
+      <div>
+        <label>पठाएको रकम <span class="jp">振込金額（ふりこみきんがく）</span></label>
+        <input id="payAmount" type="number" placeholder="5000">
+      </div>
+    </div>
+
+    <label>पठाउने व्यक्तिको नाम <span class="jp">振込名義（ふりこみめいぎ）</span></label>
+    <input id="payName" placeholder="ハマル サントス">
+
+    <p class="note">📸 बैंक रसिदको फोटो पछि इमेलबाट पठाउनुहोस्।</p>
+  </div>
+
+  <!-- सहमति -->
+  <div class="card">
+    <div class="consent">
+      <input type="checkbox" id="c1">
+      <label for="c1" style="margin:0;font-weight:400;">मैले दिएको जानकारी सही हो भनी पुष्टि गर्दछु।</label>
+    </div>
+    <div class="consent">
+      <input type="checkbox" id="c2">
+      <label for="c2" style="margin:0;font-weight:400;">मेरो व्यक्तिगत जानकारी सदस्यता व्यवस्थापनका लागि मात्र प्रयोग हुने कुरामा सहमत छु।</label>
+    </div>
+  </div>
+
+  <button id="submitBtn" disabled>आवेदन पठाउनुहोस्</button>
+  <div id="msg"></div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp, runTransaction, doc }
+  from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDIQPuWukxLIP7BSNkLR23irLKC7MJIO4k",
+  authDomain: "syangja-samaj-japan.firebaseapp.com",
+  projectId: "syangja-samaj-japan",
+  storageBucket: "syangja-samaj-japan.firebasestorage.app",
+  messagingSenderId: "194201708498",
+  appId: "1:194201708498:web:3fa639a4065c99bd13ca0b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+/* --- सदस्यता प्रकार छान्ने --- */
+let picked = null;
+document.querySelectorAll(".plan").forEach(el => {
+  el.addEventListener("click", () => {
+    document.querySelectorAll(".plan").forEach(p => p.classList.remove("on"));
+    el.classList.add("on");
+    picked = { type: el.dataset.type, fee: Number(el.dataset.fee) };
+    document.getElementById("payAmount").value = picked.fee;
+    check();
+  });
+});
+
+/* --- बटन कहिले खुल्ने --- */
+const ids = ["name","dob","phone","email","jpAddr"];
+function check(){
+  const filled = ids.every(id => document.getElementById(id).value.trim() !== "");
+  const agreed = document.getElementById("c1").checked && document.getElementById("c2").checked;
+  document.getElementById("submitBtn").disabled = !(filled && agreed && picked);
+}
+ids.forEach(id => document.getElementById(id).addEventListener("input", check));
+document.getElementById("c1").addEventListener("change", check);
+document.getElementById("c2").addEventListener("change", check);
+
+/* --- Application ID बनाउने (SSJ-2026-00001) --- */
+async function nextAppId(){
+  const year = new Date().getFullYear();
+  const ref  = doc(db, "counters", "applications-" + year);
+  const n = await runTransaction(db, async t => {
+    const s = await t.get(ref);
+    const v = s.exists() ? s.data().n + 1 : 1;
+    t.set(ref, { n: v });
+    return v;
+  });
+  return "SSJ-" + year + "-" + String(n).padStart(5, "0");
+}
+
+/* --- पठाउने --- */
+const msg = document.getElementById("msg");
+document.getElementById("submitBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  btn.textContent = "पठाउँदै…";
+  msg.className = "";
+
+  try {
+    const appId = await nextAppId();
+    const v = id => document.getElementById(id).value.trim();
+    const amount = Number(v("payAmount")) || 0;
+
+    await addDoc(collection(db, "applications"), {
+      applicationId: appId,
+      status: "pending",
+      paymentStatus: amount === picked.fee ? "reported" : "needs_check",
+      membershipType: picked.type,
+      membershipFee: picked.fee,
+      name: v("name"), nameNp: v("nameNp"),
+      dob: v("dob"), gender: v("gender"),
+      phone: v("phone"), email: v("email"),
+      nepalAddress: {
+        district: v("npDistrict"), municipality: v("npMuni"),
+        ward: v("npWard"), tole: v("npTole")
+      },
+      japanAddress: {
+        zip: v("jpZip"), prefecture: v("jpPref"), address: v("jpAddr")
+      },
+      payment: {
+        date: v("payDate"), amount: amount, senderName: v("payName")
+      },
+      createdAt: serverTimestamp()
+    });
+
+    msg.className = "ok";
+    msg.innerHTML =
+      "<b>✅ आवेदन सफलतापूर्वक पठाइयो!</b><br><br>" +
+      "तपाईंको आवेदन नम्बर:<br><span id='appid'>" + appId + "</span><br><br>" +
+      "यो नम्बर सुरक्षित राख्नुहोस्। कार्यसमितिले जाँच गरेपछि तपाईंलाई सम्पर्क गरिनेछ।";
+    document.querySelector(".wrap").scrollIntoView({behavior:"smooth", block:"end"});
+    btn.style.display = "none";
+
+  } catch (e) {
+    console.error(e);
+    msg.className = "err";
+    msg.innerHTML = "❌ पठाउन सकिएन। कृपया इन्टरनेट जाँचेर फेरि प्रयास गर्नुहोस्।";
+    btn.disabled = false;
+    btn.textContent = "आवेदन पठाउनुहोस्";
+  }
+});
+</script>
+</body>
+</html>
