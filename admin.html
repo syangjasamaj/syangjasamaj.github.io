@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Syangja Samaj Japan</title>
+<style>
+  :root{--red:#C8102E;--blue:#003893;--ink:#1a1a1a;--muted:#666;--line:#e4e4e7;--bg:#f5f5f7;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Hiragino Sans","Noto Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 14px 60px;}
+
+  /* Login */
+  #login{max-width:380px;margin:80px auto;background:#fff;padding:28px;border-radius:14px;border:1px solid var(--line);}
+  #login h1{font-size:20px;margin:0 0 4px;}
+  #login p{color:var(--muted);font-size:14px;margin:0 0 20px;}
+  input{width:100%;padding:11px 12px;border:1px solid #ccc;border-radius:8px;font-size:16px;margin-bottom:12px;font-family:inherit;}
+  button{padding:11px 16px;border:0;border-radius:8px;background:var(--red);color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;}
+  button:disabled{background:#bbb;cursor:not-allowed;}
+  .btn-full{width:100%;padding:14px;font-size:16px;}
+  .err{color:var(--red);font-size:14px;margin-top:8px;}
+
+  /* Header */
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px;}
+  header h1{font-size:20px;margin:0;}
+  .logout{background:#fff;color:var(--muted);border:1px solid var(--line);}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+  @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;}
+  .stat .n{font-size:26px;font-weight:800;}
+  .stat .l{font-size:12px;color:var(--muted);}
+  .stat.p .n{color:#c77700;}
+  .stat.a .n{color:#1a7f37;}
+
+  /* Tabs */
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+  .tab{padding:8px 16px;border-radius:20px;background:#fff;border:1px solid var(--line);cursor:pointer;font-size:14px;}
+  .tab.on{background:var(--red);color:#fff;border-color:var(--red);}
+
+  /* List */
+  .item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;}
+  .item .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;}
+  .item .nm{font-size:17px;font-weight:700;}
+  .item .id{font-size:13px;color:var(--muted);font-family:monospace;}
+  .badge{font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;}
+  .b-pending{background:#fff4e0;color:#c77700;}
+  .b-approved{background:#e6f6ea;color:#1a7f37;}
+  .b-rejected{background:#fdecec;color:var(--red);}
+  .b-lm{background:#eef2ff;color:var(--blue);}
+  .b-gm{background:#f2f2f4;color:#555;}
+
+  .details{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;}
+  .details.open{display:block;}
+  .grid{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;}
+  @media(max-width:520px){.grid{grid-template-columns:110px 1fr;}}
+  .grid .k{color:var(--muted);}
+  .actions{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;}
+  .approve{background:#1a7f37;}
+  .reject{background:#fff;color:var(--red);border:1px solid var(--red);}
+  .toggle{background:#fff;color:var(--blue);border:1px solid var(--line);font-size:13px;padding:6px 12px;}
+  .memno{background:#e6f6ea;padding:8px 12px;border-radius:8px;font-family:monospace;font-weight:700;display:inline-block;margin-top:8px;}
+  .empty{text-align:center;color:var(--muted);padding:40px;}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="login">
+  <h1>Admin लगइन</h1>
+  <p>स्याङ्जा समाज जापान — सदस्यता व्यवस्थापन</p>
+  <input id="lEmail" type="email" placeholder="इमेल">
+  <input id="lPass" type="password" placeholder="पासवर्ड">
+  <button class="btn-full" id="lBtn">लगइन</button>
+  <div class="err" id="lErr"></div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div class="wrap" id="dash" style="display:none;">
+  <header>
+    <h1>सदस्यता व्यवस्थापन</h1>
+    <button class="logout" id="outBtn">लगआउट</button>
+  </header>
+
+  <div class="stats">
+    <div class="stat p"><div class="n" id="sPending">–</div><div class="l">पर्खिरहेको</div></div>
+    <div class="stat a"><div class="n" id="sApproved">–</div><div class="l">स्वीकृत</div></div>
+    <div class="stat"><div class="n" id="sLM">–</div><div class="l">आजीवन</div></div>
+    <div class="stat"><div class="n" id="sGM">–</div><div class="l">साधारण</div></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" data-f="pending">पर्खिरहेको</div>
+    <div class="tab" data-f="approved">स्वीकृत</div>
+    <div class="tab" data-f="rejected">अस्वीकृत</div>
+    <div class="tab" data-f="all">सबै</div>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getFirestore, collection, onSnapshot, doc, updateDoc, runTransaction, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDIQPuWukxLIP7BSNkLR23irLKC7MJIO4k",
+  authDomain: "syangja-samaj-japan.firebaseapp.com",
+  projectId: "syangja-samaj-japan",
+  storageBucket: "syangja-samaj-japan.firebasestorage.app",
+  messagingSenderId: "194201708498",
+  appId: "1:194201708498:web:3fa639a4065c99bd13ca0b"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+/* ---------- लगइन ---------- */
+document.getElementById("lBtn").addEventListener("click", async () => {
+  const e = document.getElementById("lEmail").value.trim();
+  const p = document.getElementById("lPass").value;
+  const err = document.getElementById("lErr");
+  err.textContent = "";
+  try {
+    await signInWithEmailAndPassword(auth, e, p);
+  } catch (ex) {
+    err.textContent = "इमेल वा पासवर्ड मिलेन।";
+  }
+});
+document.getElementById("lPass").addEventListener("keydown", e => {
+  if (e.key === "Enter") document.getElementById("lBtn").click();
+});
+document.getElementById("outBtn").addEventListener("click", () => signOut(auth));
+
+onAuthStateChanged(auth, user => {
+  document.getElementById("login").style.display = user ? "none" : "block";
+  document.getElementById("dash").style.display  = user ? "block" : "none";
+  if (user) listen();
+});
+
+/* ---------- डाटा सुन्ने ---------- */
+let apps = [];
+let filter = "pending";
+let started = false;
+
+function listen(){
+  if (started) return;
+  started = true;
+  onSnapshot(collection(db, "applications"), snap => {
+    apps = snap.docs.map(d => ({ _id: d.id, ...d.data() }));
+    apps.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+    render();
+  });
+}
+
+document.querySelectorAll(".tab").forEach(t => {
+  t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("on"));
+    t.classList.add("on");
+    filter = t.dataset.f;
+    render();
+  });
+});
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function render(){
+  document.getElementById("sPending").textContent  = apps.filter(a=>a.status==="pending").length;
+  document.getElementById("sApproved").textContent = apps.filter(a=>a.status==="approved").length;
+  document.getElementById("sLM").textContent = apps.filter(a=>a.status==="approved"&&a.membershipType==="LM").length;
+  document.getElementById("sGM").textContent = apps.filter(a=>a.status==="approved"&&a.membershipType==="GM").length;
+
+  const rows = filter === "all" ? apps : apps.filter(a => a.status === filter);
+  const list = document.getElementById("list");
+
+  if (!rows.length){ list.innerHTML = '<div class="empty">कुनै आवेदन छैन।</div>'; return; }
+
+  const label = {pending:"पर्खिरहेको", approved:"स्वीकृत", rejected:"अस्वीकृत"};
+
+  list.innerHTML = rows.map(a => `
+    <div class="item">
+      <div class="top">
+        <div>
+          <div class="nm">${esc(a.name)}</div>
+          <div class="id">${esc(a.applicationId)}</div>
+        </div>
+        <div>
+          <span class="badge b-${a.membershipType==="LM"?"lm":"gm"}">
+            ${a.membershipType==="LM"?"आजीवन ¥5,000":"साधारण ¥3,000"}</span>
+          <span class="badge b-${esc(a.status)}">${label[a.status]||a.status}</span>
+        </div>
+      </div>
+      ${a.membershipNumber ? `<div class="memno">${esc(a.membershipNumber)}</div>` : ""}
+      <button class="toggle" data-t="${a._id}">विवरण हेर्नुहोस् ▾</button>
+
+      <div class="details" id="d-${a._id}">
+        <div class="grid">
+          <div class="k">नाम (नेपाली)</div><div>${esc(a.nameNp)||"–"}</div>
+          <div class="k">जन्ममिति</div><div>${esc(a.dob)||"–"}</div>
+          <div class="k">फोन</div><div>${esc(a.phone)}</div>
+          <div class="k">इमेल</div><div>${esc(a.email)}</div>
+          <div class="k">नेपाल</div><div>${esc(a.nepalAddress?.district)} ${esc(a.nepalAddress?.municipality)}-${esc(a.nepalAddress?.ward)}</div>
+          <div class="k">जापान</div><div>${esc(a.japanAddress?.prefecture)} ${esc(a.japanAddress?.address)}</div>
+          <div class="k">भुक्तानी मिति</div><div>${esc(a.payment?.date)||"–"}</div>
+          <div class="k">रकम</div><div>¥${esc(a.payment?.amount)||0}
+            ${a.paymentStatus==="needs_check" ? ' <span class="badge b-pending">रकम जाँच्नुहोस्</span>' : ""}</div>
+          <div class="k">पठाउनेको नाम</div><div>${esc(a.payment?.senderName)||"–"}</div>
+        </div>
+        ${a.status==="pending" ? `
+        <div class="actions">
+          <button class="approve" data-ok="${a._id}">✓ स्वीकृत गर्नुहोस्</button>
+          <button class="reject" data-no="${a._id}">✕ अस्वीकृत</button>
+        </div>` : ""}
+      </div>
+    </div>
+  `).join("");
+
+  list.querySelectorAll("[data-t]").forEach(b =>
+    b.addEventListener("click", () => {
+      const d = document.getElementById("d-" + b.dataset.t);
+      d.classList.toggle("open");
+      b.textContent = d.classList.contains("open") ? "विवरण लुकाउनुहोस् ▴" : "विवरण हेर्नुहोस् ▾";
+    }));
+  list.querySelectorAll("[data-ok]").forEach(b =>
+    b.addEventListener("click", () => approve(b.dataset.ok, b)));
+  list.querySelectorAll("[data-no]").forEach(b =>
+    b.addEventListener("click", () => reject(b.dataset.no)));
+}
+
+/* ---------- Membership Number ---------- */
+async function nextMemberNo(type){
+  const year = new Date().getFullYear();
+  const ref  = doc(db, "counters", "members-" + type + "-" + year);
+  const n = await runTransaction(db, async t => {
+    const s = await t.get(ref);
+    const v = s.exists() ? s.data().n + 1 : 1;
+    t.set(ref, { n: v });
+    return v;
+  });
+  return "SSJ-" + type + "-" + year + "-" + String(n).padStart(5, "0");
+}
+
+/* ---------- स्वीकृत ---------- */
+async function approve(id, btn){
+  const a = apps.find(x => x._id === id);
+  if (!confirm(`${a.name} लाई सदस्य बनाउने हो?\n\nएकपटक स्वीकृत गरेपछि सदस्यता नम्बर बन्छ।`)) return;
+  btn.disabled = true; btn.textContent = "गर्दै…";
+  try {
+    const no = await nextMemberNo(a.membershipType);
+    await updateDoc(doc(db, "applications", id), {
+      status: "approved",
+      membershipNumber: no,
+      paymentStatus: "verified",
+      approvedAt: serverTimestamp(),
+      approvedBy: auth.currentUser.email
+    });
+    alert("✅ स्वीकृत भयो!\n\nसदस्यता नम्बर: " + no);
+  } catch (e) {
+    console.error(e);
+    alert("❌ गर्न सकिएन। फेरि प्रयास गर्नुहोस्।");
+    btn.disabled = false; btn.textContent = "✓ स्वीकृत गर्नुहोस्";
+  }
+}
+
+/* ---------- अस्वीकृत ---------- */
+async function reject(id){
+  const reason = prompt("अस्वीकृत गर्नुको कारण लेख्नुहोस्:");
+  if (reason === null) return;
+  await updateDoc(doc(db, "applications", id), {
+    status: "rejected",
+    rejectReason: reason,
+    rejectedAt: serverTimestamp(),
+    rejectedBy: auth.currentUser.email
+  });
+}
+</script>
+</body>
+</html>
