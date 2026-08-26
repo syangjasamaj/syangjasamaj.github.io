@@ -62,6 +62,21 @@
   .toggle{background:#fff;color:var(--blue);border:1px solid var(--line);font-size:13px;padding:6px 12px;}
   .memno{background:#e6f6ea;padding:8px 12px;border-radius:8px;font-family:monospace;font-weight:700;display:inline-block;margin-top:8px;}
   .empty{text-align:center;color:var(--muted);padding:40px;}
+
+  /* रसिद */
+  .receipt{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);}
+  .receipt .rlbl{font-size:13px;color:var(--muted);margin-bottom:8px;}
+  .receipt img{max-width:100%;max-height:340px;border:1px solid var(--line);border-radius:8px;display:block;cursor:zoom-in;}
+  .receipt .none{font-size:14px;color:var(--muted);}
+  .rload{background:#fff;color:var(--blue);border:1px solid var(--line);font-size:13px;padding:6px 12px;}
+
+  /* ठूलो बनाएर हेर्ने */
+  #lightbox{
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);
+    z-index:99;align-items:center;justify-content:center;padding:20px;cursor:zoom-out;
+  }
+  #lightbox.on{display:flex;}
+  #lightbox img{max-width:100%;max-height:100%;border-radius:6px;}
 </style>
 </head>
 <body>
@@ -100,12 +115,16 @@
   <div id="list"></div>
 </div>
 
+<div id="lightbox"><img id="lbImg" alt="रसिद"></div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc, runTransaction, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { getStorage, ref as sRef, getDownloadURL }
+  from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIQPuWukxLIP7BSNkLR23irLKC7MJIO4k",
@@ -116,9 +135,10 @@ const firebaseConfig = {
   appId: "1:194201708498:web:3fa639a4065c99bd13ca0b"
 };
 
-const app  = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db   = getFirestore(app);
+const app     = initializeApp(firebaseConfig);
+const auth    = getAuth(app);
+const db      = getFirestore(app);
+const storage = getStorage(app);
 
 /* ---------- लगइन ---------- */
 document.getElementById("lBtn").addEventListener("click", async () => {
@@ -212,6 +232,14 @@ function render(){
             ${a.paymentStatus==="needs_check" ? ' <span class="badge b-pending">रकम जाँच्नुहोस्</span>' : ""}</div>
           <div class="k">पठाउनेको नाम</div><div>${esc(a.payment?.senderName)||"–"}</div>
         </div>
+
+        <div class="receipt" id="r-${a._id}">
+          <div class="rlbl">बैंक रसिद</div>
+          ${a.receiptPath
+            ? `<button class="rload" data-r="${a._id}" data-path="${esc(a.receiptPath)}">📄 रसिद हेर्नुहोस्</button>`
+            : `<div class="none">रसिदको फोटो पठाइएको छैन — इमेल जाँच्नुहोस्।</div>`}
+        </div>
+
         ${a.status==="pending" ? `
         <div class="actions">
           <button class="approve" data-ok="${a._id}">✓ स्वीकृत गर्नुहोस्</button>
@@ -231,7 +259,41 @@ function render(){
     b.addEventListener("click", () => approve(b.dataset.ok, b)));
   list.querySelectorAll("[data-no]").forEach(b =>
     b.addEventListener("click", () => reject(b.dataset.no)));
+  list.querySelectorAll("[data-r]").forEach(b =>
+    b.addEventListener("click", () => showReceipt(b.dataset.r, b.dataset.path, b)));
 }
+
+/* ---------- रसिद देखाउने ---------- */
+async function showReceipt(id, path, btn){
+  btn.disabled = true;
+  btn.textContent = "ल्याउँदै…";
+  try {
+    const url = await getDownloadURL(sRef(storage, path));
+    const box = document.getElementById("r-" + id);
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = "बैंक रसिद";
+    img.addEventListener("click", () => {
+      document.getElementById("lbImg").src = url;
+      document.getElementById("lightbox").classList.add("on");
+    });
+    btn.replaceWith(img);
+    const hint = document.createElement("div");
+    hint.className = "rlbl";
+    hint.style.marginTop = "6px";
+    hint.textContent = "ठूलो बनाएर हेर्न फोटोमा थिच्नुहोस्।";
+    box.appendChild(hint);
+  } catch (e) {
+    console.error(e);
+    btn.disabled = false;
+    btn.textContent = "📄 रसिद हेर्नुहोस्";
+    alert("रसिद ल्याउन सकिएन। इन्टरनेट जाँचेर फेरि प्रयास गर्नुहोस्।");
+  }
+}
+
+document.getElementById("lightbox").addEventListener("click", () => {
+  document.getElementById("lightbox").classList.remove("on");
+});
 
 /* ---------- Membership Number ---------- */
 async function nextMemberNo(type){

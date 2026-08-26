@@ -55,6 +55,23 @@
   .bank{background:#fffbe6;border:1px solid #f0d98a;border-radius:10px;padding:14px;font-size:14px;margin-bottom:14px;}
   .bank b{color:var(--ink);}
 
+  /* रसिद अपलोड */
+  .drop{
+    border:2px dashed #ccc;border-radius:10px;background:#fafafa;
+    padding:18px;text-align:center;cursor:pointer;transition:.15s;
+  }
+  .drop:hover{border-color:var(--blue);background:#f4f7ff;}
+  .drop.has{border-color:#1a7f37;background:#f2fbf5;border-style:solid;}
+  .drop .big{font-size:15px;font-weight:600;}
+  .drop .small{font-size:12.5px;color:var(--muted);margin-top:3px;}
+  #receipt{display:none;}
+  #preview{max-width:100%;max-height:220px;border-radius:8px;margin-top:12px;display:none;}
+  #rmBtn{
+    width:auto;padding:7px 14px;font-size:13px;font-weight:600;
+    background:#fff;color:var(--red);border:1px solid var(--red);
+    border-radius:8px;margin-top:10px;display:none;
+  }
+
   .consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:14px;}
   .consent input{width:auto;margin-top:4px;flex-shrink:0;}
 
@@ -74,152 +91,162 @@
 <body>
 <div class="wrap">
 
-  <h1>सदस्यता लिनुहोस्</h1>
-  <p class="sub">स्याङ्जा समाज जापानको सदस्य बन्नुहोस् — 会員登録（かいいんとうろく）</p>
+<h1>सदस्यता लिनुहोस्</h1>
+<p class="sub">स्याङ्जा समाज जापानको सदस्य बन्नुहोस् — 会員登録（かいいんとうろく）</p>
 
-  <!-- सदस्यता प्रकार -->
-  <div class="plans">
-    <div class="plan" data-type="LM" data-fee="5000">
-      <div class="jp">終身会員（しゅうしんかいいん）</div>
-      <div class="np">आजीवन सदस्य</div>
-      <div class="yen">¥5,000</div>
+<!-- सदस्यता प्रकार -->
+<div class="plans">
+  <div class="plan" data-type="LM" data-fee="5000">
+    <div class="jp">終身会員（しゅうしんかいいん）</div>
+    <div class="np">आजीवन सदस्य</div>
+    <div class="yen">¥5,000</div>
+  </div>
+  <div class="plan" data-type="GM" data-fee="3000">
+    <div class="jp">一般会員（いっぱんかいいん）</div>
+    <div class="np">साधारण सदस्य</div>
+    <div class="yen">¥3,000</div>
+  </div>
+</div>
+
+<!-- व्यक्तिगत जानकारी -->
+<div class="card">
+  <h2>१. व्यक्तिगत जानकारी</h2>
+
+  <label>पूरा नाम <span class="req">*</span> <span class="jp">氏名（しめい）</span></label>
+  <input id="name" placeholder="HAMAL SANTOSH">
+
+  <label>नाम (नेपालीमा) <span class="jp">ネパール語の名前</span></label>
+  <input id="nameNp" placeholder="हमाल सन्तोष">
+
+  <div class="row">
+    <div>
+      <label>जन्ममिति <span class="req">*</span> <span class="jp">生年月日（せいねんがっぴ）</span></label>
+      <input id="dob" type="date">
     </div>
-    <div class="plan" data-type="GM" data-fee="3000">
-      <div class="jp">一般会員（いっぱんかいいん）</div>
-      <div class="np">साधारण सदस्य</div>
-      <div class="yen">¥3,000</div>
+    <div>
+      <label>लिङ्ग <span class="jp">性別（せいべつ）</span></label>
+      <select id="gender">
+        <option value="">छान्नुहोस्</option>
+        <option value="male">पुरुष / 男性</option>
+        <option value="female">महिला / 女性</option>
+        <option value="other">अन्य / その他</option>
+      </select>
     </div>
   </div>
 
-  <!-- व्यक्तिगत जानकारी -->
-  <div class="card">
-    <h2>१. व्यक्तिगत जानकारी</h2>
-
-    <label>पूरा नाम <span class="req">*</span> <span class="jp">氏名（しめい）</span></label>
-    <input id="name" placeholder="HAMAL SANTOSH">
-
-    <label>नाम (नेपालीमा) <span class="jp">ネパール語の名前</span></label>
-    <input id="nameNp" placeholder="हमाल सन्तोष">
-
-    <div class="row">
-      <div>
-        <label>जन्ममिति <span class="req">*</span> <span class="jp">生年月日（せいねんがっぴ）</span></label>
-        <input id="dob" type="date">
-      </div>
-      <div>
-        <label>लिङ्ग <span class="jp">性別（せいべつ）</span></label>
-        <select id="gender">
-          <option value="">छान्नुहोस्</option>
-          <option value="male">पुरुष / 男性</option>
-          <option value="female">महिला / 女性</option>
-          <option value="other">अन्य / その他</option>
-        </select>
-      </div>
+  <div class="row">
+    <div>
+      <label>फोन नम्बर <span class="req">*</span> <span class="jp">電話番号（でんわばんごう）</span></label>
+      <input id="phone" type="tel" placeholder="090-1234-5678">
     </div>
+    <div>
+      <label>इमेल <span class="req">*</span> <span class="jp">メールアドレス</span></label>
+      <input id="email" type="email" placeholder="example@gmail.com">
+    </div>
+  </div>
+</div>
 
-    <div class="row">
-      <div>
-        <label>फोन नम्बर <span class="req">*</span> <span class="jp">電話番号（でんわばんごう）</span></label>
-        <input id="phone" type="tel" placeholder="090-1234-5678">
-      </div>
-      <div>
-        <label>इमेल <span class="req">*</span> <span class="jp">メールアドレス</span></label>
-        <input id="email" type="email" placeholder="example@gmail.com">
-      </div>
+<!-- नेपालको ठेगाना -->
+<div class="card">
+  <h2>२. नेपालको ठेगाना</h2>
+  <div class="row">
+    <div>
+      <label>जिल्ला <span class="jp">郡</span></label>
+      <input id="npDistrict" placeholder="Syangja">
+    </div>
+    <div>
+      <label>नगरपालिका / गाउँपालिका</label>
+      <input id="npMuni" placeholder="Putalibazar">
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label>वडा नं.</label>
+      <input id="npWard" placeholder="5">
+    </div>
+    <div>
+      <label>टोल / गाउँ</label>
+      <input id="npTole">
+    </div>
+  </div>
+</div>
+
+<!-- जापानको ठेगाना -->
+<div class="card">
+  <h2>३. जापानको ठेगाना</h2>
+  <div class="row">
+    <div>
+      <label>郵便番号（ゆうびんばんごう）<span class="jp">डाक नम्बर</span></label>
+      <input id="jpZip" placeholder="211-0012">
+    </div>
+    <div>
+      <label>都道府県（とどうふけん）<span class="jp">प्रान्त</span></label>
+      <input id="jpPref" placeholder="神奈川県">
+    </div>
+  </div>
+  <label>住所（じゅうしょ）<span class="req">*</span> <span class="jp">पूरा ठेगाना</span></label>
+  <input id="jpAddr" placeholder="川崎市中原区…">
+</div>
+
+<!-- भुक्तानी -->
+<div class="card">
+  <h2>४. भुक्तानी जानकारी</h2>
+
+  <div class="bank">
+    <b>振込（ふりこみ）— बैंक ट्रान्सफर</b><br>
+    कृपया तलको खातामा सदस्यता शुल्क पठाउनुहोस्, अनि तलको विवरण भर्नुहोस्।<br><br>
+    <b>銀行（ぎんこう）बैंक:</b> ゆうちょ銀行（ゆうちょぎんこう）／ Japan Post Bank<br>
+    <b>記号・番号（きごう・ばんごう）:</b> 10110 － 62286891<br>
+    <b>種別（しゅべつ）खाताको प्रकार:</b> 普通（ふつう）／ Ordinary<br>
+    <b>名義（めいぎ）खाताको नाम:</b> センザ サマーズ ジャパン<br>
+    <br>
+    <span style="font-size:12px;color:#8a6d00;">
+    ※ ゆうちょ銀行 बाहेकको बैंक（例：三菱UFJ、みずほ等）बाट पठाउनु परे,
+    ATM／App मा "ゆうちょ銀行あてに送金" छान्नुहोस् र माथिको 記号・番号 त्यसै हाल्नुहोस्।
+    </span>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>पठाएको मिति <span class="jp">振込日（ふりこみび）</span></label>
+      <input id="payDate" type="date">
+    </div>
+    <div>
+      <label>पठाएको रकम <span class="jp">振込金額（ふりこみきんがく）</span></label>
+      <input id="payAmount" type="number" placeholder="5000">
     </div>
   </div>
 
-  <!-- नेपालको ठेगाना -->
-  <div class="card">
-    <h2>२. नेपालको ठेगाना</h2>
-    <div class="row">
-      <div>
-        <label>जिल्ला <span class="jp">郡</span></label>
-        <input id="npDistrict" placeholder="Syangja">
-      </div>
-      <div>
-        <label>नगरपालिका / गाउँपालिका</label>
-        <input id="npMuni" placeholder="Putalibazar">
-      </div>
-    </div>
-    <div class="row">
-      <div>
-        <label>वडा नं.</label>
-        <input id="npWard" placeholder="5">
-      </div>
-      <div>
-        <label>टोल / गाउँ</label>
-        <input id="npTole">
-      </div>
-    </div>
+  <label>पठाउने व्यक्तिको नाम <span class="jp">振込名義（ふりこみめいぎ）</span></label>
+  <input id="payName" placeholder="ハマル サントス">
+
+  <label>बैंक रसिदको फोटो <span class="jp">振込明細の写真（ふりこみめいさいのしゃしん）</span></label>
+  <div class="drop" id="drop">
+    <div class="big">📸 फोटो छान्नुहोस्</div>
+    <div class="small">ATM को रसिद वा App को स्क्रिनसट — JPG／PNG</div>
+    <img id="preview" alt="रसिदको फोटो">
   </div>
+  <input type="file" id="receipt" accept="image/*">
+  <button type="button" id="rmBtn">✕ फोटो हटाउनुहोस्</button>
 
-  <!-- जापानको ठेगाना -->
-  <div class="card">
-    <h2>३. जापानको ठेगाना</h2>
-    <div class="row">
-      <div>
-        <label>郵便番号（ゆうびんばんごう）<span class="jp">डाक नम्बर</span></label>
-        <input id="jpZip" placeholder="211-0012">
-      </div>
-      <div>
-        <label>都道府県（とどうふけん）<span class="jp">प्रान्त</span></label>
-        <input id="jpPref" placeholder="神奈川県">
-      </div>
-    </div>
-    <label>住所（じゅうしょ）<span class="req">*</span> <span class="jp">पूरा ठेगाना</span></label>
-    <input id="jpAddr" placeholder="川崎市中原区…">
+  <p class="note">फोटो नराखे पनि आवेदन पठाउन मिल्छ — पछि इमेलबाट पठाए पनि हुन्छ।
+  तर फोटो राख्दा जाँच छिटो हुन्छ।</p>
+</div>
+
+<!-- सहमति -->
+<div class="card">
+  <div class="consent">
+    <input type="checkbox" id="c1">
+    <label for="c1" style="margin:0;font-weight:400;">मैले दिएको जानकारी सही हो भनी पुष्टि गर्दछु।</label>
   </div>
-
-  <!-- भुक्तानी -->
-  <div class="card">
-    <h2>४. भुक्तानी जानकारी</h2>
-
-    <div class="bank">
-      <b>振込（ふりこみ）— बैंक ट्रान्सफर</b><br>
-      कृपया तलको खातामा सदस्यता शुल्क पठाउनुहोस्, अनि तलको विवरण भर्नुहोस्।<br><br>
-      <b>銀行（ぎんこう）बैंक:</b> ゆうちょ銀行（ゆうちょぎんこう）／ Japan Post Bank<br>
-      <b>記号・番号（きごう・ばんごう）:</b> 10110 － 62286891<br>
-      <b>種別（しゅべつ）खाताको प्रकार:</b> 普通（ふつう）／ Ordinary<br>
-      <b>名義（めいぎ）खाताको नाम:</b> センザ　サマーズ　ジャパン<br>
-      <br>
-      <span style="font-size:12px;color:#8a6d00;">
-      ※ ゆうちょ銀行 बाहेकको बैंक（例：三菱UFJ、みずほ等）बाट पठाउनु परे,
-      ATM／App मा "ゆうちょ銀行あてに送金" छान्नुहोस् र माथिको 記号・番号 त्यसै हाल्नुहोस्।
-      </span>
-    </div>
-
-    <div class="row">
-      <div>
-        <label>पठाएको मिति <span class="jp">振込日（ふりこみび）</span></label>
-        <input id="payDate" type="date">
-      </div>
-      <div>
-        <label>पठाएको रकम <span class="jp">振込金額（ふりこみきんがく）</span></label>
-        <input id="payAmount" type="number" placeholder="5000">
-      </div>
-    </div>
-
-    <label>पठाउने व्यक्तिको नाम <span class="jp">振込名義（ふりこみめいぎ）</span></label>
-    <input id="payName" placeholder="ハマル サントス">
-
-    <p class="note">📸 बैंक रसिदको फोटो पछि इमेलबाट पठाउनुहोस्।</p>
+  <div class="consent">
+    <input type="checkbox" id="c2">
+    <label for="c2" style="margin:0;font-weight:400;">मेरो व्यक्तिगत जानकारी सदस्यता व्यवस्थापनका लागि मात्र प्रयोग हुने कुरामा सहमत छु।</label>
   </div>
+</div>
 
-  <!-- सहमति -->
-  <div class="card">
-    <div class="consent">
-      <input type="checkbox" id="c1">
-      <label for="c1" style="margin:0;font-weight:400;">मैले दिएको जानकारी सही हो भनी पुष्टि गर्दछु।</label>
-    </div>
-    <div class="consent">
-      <input type="checkbox" id="c2">
-      <label for="c2" style="margin:0;font-weight:400;">मेरो व्यक्तिगत जानकारी सदस्यता व्यवस्थापनका लागि मात्र प्रयोग हुने कुरामा सहमत छु।</label>
-    </div>
-  </div>
-
-  <button id="submitBtn" disabled>आवेदन पठाउनुहोस्</button>
-  <div id="msg"></div>
+<button id="submitBtn" disabled>आवेदन पठाउनुहोस्</button>
+<div id="msg"></div>
 
 </div>
 
@@ -227,6 +254,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp, runTransaction, doc }
   from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { getStorage, ref as sRef, uploadBytes }
+  from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIQPuWukxLIP7BSNkLR23irLKC7MJIO4k",
@@ -238,7 +267,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
 /* --- सदस्यता प्रकार छान्ने --- */
 let picked = null;
@@ -251,6 +281,70 @@ document.querySelectorAll(".plan").forEach(el => {
     check();
   });
 });
+
+/* --- रसिदको फोटो छान्ने र सानो बनाउने --- */
+let receiptBlob = null;
+const drop    = document.getElementById("drop");
+const fileIn  = document.getElementById("receipt");
+const preview = document.getElementById("preview");
+const rmBtn   = document.getElementById("rmBtn");
+
+drop.addEventListener("click", () => fileIn.click());
+
+fileIn.addEventListener("change", async () => {
+  const f = fileIn.files[0];
+  if (!f) return;
+  if (!f.type.startsWith("image/")) {
+    alert("तस्बिर मात्र राख्न मिल्छ (JPG वा PNG)।");
+    fileIn.value = "";
+    return;
+  }
+  try {
+    receiptBlob = await shrink(f);
+    preview.src = URL.createObjectURL(receiptBlob);
+    preview.style.display = "block";
+    rmBtn.style.display = "inline-block";
+    drop.classList.add("has");
+    drop.querySelector(".big").textContent = "✅ फोटो तयार छ";
+    drop.querySelector(".small").textContent = "बदल्न यहाँ फेरि थिच्नुहोस्";
+  } catch (e) {
+    console.error(e);
+    alert("फोटो पढ्न सकिएन। अर्को फोटो प्रयास गर्नुहोस्।");
+  }
+});
+
+rmBtn.addEventListener("click", () => {
+  receiptBlob = null;
+  fileIn.value = "";
+  preview.style.display = "none";
+  rmBtn.style.display = "none";
+  drop.classList.remove("has");
+  drop.querySelector(".big").textContent = "📸 फोटो छान्नुहोस्";
+  drop.querySelector(".small").textContent = "ATM को रसिद वा App को स्क्रिनसट — JPG／PNG";
+});
+
+/* ठूलो फोटोलाई सानो बनाउने — इन्टरनेट कम खर्च हुन्छ */
+function shrink(file){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const max = 1600;
+      let { width: w, height: h } = img;
+      if (w > max || h > max) {
+        const r = Math.min(max / w, max / h);
+        w = Math.round(w * r);
+        h = Math.round(h * r);
+      }
+      const c = document.createElement("canvas");
+      c.width = w; c.height = h;
+      c.getContext("2d").drawImage(img, 0, 0, w, h);
+      c.toBlob(b => b ? resolve(b) : reject(new Error("blob failed")), "image/jpeg", 0.82);
+      URL.revokeObjectURL(img.src);
+    };
+    img.onerror = () => reject(new Error("image load failed"));
+    img.src = URL.createObjectURL(file);
+  });
+}
 
 /* --- बटन कहिले खुल्ने --- */
 const ids = ["name","dob","phone","email","jpAddr"];
@@ -266,7 +360,7 @@ document.getElementById("c2").addEventListener("change", check);
 /* --- Application ID बनाउने (SSJ-2026-00001) --- */
 async function nextAppId(){
   const year = new Date().getFullYear();
-  const ref  = doc(db, "counters", "applications-" + year);
+  const ref = doc(db, "counters", "applications-" + year);
   const n = await runTransaction(db, async t => {
     const s = await t.get(ref);
     const v = s.exists() ? s.data().n + 1 : 1;
@@ -289,6 +383,22 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
     const v = id => document.getElementById(id).value.trim();
     const amount = Number(v("payAmount")) || 0;
 
+    /* रसिद भए Storage मा राख्ने */
+    let receiptPath = "";
+    if (receiptBlob) {
+      btn.textContent = "फोटो पठाउँदै…";
+      const rnd = Array.from(crypto.getRandomValues(new Uint8Array(6)))
+        .map(b => b.toString(16).padStart(2,"0")).join("");
+      receiptPath = "receipts/" + appId + "-" + rnd + ".jpg";
+      try {
+        await uploadBytes(sRef(storage, receiptPath), receiptBlob, { contentType: "image/jpeg" });
+      } catch (up) {
+        console.error(up);
+        receiptPath = "";   /* फोटो नगए पनि आवेदन रोकिँदैन */
+      }
+      btn.textContent = "पठाउँदै…";
+    }
+
     await addDoc(collection(db, "applications"), {
       applicationId: appId,
       status: "pending",
@@ -308,6 +418,7 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
       payment: {
         date: v("payDate"), amount: amount, senderName: v("payName")
       },
+      receiptPath: receiptPath,
       createdAt: serverTimestamp()
     });
 
@@ -315,6 +426,9 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
     msg.innerHTML =
       "<b>✅ आवेदन सफलतापूर्वक पठाइयो!</b><br><br>" +
       "तपाईंको आवेदन नम्बर:<br><span id='appid'>" + appId + "</span><br><br>" +
+      (receiptPath
+        ? "रसिदको फोटो पनि पुग्यो।<br><br>"
+        : "रसिदको फोटो पठाइएन — पछि इमेलबाट पठाउनुहोस्।<br><br>") +
       "यो नम्बर सुरक्षित राख्नुहोस्। कार्यसमितिले जाँच गरेपछि तपाईंलाई सम्पर्क गरिनेछ।";
     document.querySelector(".wrap").scrollIntoView({behavior:"smooth", block:"end"});
     btn.style.display = "none";
